@@ -14,5 +14,5 @@ git commit -m "%date% %safe_time%"
 git push
 
 echo.
-echo === Done! ===
+echo Done
 pause

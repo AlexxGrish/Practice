@@ -54,6 +54,163 @@
 			quid       	"6AE44B3202A4"
 			supplier   	"Use Case View::Администрирование"
 			quidu      	"6AE44B2802FE")))
+	    (object Class "User"
+		quid       	"6AE44F9C0277"
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "FullName"
+			quid       	"6AE4504F02F8"
+			type       	"String")
+		    (object ClassAttribute "Role"
+			quid       	"6AE450620053"
+			type       	"Integer")
+		    (object ClassAttribute "Pass"
+			quid       	"6AE45067005F"
+			type       	"String")
+		    (object ClassAttribute "Login"
+			quid       	"6AE4506D02D4"
+			type       	"String")
+		    (object ClassAttribute "LastChanges"
+			quid       	"6AE4507A011F"
+			type       	"String")))
+	    (object Class "Validator"
+		quid       	"6AE44FAE01D4"
+		operations 	(list Operations
+		    (object Operation "ValidateData"
+			quid       	"6AE450BC0395"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "DBConnect"
+		quid       	"6AE44FB50269"
+		operations 	(list Operations
+		    (object Operation "Connect"
+			quid       	"6AE450F703AF"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Disconnect"
+			quid       	"6AE450FF0388"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "CreateFSTDB"
+			quid       	"6AE451130061"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "GetData"
+			quid       	"6AE455CB0056"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "ConnectionString"
+			quid       	"6AE450DE0035")))
+	    (object Class "Shops"
+		quid       	"6AE44FC102A9"
+		operations 	(list Operations
+		    (object Operation "CalculateOptimalCounters"
+			quid       	"6AE451F40190"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "NumberСounters"
+			quid       	"6AE4513F0034"
+			type       	"String")
+		    (object ClassAttribute "Address"
+			quid       	"6AE451520352"
+			type       	"String")
+		    (object ClassAttribute "NumberOfСounters"
+			quid       	"6AE451920168"
+			type       	"Integer")
+		    (object ClassAttribute "AVGAttendance"
+			quid       	"6AE451B6014E"
+			type       	"Double")))
+	    (object Class "routes"
+		quid       	"6AE44FCB0342"
+		operations 	(list Operations
+		    (object Operation "CaliculateOptimalRoute"
+			quid       	"6AE4530403DF"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "DistanceStore"
+			quid       	"6AE452EB02D0")))
+	    (object Class "Equipment"
+		quid       	"6AE450000092"
+		operations 	(list Operations
+		    (object Operation "CalculateReplacementPlan"
+			quid       	"6AE4538E0229"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Name"
+			quid       	"6AE4530C0357"
+			type       	"String")
+		    (object ClassAttribute "NewPrice"
+			quid       	"6AE4531102C0"
+			type       	"Double")
+		    (object ClassAttribute "Profit"
+			quid       	"6AE453240287"
+			type       	"Double")
+		    (object ClassAttribute "Age"
+			quid       	"6AE4532700C2"
+			type       	"Integer")
+		    (object ClassAttribute "OldPrice"
+			quid       	"6AE453600189"
+			type       	"Double")))
+	    (object Class "NewClass"
+		quid       	"6AE45014013E")
+	    (object Class "Products"
+		quid       	"6AE4502101AA"
+		operations 	(list Operations
+		    (object Operation "CaliculateOptimalPlan"
+			quid       	"6AE455B70083"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "demand "
+			quid       	"6AE454EC0047"
+			type       	"Double")
+		    (object ClassAttribute "max_inventory"
+			quid       	"6AE454F10372"
+			type       	"Double")
+		    (object ClassAttribute "max_production "
+			quid       	"6AE454F90271"
+			type       	"Double")
+		    (object ClassAttribute "dp_table "
+			quid       	"6AE4550401AC"
+			type       	"Double[]")
+		    (object ClassAttribute "choice_table "
+			quid       	"6AE455070291"
+			type       	"Double[]")))
+	    (object Class "Investments"
+		quid       	"6AE450430103"
+		operations 	(list Operations
+		    (object Operation "ProfitOptimization"
+			quid       	"6AE4549701A4"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "profit_matrix "
+			quid       	"6AE454200210"
+			type       	"Integer[]")
+		    (object ClassAttribute "totalResourses"
+			quid       	"6AE4543C0100"
+			type       	"Integer")
+		    (object ClassAttribute "step_resource "
+			quid       	"6AE4544D026E"
+			type       	"int")
+		    (object ClassAttribute "choice_table "
+			quid       	"6AE4545C011F"
+			type       	"Double[]")))
+	    (object Class "GenerateReport"
+		quid       	"6AE455F50258")
 	    (object UseCase "Расчитать оптимальный маршрут доставки"
 		quid       	"6AE449EA0078"
 		superclasses 	(list inheritance_relationship_list
@@ -1736,6 +1893,446 @@
 				    (2332, 1200)
 				    (2180, 1208))
 				line_style 	0)))))
+	    (object ClassDiagram "Class Diagram"
+		quid       	"6AE44F8C010F"
+		title      	"Class Diagram"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	3269
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Use Case View::User" @67
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(544, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@67
+			    location   	(333, 203)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	422
+			    justify    	0
+			    label      	"User")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE44F9C0277"
+			compartment 	(object Compartment
+			    Parent_View 	@67
+			    location   	(333, 264)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	6
+			    max_width  	419
+			    justify    	1)
+			width      	440
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Validator" @68
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1575, 216)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@68
+			    location   	(1427, 135)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	296
+			    justify    	0
+			    label      	"Validator")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE44FAE01D4"
+			compartment 	(object Compartment
+			    Parent_View 	@68
+			    location   	(1427, 196)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	2
+			    max_width  	294
+			    justify    	1)
+			width      	314
+			height     	186
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::DBConnect" @69
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2341, 193)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@69
+			    location   	(2165, 12)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	352
+			    justify    	0
+			    label      	"DBConnect")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE44FB50269"
+			compartment 	(object Compartment
+			    Parent_View 	@69
+			    location   	(2165, 73)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	6
+			    max_width  	350
+			    justify    	1)
+			width      	370
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Shops" @70
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3082, 431)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@70
+			    location   	(2812, 250)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	540
+			    justify    	0
+			    label      	"Shops")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE44FC102A9"
+			compartment 	(object Compartment
+			    Parent_View 	@70
+			    location   	(2812, 311)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	6
+			    max_width  	537
+			    justify    	1)
+			width      	558
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::routes" @71
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3016, 892)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@71
+			    location   	(2771, 786)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	490
+			    justify    	0
+			    label      	"routes")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE44FCB0342"
+			compartment 	(object Compartment
+			    Parent_View 	@71
+			    location   	(2771, 847)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	3
+			    max_width  	488
+			    justify    	1)
+			width      	508
+			height     	236
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Equipment" @72
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2703, 1331)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@72
+			    location   	(2428, 1125)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	550
+			    justify    	0
+			    label      	"Equipment")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE450000092"
+			compartment 	(object Compartment
+			    Parent_View 	@72
+			    location   	(2428, 1186)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	7
+			    max_width  	547
+			    justify    	1)
+			width      	568
+			height     	436
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Products" @73
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1934, 1584)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@73
+			    location   	(1684, 1378)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	500
+			    justify    	0
+			    label      	"Products")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE4502101AA"
+			compartment 	(object Compartment
+			    Parent_View 	@73
+			    location   	(1684, 1439)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	7
+			    max_width  	497
+			    justify    	1)
+			width      	518
+			height     	436
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Investments" @74
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2469, 1984)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@74
+			    location   	(2234, 1803)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	470
+			    justify    	0
+			    label      	"Investments")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE450430103"
+			compartment 	(object Compartment
+			    Parent_View 	@74
+			    location   	(2234, 1864)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	6
+			    max_width  	466
+			    justify    	1)
+			width      	488
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::GenerateReport" @75
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(653, 1413)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@75
+			    location   	(496, 1362)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	314
+			    justify    	0
+			    label      	"GenerateReport")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6AE455F50258"
+			width      	332
+			height     	126
+			annotation 	8
+			autoResize 	TRUE)))
 	    (object InteractionDiagram "Seqence"
 		mechanism_ref 	@1
 		quid       	"6AE44B8601F3"
@@ -1746,7 +2343,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object InterObjView "$UNNAMED$6" @67
+		    (object InterObjView "$UNNAMED$6" @76
 			location   	(180, 234)
 			font       	(object Font
 			    size       	10
@@ -1759,7 +2356,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@67
+			    Parent_View 	@76
 			    location   	(180, 259)
 			    anchor_loc 	1
 			    nlines     	2
@@ -1777,28 +2374,28 @@
 			icon_width 	108
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @68
+			Focus_Of_Control 	(object Focus_Of_Control "" @77
 			    location   	(180, 322)
 			    line_color 	3342489
-			    InterObjView 	@67
+			    InterObjView 	@76
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @69
+			Focus_Of_Control 	(object Focus_Of_Control "" @78
 			    location   	(180, 1057)
 			    line_color 	3342489
-			    InterObjView 	@67
+			    InterObjView 	@76
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @70
+			Focus_Of_Control 	(object Focus_Of_Control "" @79
 			    location   	(180, 1526)
 			    line_color 	3342489
-			    InterObjView 	@67
+			    InterObjView 	@76
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE))
-		    (object InterObjView "Интерфейс системы" @71
+		    (object InterObjView "Интерфейс системы" @80
 			location   	(597, 225)
 			font       	(object Font
 			    size       	10
@@ -1811,7 +2408,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@71
+			    Parent_View 	@80
 			    location   	(597, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -1829,49 +2426,49 @@
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @72
+			Focus_Of_Control 	(object Focus_Of_Control "" @81
 			    location   	(597, 322)
 			    line_color 	3342489
-			    InterObjView 	@71
+			    InterObjView 	@80
 			    height     	195
 			    y_coord    	105
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @73
+			Focus_Of_Control 	(object Focus_Of_Control "" @82
 			    location   	(597, 742)
 			    line_color 	3342489
-			    InterObjView 	@71
+			    InterObjView 	@80
 			    height     	315
 			    y_coord    	225
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @74
+			Focus_Of_Control 	(object Focus_Of_Control "" @83
 			    location   	(597, 952)
 			    line_color 	3342489
-			    InterObjView 	@71
+			    InterObjView 	@80
 			    height     	1
 			    y_coord    	-89
 			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @75
+			Focus_Of_Control 	(object Focus_Of_Control "" @84
 			    location   	(597, 1162)
 			    line_color 	3342489
-			    InterObjView 	@71
+			    InterObjView 	@80
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @76
+			Focus_Of_Control 	(object Focus_Of_Control "" @85
 			    location   	(597, 1316)
 			    line_color 	3342489
-			    InterObjView 	@71
+			    InterObjView 	@80
 			    height     	165
 			    y_coord    	75
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @77
+			Focus_Of_Control 	(object Focus_Of_Control "" @86
 			    location   	(597, 1421)
 			    line_color 	3342489
-			    InterObjView 	@71
+			    InterObjView 	@80
 			    height     	195
 			    y_coord    	105
 			    Nested     	TRUE))
-		    (object InterObjView "Субд" @78
+		    (object InterObjView "Субд" @87
 			location   	(957, 225)
 			font       	(object Font
 			    size       	10
@@ -1884,7 +2481,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@78
+			    Parent_View 	@87
 			    location   	(957, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -1902,21 +2499,21 @@
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @79
+			Focus_Of_Control 	(object Focus_Of_Control "" @88
 			    location   	(957, 427)
 			    line_color 	3342489
-			    InterObjView 	@78
+			    InterObjView 	@87
 			    height     	270
 			    y_coord    	180
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @80
+			Focus_Of_Control 	(object Focus_Of_Control "" @89
 			    location   	(957, 637)
 			    line_color 	3342489
-			    InterObjView 	@78
+			    InterObjView 	@87
 			    height     	520
 			    y_coord    	430
 			    Nested     	TRUE))
-		    (object InterObjView "Валидатор данных" @81
+		    (object InterObjView "Валидатор данных" @90
 			location   	(1317, 225)
 			font       	(object Font
 			    size       	10
@@ -1929,7 +2526,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@81
+			    Parent_View 	@90
 			    location   	(1317, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -1947,21 +2544,21 @@
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @82
+			Focus_Of_Control 	(object Focus_Of_Control "" @91
 			    location   	(1317, 847)
 			    line_color 	3342489
-			    InterObjView 	@81
+			    InterObjView 	@90
 			    height     	105
 			    y_coord    	15
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @83
+			Focus_Of_Control 	(object Focus_Of_Control "" @92
 			    location   	(1317, 1162)
 			    line_color 	3342489
-			    InterObjView 	@81
+			    InterObjView 	@90
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE))
-		    (object InterObjView "Алгоритм решения" @84
+		    (object InterObjView "Алгоритм решения" @93
 			location   	(1677, 225)
 			font       	(object Font
 			    size       	10
@@ -1974,7 +2571,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@84
+			    Parent_View 	@93
 			    location   	(1677, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -1992,14 +2589,14 @@
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @85
+			Focus_Of_Control 	(object Focus_Of_Control "" @94
 			    location   	(1677, 1316)
 			    line_color 	3342489
-			    InterObjView 	@84
+			    InterObjView 	@93
 			    height     	195
 			    y_coord    	105
 			    Nested     	FALSE))
-		    (object InterObjView "База данных" @86
+		    (object InterObjView "База данных" @95
 			location   	(2037, 225)
 			font       	(object Font
 			    size       	10
@@ -2012,7 +2609,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@86
+			    Parent_View 	@95
 			    location   	(2037, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -2030,14 +2627,14 @@
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @87
+			Focus_Of_Control 	(object Focus_Of_Control "" @96
 			    location   	(2037, 532)
 			    line_color 	3342489
-			    InterObjView 	@86
+			    InterObjView 	@95
 			    height     	195
 			    y_coord    	105
 			    Nested     	FALSE))
-		    (object InterMessView "Запрос  на расчет" @88
+		    (object InterMessView "Запрос  на расчет" @97
 			location   	(0, 322)
 			font       	(object Font
 			    size       	10
@@ -2049,8 +2646,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @89
-			    Parent_View 	@88
+			label      	(object SegLabel @98
+			    Parent_View 	@97
 			    location   	(388, 278)
 			    font       	(object Font
 				size       	10
@@ -2072,14 +2669,14 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@67
-			supplier   	@71
-			Focus_Src  	@68
-			Focus_Entry 	@72
+			client     	@76
+			supplier   	@80
+			Focus_Src  	@77
+			Focus_Entry 	@81
 			origin     	(195, 322)
 			terminus   	(581, 322)
 			ordinal    	0)
-		    (object InterMessView "Получение исходных данных" @90
+		    (object InterMessView "Получение исходных данных" @99
 			location   	(0, 427)
 			font       	(object Font
 			    size       	10
@@ -2091,8 +2688,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @91
-			    Parent_View 	@90
+			label      	(object SegLabel @100
+			    Parent_View 	@99
 			    location   	(776, 383)
 			    font       	(object Font
 				size       	10
@@ -2114,14 +2711,14 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@71
-			supplier   	@78
-			Focus_Src  	@72
-			Focus_Entry 	@79
+			client     	@80
+			supplier   	@87
+			Focus_Src  	@81
+			Focus_Entry 	@88
 			origin     	(612, 427)
 			terminus   	(941, 427)
 			ordinal    	1)
-		    (object InterMessView "SQL Запросы" @92
+		    (object InterMessView "SQL Запросы" @101
 			location   	(0, 532)
 			font       	(object Font
 			    size       	10
@@ -2133,8 +2730,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @93
-			    Parent_View 	@92
+			label      	(object SegLabel @102
+			    Parent_View 	@101
 			    location   	(1496, 488)
 			    font       	(object Font
 				size       	10
@@ -2156,14 +2753,14 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@78
-			supplier   	@86
-			Focus_Src  	@79
-			Focus_Entry 	@87
+			client     	@87
+			supplier   	@95
+			Focus_Src  	@88
+			Focus_Entry 	@96
 			origin     	(972, 532)
 			terminus   	(2021, 532)
 			ordinal    	2)
-		    (object InterMessView "Результат запросов" @94
+		    (object InterMessView "Результат запросов" @103
 			location   	(0, 637)
 			font       	(object Font
 			    size       	10
@@ -2175,8 +2772,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @95
-			    Parent_View 	@94
+			label      	(object SegLabel @104
+			    Parent_View 	@103
 			    location   	(1497, 593)
 			    font       	(object Font
 				size       	10
@@ -2198,14 +2795,14 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@86
-			supplier   	@78
-			Focus_Src  	@87
-			Focus_Entry 	@80
+			client     	@95
+			supplier   	@87
+			Focus_Src  	@96
+			Focus_Entry 	@89
 			origin     	(2021, 637)
 			terminus   	(973, 637)
 			ordinal    	3)
-		    (object InterMessView "Данные" @96
+		    (object InterMessView "Данные" @105
 			location   	(0, 742)
 			font       	(object Font
 			    size       	10
@@ -2217,8 +2814,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @97
-			    Parent_View 	@96
+			label      	(object SegLabel @106
+			    Parent_View 	@105
 			    location   	(777, 698)
 			    font       	(object Font
 				size       	10
@@ -2240,14 +2837,14 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@78
-			supplier   	@71
-			Focus_Src  	@80
-			Focus_Entry 	@73
+			client     	@87
+			supplier   	@80
+			Focus_Src  	@89
+			Focus_Entry 	@82
 			origin     	(941, 742)
 			terminus   	(613, 742)
 			ordinal    	4)
-		    (object InterMessView "Проверка корректности" @98
+		    (object InterMessView "Проверка корректности" @107
 			location   	(0, 847)
 			font       	(object Font
 			    size       	10
@@ -2259,8 +2856,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @99
-			    Parent_View 	@98
+			label      	(object SegLabel @108
+			    Parent_View 	@107
 			    location   	(956, 803)
 			    font       	(object Font
 				size       	10
@@ -2282,14 +2879,14 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@71
-			supplier   	@81
-			Focus_Src  	@73
-			Focus_Entry 	@82
+			client     	@80
+			supplier   	@90
+			Focus_Src  	@82
+			Focus_Entry 	@91
 			origin     	(612, 847)
 			terminus   	(1301, 847)
 			ordinal    	5)
-		    (object InterMessView "Данные не валидны" @100
+		    (object InterMessView "Данные не валидны" @109
 			location   	(0, 952)
 			font       	(object Font
 			    size       	10
@@ -2301,8 +2898,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @101
-			    Parent_View 	@100
+			label      	(object SegLabel @110
+			    Parent_View 	@109
 			    location   	(957, 908)
 			    font       	(object Font
 				size       	10
@@ -2324,14 +2921,14 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@81
-			supplier   	@71
-			Focus_Src  	@82
-			Focus_Entry 	@74
+			client     	@90
+			supplier   	@80
+			Focus_Src  	@91
+			Focus_Entry 	@83
 			origin     	(1301, 952)
 			terminus   	(613, 952)
 			ordinal    	6)
-		    (object InterMessView "Ошибка, данные некорректны" @102
+		    (object InterMessView "Ошибка, данные некорректны" @111
 			location   	(0, 1057)
 			font       	(object Font
 			    size       	10
@@ -2343,8 +2940,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @103
-			    Parent_View 	@102
+			label      	(object SegLabel @112
+			    Parent_View 	@111
 			    location   	(389, 1013)
 			    font       	(object Font
 				size       	10
@@ -2366,14 +2963,14 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@71
-			supplier   	@67
-			Focus_Src  	@73
-			Focus_Entry 	@69
+			client     	@80
+			supplier   	@76
+			Focus_Src  	@82
+			Focus_Entry 	@78
 			origin     	(581, 1057)
 			terminus   	(196, 1057)
 			ordinal    	7)
-		    (object InterMessView "Данные Валидны" @104
+		    (object InterMessView "Данные Валидны" @113
 			location   	(0, 1162)
 			font       	(object Font
 			    size       	10
@@ -2385,8 +2982,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @105
-			    Parent_View 	@104
+			label      	(object SegLabel @114
+			    Parent_View 	@113
 			    location   	(957, 1118)
 			    font       	(object Font
 				size       	10
@@ -2408,14 +3005,14 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@81
-			supplier   	@71
-			Focus_Src  	@83
-			Focus_Entry 	@75
+			client     	@90
+			supplier   	@80
+			Focus_Src  	@92
+			Focus_Entry 	@84
 			origin     	(1301, 1162)
 			terminus   	(613, 1162)
 			ordinal    	8)
-		    (object InterMessView "Расчет" @106
+		    (object InterMessView "Расчет" @115
 			location   	(0, 1316)
 			font       	(object Font
 			    size       	10
@@ -2427,8 +3024,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @107
-			    Parent_View 	@106
+			label      	(object SegLabel @116
+			    Parent_View 	@115
 			    location   	(1136, 1272)
 			    font       	(object Font
 				size       	10
@@ -2450,14 +3047,14 @@
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@71
-			supplier   	@84
-			Focus_Src  	@76
-			Focus_Entry 	@85
+			client     	@80
+			supplier   	@93
+			Focus_Src  	@85
+			Focus_Entry 	@94
 			origin     	(612, 1316)
 			terminus   	(1661, 1316)
 			ordinal    	9)
-		    (object InterMessView "Оптимальный план" @108
+		    (object InterMessView "Оптимальный план" @117
 			location   	(0, 1421)
 			font       	(object Font
 			    size       	10
@@ -2469,8 +3066,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @109
-			    Parent_View 	@108
+			label      	(object SegLabel @118
+			    Parent_View 	@117
 			    location   	(1137, 1377)
 			    font       	(object Font
 				size       	10
@@ -2492,14 +3089,14 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@84
-			supplier   	@71
-			Focus_Src  	@85
-			Focus_Entry 	@77
+			client     	@93
+			supplier   	@80
+			Focus_Src  	@94
+			Focus_Entry 	@86
 			origin     	(1661, 1421)
 			terminus   	(613, 1421)
 			ordinal    	10)
-		    (object InterMessView "Результаты: План + отччет" @110
+		    (object InterMessView "Результаты: План + отччет" @119
 			location   	(0, 1526)
 			font       	(object Font
 			    size       	10
@@ -2511,8 +3108,8 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @111
-			    Parent_View 	@110
+			label      	(object SegLabel @120
+			    Parent_View 	@119
 			    location   	(389, 1482)
 			    font       	(object Font
 				size       	10
@@ -2534,10 +3131,10 @@
 			    height     	45
 			    orientation 	1)
 			line_color 	3342489
-			client     	@71
-			supplier   	@67
-			Focus_Src  	@77
-			Focus_Entry 	@70
+			client     	@80
+			supplier   	@76
+			Focus_Src  	@86
+			Focus_Entry 	@79
 			origin     	(581, 1526)
 			terminus   	(196, 1526)
 			ordinal    	11)))))

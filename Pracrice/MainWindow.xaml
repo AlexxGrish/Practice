@@ -120,7 +120,8 @@
                             FontFamily="Inter, Segoe UI"
                             FontSize="12"
                             FontWeight="Normal"
-                            Text="User Text" />
+                            Text="NOTLOGIINED" 
+                            Name="FIO"/>
                         <TextBlock
                             Canvas.Left="16"
                             Canvas.Top="19"
@@ -128,7 +129,8 @@
                             FontFamily="Inter, Segoe UI"
                             FontSize="10"
                             FontWeight="Normal"
-                            Text="Role" />
+                            Text="NOTLOGIINED" 
+                            Name="humRole"/>
                     </Canvas>
                 </Border>
 
@@ -320,7 +322,8 @@
                       Foreground="White"
                       GridLinesVisibility="None"
                       HeadersVisibility="Column"
-                      AutoGenerateColumns="False">
+                      AutoGenerateColumns="False"
+                                      Name="Products">
                                 <DataGrid.Resources>
                                     <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <!-- Цвет фона заголовка (темно-зеленый, под цвет карточки) -->

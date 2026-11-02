@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Pracrice
 {
@@ -22,21 +23,67 @@ namespace Pracrice
             OptimalEq.IsEnabled = false;
 
         }
+        private DispatcherTimer _typingTimer;
+        private string _fullText = "Гришков Александр Эдуардович";
+        private int _currentLetterIndex = 0;
 
+        private void TypingTimer_Tick(object sender, EventArgs e)
+        {
+            if (_currentLetterIndex < _fullText.Length)
+            {
+                // Добавляем следующую букву
+                FIO.Text += _fullText[_currentLetterIndex];
+                _currentLetterIndex++;
+            }
+            else
+            {
+                // Когда весь текст набран, останавливаем таймер
+                _typingTimer.Stop();
+            }
+        }
+
+        private void StartTypingEffect()
+        {
+            // Очищаем текст перед началом
+            FIO.Text = "";
+            _currentLetterIndex = 0;
+
+            // Инициализируем таймер
+            _typingTimer = new DispatcherTimer();
+
+            // Интервал между буквами — 50 миллисекунд (можно уменьшить для ускорения)
+            _typingTimer.Interval = TimeSpan.FromMilliseconds(50);
+
+            // Привязываем событие, которое срабатывает каждый тик
+            _typingTimer.Tick += TypingTimer_Tick;
+
+            // Запускаем
+            _typingTimer.Start();
+        }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+
             if (LoginText.Text == "admin" && PassText.Password == "12345")
             {
-                // 1. Разблокируем меню
                 OptimalEq.IsEnabled = true;
 
                 // 2. Программно переключаем на нужную вкладку (например, Оптимальный план)
                 OptimalRoute.IsChecked = true;
 
-                // 3. (Опционально) Блокируем саму вкладку Вход, чтобы нельзя было вернуться назад без Logout
-                
+                Products.ItemsSource = new[]
+                   {
+                    new { Name = "Светлое пиво «Роспив»", Price = 150.00, MaxDemand = 500, IsActive = true },
+                    new { Name = "Темное нефильтрованное", Price = 180.50, MaxDemand = 300, IsActive = true },
+                    new { Name = "Крафтовый Эль", Price = 220.00, MaxDemand = 150, IsActive = false }
+                };
+ 
+                humRole.Text = "Administrator";
+                StartTypingEffect();
+
             }
+
+
             else
             {
                 MessageBox.Show("Неверный логин или пароль!");
@@ -48,4 +95,3 @@ namespace Pracrice
 
         }
     }
-}

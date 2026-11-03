@@ -28,3 +28,6 @@ D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Rendering.Wpf.
 D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Runtime.Wpf.dll
 D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.csproj.AssemblyReference.cache
 D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.csproj.Up2Date
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Properties\Resources.resx
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.Properties.Resources.resources
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.csproj.GenerateResource.cache

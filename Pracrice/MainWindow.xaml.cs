@@ -21,6 +21,10 @@ namespace Pracrice
         {
             InitializeComponent();
             OptimalEq.IsEnabled = false;
+            OptPlan.IsEnabled = false;
+            OptimalRoute.IsEnabled = false;
+            OptTick.IsEnabled = false;
+            Invest.IsEnabled = false;
 
         }
         private DispatcherTimer _typingTimer;
@@ -66,10 +70,8 @@ namespace Pracrice
 
             if (LoginText.Text == "admin" && PassText.Password == "12345")
             {
-                OptimalEq.IsEnabled = true;
+              
 
-                // 2. Программно переключаем на нужную вкладку (например, Оптимальный план)
-                OptimalRoute.IsChecked = true;
 
                 Products.ItemsSource = new[]
                    {
@@ -80,6 +82,11 @@ namespace Pracrice
  
                 humRole.Text = "Administrator";
                 StartTypingEffect();
+                OptimalEq.IsEnabled = true;
+                OptPlan.IsEnabled = true;
+                OptimalRoute.IsEnabled = true;
+                OptTick.IsEnabled = true;
+                Invest.IsEnabled = true;
 
             }
 
@@ -92,6 +99,9 @@ namespace Pracrice
 
         }
 
+        private void OptTick_Checked(object sender, RoutedEventArgs e)
+        {
 
         }
+    }
     }

@@ -173,8 +173,17 @@
                             Text="Определение оптимального&#x0A;плана выпуска продукции" />
                         <svgc:SvgViewbox
                             Grid.Column="1"
-                            Source="/FigmaLayout.Wpf;component/Assets/71828.svg"
-                            Style="{StaticResource MenuIconStyle}" />
+                            Width="29"
+                            Height="28"
+                            Source="/Icons/package-delivery-icon.svg" />
+
+
+
+
+
+
+
+
                     </Grid>
                 </RadioButton>
 
@@ -194,9 +203,11 @@
                             Style="{StaticResource MenuTextStyle}"
                             Text="Составление оптимального&#x0A;плана перевозок продукции&#x0A;от складов к магазинам" />
                         <svgc:SvgViewbox
-                            Grid.Column="1"
-                            Source="/FigmaLayout.Wpf;component/Assets/0fafe.svg"
-                            Style="{StaticResource MenuIconStyle}" />
+                        Grid.Column="1"
+                            Width="29"
+                            Height="28"
+                            Source="/Icons/boxes-icon.svg" />
+
                     </Grid>
                 </RadioButton>
 
@@ -216,9 +227,10 @@
                             Style="{StaticResource MenuTextStyle}"
                             Text="Определение стратегии&#x0A;обновления оборудования&#x0A;на производстве" />
                         <svgc:SvgViewbox
-                            Grid.Column="1"
-                            Source="/FigmaLayout.Wpf;component/Assets/226eb.svg"
-                            Style="{StaticResource MenuIconStyle}" />
+                                Grid.Column="1"
+                                Width="29"
+                                 Height="28"
+                                 Source="/Icons/tools-icon.svg" />
                     </Grid>
                 </RadioButton>
 
@@ -227,7 +239,7 @@
                     x:Name="OptTick"
                     AutomationProperties.Name="Определение оптимального количества касс в магазинах"
                     GroupName="MainNavigation"
-                    Style="{StaticResource NavigationItemStyle}">
+                    Style="{StaticResource NavigationItemStyle}" Checked="OptTick_Checked">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="184" />
@@ -238,9 +250,11 @@
                             Style="{StaticResource MenuTextStyle}"
                             Text="Определение оптимального&#x0A;количества касс в магазинах" />
                         <svgc:SvgViewbox
-                            Grid.Column="1"
-                            Source="/FigmaLayout.Wpf;component/Assets/03a0f.svg"
-                            Style="{StaticResource MenuIconStyle}" />
+         Grid.Column="1"
+         Width="29"
+          Height="28"
+          Source="/Icons/pos-terminal-icon.svg" />
+
                     </Grid>
                 </RadioButton>
 
@@ -260,9 +274,10 @@
                             Style="{StaticResource MenuTextStyle}"
                             Text="Распределение&#x0A;инвестиций" />
                         <svgc:SvgViewbox
-                            Grid.Column="1"
-                            Source="/FigmaLayout.Wpf;component/Assets/61cf9.svg"
-                            Style="{StaticResource MenuIconStyle}" />
+                                Grid.Column="1"
+                                 Width="29"
+                                    Height="28"
+                                    Source="/Icons/investment-icon.svg" />
                     </Grid>
                 </RadioButton>
 

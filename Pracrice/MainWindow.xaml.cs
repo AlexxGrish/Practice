@@ -35,7 +35,6 @@ namespace Pracrice
         {
             if (_currentLetterIndex < _fullText.Length)
             {
-                // Добавляем следующую букву
                 FIO.Text += _fullText[_currentLetterIndex];
                 _currentLetterIndex++;
             }
@@ -87,6 +86,10 @@ namespace Pracrice
                 OptimalRoute.IsEnabled = true;
                 OptTick.IsEnabled = true;
                 Invest.IsEnabled = true;
+                OptPlan.IsChecked= true;
+                MenuLogin.IsEnabled = false;
+               
+
 
             }
 

@@ -49,7 +49,12 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Border x:Name="ItemBorder" Background="{TemplateBinding Background}" Padding="16,0">
+                   
+                        <Border x:Name="ItemBorder" 
+                        Background="{TemplateBinding Background}" 
+                        Padding="16,0"
+                        CornerRadius="8" 
+                        Margin="10,2">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="24" />
@@ -73,6 +78,7 @@
             </Setter>
         </Style>
 
+
         <!-- Стили таблиц (DataGrid) -->
         <Style TargetType="DataGrid">
             <Setter Property="Background" Value="Transparent"/>
@@ -95,6 +101,41 @@
             <Setter Property="Padding" Value="12,8" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
+        <Style x:Key="RoundedCommonButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <!-- 
+                        CornerRadius="8" — задает закругление.
+                        TemplateBinding автоматически подтянет Background и Border из самой кнопки.
+                    -->
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8" 
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Эффекты при наведении и нажатии -->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!-- При наведении делаем кнопку чуть прозрачнее/светлее -->
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <!-- Цвет кнопки входа, когда она заблокирована при авторизации -->
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -112,33 +153,52 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Margin="20,20,20,0" VerticalAlignment="Center">
-                <TextBlock x:Name="FIO" Text="Алексей Смирнов" Foreground="White" FontSize="14" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
-                <TextBlock x:Name="humRole" Text="Администратор" Foreground="{StaticResource TextMuted}" FontSize="11" Margin="0,2,0,0" TextTrimming="CharacterEllipsis"/>
+                <Viewbox HorizontalAlignment="Left" Height="20" StretchDirection="DownOnly">
+                    <TextBlock x:Name="FIO" 
+                    Text="" 
+                    Foreground="White" 
+                    FontSize="14" 
+                    FontWeight="SemiBold"/>
+                </Viewbox>
+
+                <TextBlock x:Name="humRole" 
+                Text="" 
+                Foreground="{StaticResource TextMuted}" 
+                FontSize="11" 
+                Margin="0,2,0,0" 
+                TextTrimming="CharacterEllipsis"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Margin="0,15,0,0">
-                <RadioButton x:Name="MenuLogin" AutomationProperties.Name="Вход" Style="{StaticResource NavigationItemStyle}" IsChecked="True">
+            <StackPanel x:Name="NavigationPanel" Grid.Row="1" Margin="0,15,0,0">
+                <RadioButton x:Name="MenuLogin" AutomationProperties.Name="Вход" Style="{StaticResource NavigationItemStyle}" IsChecked="True" PreviewMouseDown="NavigationItem_PreviewMouseDown">
                     <svgc:SvgViewbox Source="/Icons/login.svg" Width="18" Height="18"/>
                 </RadioButton>
-                <RadioButton x:Name="OptPlan" AutomationProperties.Name="План выпуска продукции" Style="{StaticResource NavigationItemStyle}" Checked="OptPlan_Checked">
+
+                <RadioButton x:Name="OptPlan" AutomationProperties.Name="План выпуска продукции" Style="{StaticResource NavigationItemStyle}" PreviewMouseDown="NavigationItem_PreviewMouseDown">
                     <svgc:SvgViewbox Source="/Icons/package-delivery-icon.svg" Width="18" Height="18"/>
                 </RadioButton>
-                <RadioButton x:Name="OptimalRoute" AutomationProperties.Name="План перевозок" Style="{StaticResource NavigationItemStyle}">
+
+                <RadioButton x:Name="OptimalRoute" AutomationProperties.Name="План перевозок" Style="{StaticResource NavigationItemStyle}" PreviewMouseDown="NavigationItem_PreviewMouseDown">
                     <svgc:SvgViewbox Source="/Icons/boxes-icon.svg" Width="18" Height="18"/>
                 </RadioButton>
-                <RadioButton x:Name="OptimalEq" AutomationProperties.Name="Обновление оборудования" Style="{StaticResource NavigationItemStyle}">
+
+                <RadioButton x:Name="OptimalEq" AutomationProperties.Name="Обновление оборудования" Style="{StaticResource NavigationItemStyle}" PreviewMouseDown="NavigationItem_PreviewMouseDown">
                     <svgc:SvgViewbox Source="/Icons/tools-icon.svg" Width="18" Height="18"/>
                 </RadioButton>
-                <RadioButton x:Name="OptTick" AutomationProperties.Name="Планирование касс" Style="{StaticResource NavigationItemStyle}">
+
+                <RadioButton x:Name="OptTick" AutomationProperties.Name="Планирование касс" Style="{StaticResource NavigationItemStyle}" PreviewMouseDown="NavigationItem_PreviewMouseDown">
                     <svgc:SvgViewbox Source="/Icons/pos-terminal-icon.svg" Width="18" Height="18"/>
                 </RadioButton>
-                <RadioButton x:Name="Invest" AutomationProperties.Name="Распределение инвестиций" Style="{StaticResource NavigationItemStyle}">
+
+                <RadioButton x:Name="Invest" AutomationProperties.Name="Распределение инвестиций" Style="{StaticResource NavigationItemStyle}" PreviewMouseDown="NavigationItem_PreviewMouseDown">
                     <svgc:SvgViewbox Source="/Icons/investment-icon.svg" Width="18" Height="18"/>
                 </RadioButton>
-                <RadioButton x:Name="AdminPanel" AutomationProperties.Name="Администрирование" Style="{StaticResource NavigationItemStyle}">
+
+                <RadioButton x:Name="AdminPanel" AutomationProperties.Name="Администрирование" Style="{StaticResource NavigationItemStyle}" PreviewMouseDown="NavigationItem_PreviewMouseDown">
                     <svgc:SvgViewbox Source="/Icons/settings.svg" Width="18" Height="18"/>
                 </RadioButton>
             </StackPanel>
+
 
 
         </Grid>
@@ -155,7 +215,16 @@
                             <TextBox x:Name="LoginText" Height="40" Background="#242F33" Foreground="White" BorderThickness="0" Padding="10,0" Margin="0,0,0,16" VerticalContentAlignment="Center"/>
                             <TextBlock Text="Пароль" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
                             <PasswordBox x:Name="PassText" Height="40" Background="#242F33" Foreground="White" BorderThickness="0" Padding="10,0" Margin="0,0,0,25" VerticalContentAlignment="Center"/>
-                            <Button Content="Войти" Height="44" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand" Click="BtnLogin_Click" x:Name="BtnLogin"/>
+                            <Button Content="Войти" 
+                                Style="{StaticResource RoundedCommonButtonStyle}"
+                                Height="44" 
+                                Background="{StaticResource AccentGreen}" 
+                                Foreground="#151C1E" 
+                                FontWeight="SemiBold" 
+                                BorderThickness="0" 
+                                Cursor="Hand" 
+                                Click="BtnLogin_Click" 
+                                x:Name="BtnLogin"/>
                         </StackPanel>
                     </Border>
                 </Grid>

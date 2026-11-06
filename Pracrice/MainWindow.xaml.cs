@@ -9,7 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-
+using IniParser;
+using IniParser.Model;
 namespace Pracrice
 {
     /// <summary>
@@ -27,6 +28,52 @@ namespace Pracrice
             Invest.IsEnabled = false;
 
         }
+
+
+
+        void parce()
+        {
+            string filePath = "config.ini";
+            var parser = new FileIniDataParser();
+            IniData data;
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                data = new IniData();
+                data["Database"]["Host"] = "localhost";
+                data["Database"]["Port"] = "3306"; 
+                data["Database"]["User"] = "root"; 
+                data["Database"]["Password"] = ""; 
+                data["Database"]["DB"] = "RosPiv"; 
+
+
+                parser.WriteFile(filePath, data);
+            }
+            else
+            {
+                try
+                {
+                    data = parser.ReadFile(filePath);
+                }
+                catch (IniParser.Exceptions.ParsingException)
+                {
+                    data = new IniData();
+                }
+            }
+            string host = data["Database"]["Host"] ?? "localhost";
+
+            if (!int.TryParse(data["Database"]["Port"], out int port))
+            {
+                port = 3306;
+            }
+
+            data["Database"]["Host"] = "127.0.0.1";
+
+            parser.WriteFile(filePath, data);
+        }
+
+
+
         private DispatcherTimer _typingTimer;
         private string _fullText = "Гришков Александр Эдуардович";
         private int _currentLetterIndex = 0;
@@ -66,40 +113,7 @@ namespace Pracrice
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-
-            if (LoginText.Text == "admin" && PassText.Password == "12345")
-            {
-              
-
-
-                Products.ItemsSource = new[]
-                   {
-                    new { Name = "Светлое пиво «Роспив»", Price = 150.00, MaxDemand = 500, IsActive = true },
-                    new { Name = "Темное нефильтрованное", Price = 180.50, MaxDemand = 300, IsActive = true },
-                    new { Name = "Крафтовый Эль", Price = 220.00, MaxDemand = 150, IsActive = false }
-                };
- 
-                humRole.Text = "Administrator";
-                StartTypingEffect();
-                OptimalEq.IsEnabled = true;
-                OptPlan.IsEnabled = true;
-                OptimalRoute.IsEnabled = true;
-                OptTick.IsEnabled = true;
-                Invest.IsEnabled = true;
-                OptPlan.IsChecked= true;
-                MenuLogin.IsEnabled = false;
-               
-
-
-            }
-
-
-            else
-            {
-                MessageBox.Show("Неверный логин или пароль!");
-            }
-
-
+            parce();
         }
 
         private void OptTick_Checked(object sender, RoutedEventArgs e)

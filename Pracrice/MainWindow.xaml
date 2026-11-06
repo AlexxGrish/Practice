@@ -140,10 +140,7 @@
                 </RadioButton>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Margin="20" VerticalAlignment="Bottom">
-                <TextBlock Text="Демонстрационный режим" Foreground="{StaticResource TextMuted}" FontSize="11"/>
-                <TextBlock Text="Данные приведены для примера" Foreground="{StaticResource TextMuted}" FontSize="10" Opacity="0.6" Margin="0,2,0,0"/>
-            </StackPanel>
+          
         </Grid>
 
         <!-- ОСНОВНОЙ КОНТЕНТНЫЙ БЛОК -->
@@ -189,8 +186,8 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <!-- Тарифы и запасы -->
-                        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}" Margin="0,0,10,10" CornerRadius="6" Padding="20">
-                            <Grid>
+                        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}" Margin="0,0,10,10" CornerRadius="6" Padding="20" >
+                            <Grid >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
@@ -259,6 +256,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
                     <Grid Grid.Row="0" Margin="0,0,0,20">
                         <StackPanel>
                             <TextBlock Text="Обновление оборудования" Foreground="White" FontSize="24" FontWeight="Bold"/>
@@ -577,7 +575,6 @@
                                         <DataGridTextColumn Header="Раздел системы" Width="*" Binding="{Binding SectionName}"/>
                                         <DataGridTextColumn Header="Администратор" Width="150" Binding="{Binding AdminRight}"/>
                                         <DataGridTextColumn Header="Аналитик" Width="150" Binding="{Binding AnalystRight}"/>
-                                        <DataGridTextColumn Header="Наблюдатель" Width="150" Binding="{Binding ObserverRight}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>

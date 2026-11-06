@@ -18,6 +18,8 @@ namespace Pracrice
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const bool On = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,93 +33,70 @@ namespace Pracrice
 
 
 
-        void parce()
+
+
+
+
+
+
+
+        private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string filePath = "config.ini";
-            var parser = new FileIniDataParser();
-            IniData data;
+            string username = LoginText.Text.Trim();
+            string password = PassText.Password; 
 
-            if (!System.IO.File.Exists(filePath))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                data = new IniData();
-                data["Database"]["Host"] = "localhost";
-                data["Database"]["Port"] = "3306"; 
-                data["Database"]["User"] = "root"; 
-                data["Database"]["Password"] = ""; 
-                data["Database"]["DB"] = "RosPiv"; 
-
-
-                parser.WriteFile(filePath, data);
+                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
-            else
+
+            BtnLogin.IsEnabled = false;
+
+            try
             {
-                try
+                using (var db = new AppDbContext())
                 {
-                    data = parser.ReadFile(filePath);
+                    var user = await Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions
+                        .FirstOrDefaultAsync(db.Users, u => u.Login == username);
+
+                    if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Pass))
+                    {
+                        OptPlan.IsEnabled = On;
+                        OptimalEq.IsEnabled = On;
+                        OptimalRoute.IsEnabled = On;
+                        OptPlan.IsChecked = On;
+                        OptTick.IsEnabled = On;
+                        Invest.IsEnabled = On;
+                        MenuLogin.IsEnabled = false;
+                        OptPlanv.Visibility = OptPlan.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверный логин или пароль.", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-                catch (IniParser.Exceptions.ParsingException)
-                {
-                    data = new IniData();
-                }
             }
-            string host = data["Database"]["Host"] ?? "localhost";
-
-            if (!int.TryParse(data["Database"]["Port"], out int port))
+            catch (System.Exception ex)
             {
-                port = 3306;
+                MessageBox.Show($"Ошибка подключения к базе данных!\nПроверьте config.ini или сеть.\n\nДетали: {ex.Message}",
+                                "Критическая ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            data["Database"]["Host"] = "127.0.0.1";
-
-            parser.WriteFile(filePath, data);
-        }
-
-
-
-        private DispatcherTimer _typingTimer;
-        private string _fullText = "Гришков Александр Эдуардович";
-        private int _currentLetterIndex = 0;
-
-        private void TypingTimer_Tick(object sender, EventArgs e)
-        {
-            if (_currentLetterIndex < _fullText.Length)
+            finally
             {
-                FIO.Text += _fullText[_currentLetterIndex];
-                _currentLetterIndex++;
+                BtnLogin.IsEnabled = On;
             }
-            else
-            {
-                // Когда весь текст набран, останавливаем таймер
-                _typingTimer.Stop();
-            }
-        }
-
-        private void StartTypingEffect()
-        {
-            // Очищаем текст перед началом
-            FIO.Text = "";
-            _currentLetterIndex = 0;
-
-            // Инициализируем таймер
-            _typingTimer = new DispatcherTimer();
-
-            // Интервал между буквами — 50 миллисекунд (можно уменьшить для ускорения)
-            _typingTimer.Interval = TimeSpan.FromMilliseconds(50);
-
-            // Привязываем событие, которое срабатывает каждый тик
-            _typingTimer.Tick += TypingTimer_Tick;
-
-            // Запускаем
-            _typingTimer.Start();
-        }
-
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            parce();
+      
         }
 
         private void OptTick_Checked(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void OptPlan_Checked(object sender, RoutedEventArgs e)
+        {
+            OptPlanv.Visibility = OptPlan.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
 
         }
     }

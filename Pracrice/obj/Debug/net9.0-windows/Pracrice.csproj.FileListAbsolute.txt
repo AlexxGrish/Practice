@@ -128,3 +128,4 @@ D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\tr\Microsoft.CodeAnalysis.W
 D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\INIFileParser.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\BCrypt-Net-Next.dll

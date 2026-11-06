@@ -11,6 +11,22 @@
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\shop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\shop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\equipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\equipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\shop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\shop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\route.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:pracrice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\properties\\resources.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:properties\\resources.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
     }
@@ -58,102 +62,25 @@
       "DocumentGroups": [
         {
           "DockedHeight": 507,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAwwGMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-02T06:59:28.127Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Equipment.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Equipment.cs",
-              "RelativeDocumentMoniker": "Models\\Equipment.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\Equipment.cs",
-              "RelativeToolTip": "Models\\Equipment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T05:43:34.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T05:43:33.491Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Shop.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Shop.cs",
-              "RelativeDocumentMoniker": "Models\\Shop.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\Shop.cs",
-              "RelativeToolTip": "Models\\Shop.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T05:43:32.827Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Route.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Route.cs",
-              "RelativeDocumentMoniker": "Models\\Route.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\Route.cs",
-              "RelativeToolTip": "Models\\Route.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T05:43:31.947Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RosPivContext.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\RosPivContext.cs",
-              "RelativeDocumentMoniker": "Models\\RosPivContext.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\RosPivContext.cs",
-              "RelativeToolTip": "Models\\RosPivContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T05:42:47.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Pracrice.csproj",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Pracrice.csproj",
-              "RelativeDocumentMoniker": "Pracrice.csproj",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Pracrice.csproj",
-              "RelativeToolTip": "Pracrice.csproj",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADEAAABiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-11-06T05:32:25.018Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "AssemblyInfo.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\AssemblyInfo.cs",
-              "RelativeToolTip": "AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T05:23:55.254Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -169,20 +96,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAYwC4AAAAwAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Shop.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Shop.cs",
+              "RelativeDocumentMoniker": "Models\\Shop.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\Shop.cs",
+              "RelativeToolTip": "Models\\Shop.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-02T06:59:28.127Z",
+              "WhenOpened": "2026-11-06T06:32:58.916Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-06T06:26:37.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DbContext.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\DbContext.cs",
+              "RelativeDocumentMoniker": "DbContext.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\DbContext.cs",
+              "RelativeToolTip": "DbContext.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAkwDsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-06T06:20:59.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Equipment.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Equipment.cs",
+              "RelativeDocumentMoniker": "Models\\Equipment.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\Equipment.cs",
+              "RelativeToolTip": "Models\\Equipment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-06T05:43:34.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Route.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Route.cs",
+              "RelativeDocumentMoniker": "Models\\Route.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\Route.cs",
+              "RelativeToolTip": "Models\\Route.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-06T05:43:31.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RosPivContext.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\RosPivContext.cs",
+              "RelativeDocumentMoniker": "Models\\RosPivContext.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\RosPivContext.cs",
+              "RelativeToolTip": "Models\\RosPivContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-06T05:42:47.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Pracrice.csproj",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Pracrice.csproj",
+              "RelativeDocumentMoniker": "Pracrice.csproj",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Pracrice.csproj",
+              "RelativeToolTip": "Pracrice.csproj",
+              "ViewState": "AgIAAB4AAAAAAAAAAIBJwDIAAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-11-06T05:32:25.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "AssemblyInfo.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\AssemblyInfo.cs",
+              "RelativeToolTip": "AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-06T05:23:55.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Product.cs",
               "RelativeDocumentMoniker": "Models\\Product.cs",
@@ -195,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Investment.cs",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Investment.cs",
               "RelativeDocumentMoniker": "Models\\Investment.cs",
@@ -208,7 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Resources.resx",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Properties\\Resources.resx",
               "RelativeDocumentMoniker": "Properties\\Resources.resx",

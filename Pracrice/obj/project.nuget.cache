@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "WP8fKtFKGNQ=",
+  "dgSpecHash": "pjj4Asdmylk=",
   "success": true,
   "projectFilePath": "D:\\IP2023\\Practice\\Pracrice\\Pracrice.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\IP2023\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\IP2023\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\IP2023\\.nuget\\packages\\ini-parser\\2.5.2\\ini-parser.2.5.2.nupkg.sha512",
     "C:\\Users\\IP2023\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

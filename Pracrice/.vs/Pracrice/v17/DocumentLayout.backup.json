@@ -83,8 +83,11 @@
               "ViewState": "AgIAAD0AAAAAAAAAAAAAAFgAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-02T06:59:28.127Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
@@ -96,8 +99,7 @@
               "RelativeToolTip": "Models\\UserGridDisplay.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T08:11:17.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-06T08:11:17.395Z"
             },
             {
               "$type": "Document",
@@ -109,12 +111,7 @@
               "RelativeToolTip": "Models\\RightGridModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T08:10:51.974Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+              "WhenOpened": "2026-11-06T08:10:51.974Z"
             },
             {
               "$type": "Document",
@@ -122,8 +119,8 @@
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml*",
+              "RelativeToolTip": "MainWindow.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-11-02T06:59:30.45Z",
               "EditorCaption": ""
@@ -150,8 +147,7 @@
               "RelativeToolTip": "Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T06:26:37.347Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-06T06:26:37.347Z"
             },
             {
               "$type": "Document",

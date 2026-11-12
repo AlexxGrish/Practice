@@ -65,14 +65,12 @@ public partial class MainWindow : Window
 
         _isLoggingIn = true;
         BtnLogin.IsEnabled = false;
-        LoginHintText.Text = "Проверка учётных данных…";
 
         try
         {
             UserSession? session = await UserService.AuthenticateAsync(login, password);
             if (session is null)
             {
-                LoginHintText.Text = "Неверный логин или пароль.";
                 DialogService.ShowWarning("Неверный логин или пароль.", "Ошибка авторизации");
                 PassText.Clear();
                 PassText.Focus();
@@ -82,7 +80,6 @@ public partial class MainWindow : Window
             Session.SignIn(session);
             ApplySession(session);
             PassText.Clear();
-            LoginHintText.Text = "Доступ предоставляется администратором системы.";
 
             await LoadProductsAsync();
             if (session.IsAdministrator)
@@ -138,13 +135,16 @@ public partial class MainWindow : Window
 
         MenuLogin.IsChecked = false;
         SelectModule(nameof(OptPlan));
+        MenuLogin.Visibility = Visibility.Collapsed;
     }
 
     private void SetLoggedOutState()
     {
-        FIO.Text = "Гость";
+        MenuLogin.Visibility = Visibility.Visible;
+
+        FIO.Text = "Вход не выполнен";
         humRole.Text = "Вход не выполнен";
-        StatusUser.Text = "гость";
+        StatusUser.Text = "Вход не выполнен";
         StatusRole.Text = string.Empty;
         LogoutButton.Visibility = Visibility.Collapsed;
 
@@ -175,7 +175,6 @@ public partial class MainWindow : Window
 
         MenuLogin.IsEnabled = true;
         MenuLogin.IsChecked = true;
-        LoginHintText.Text = "Доступ предоставляется администратором системы.";
         LoginText.Clear();
         PassText.Clear();
         LoginText.Focus();

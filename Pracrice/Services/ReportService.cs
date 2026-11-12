@@ -375,7 +375,7 @@ public static class ReportService
         builder.AppendLine("</div>");
         builder.AppendLine("<div class=\"footer\">");
         builder.AppendLine($"<div><b>ООО «РОСПИВ»</b> · {Escape(title)}</div>");
-        builder.AppendLine($"<div>Сформировано {DateTime.Now.ToString("dd.MM.yyyy HH:mm", RussianCulture)} · {Escape(user.RoleDisplayName)}</div>");
+        builder.AppendLine($"<div>Сформировано {DateTime.Now.ToString("dd.MM.yyyy HH:mm", RussianCulture)} · {Escape(user.FullName)}</div>");
         builder.AppendLine("</div>");
         builder.AppendLine("</div>");
 

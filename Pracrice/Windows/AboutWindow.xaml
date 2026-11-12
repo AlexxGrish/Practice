@@ -37,22 +37,19 @@
                         <TextBlock Text="Информационная система управления производством, складом и продажами"
                                    Foreground="{StaticResource TextSoft}" FontSize="12"
                                    TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" />
-                        <TextBlock x:Name="VersionText" Text="Версия 1.0.0"
-                                   Foreground="{StaticResource TextMuted}" FontSize="11"
-                                   HorizontalAlignment="Center" Margin="0,8,0,0" />
                     </StackPanel>
                 </Border>
 
                 <Border Background="{StaticResource CardBg}" CornerRadius="8" Padding="18" Margin="0,14,0,0">
                     <StackPanel>
-                        <TextBlock Text="Реализованные возможности" Style="{StaticResource CardTitle}" />
-                        <TextBlock Text="• вход по логину и паролю с хешированием BCrypt;&#10;• роли: администратор, руководитель, менеджер;&#10;• администрирование пользователей;&#10;• справочники товаров, ресурсов, складов, магазинов и рецептур;&#10;• изображения товаров в папке images;&#10;• HTML-отчёты с печатью;&#10;• настройки подключения в config.ini."
+                        <TextBlock Text="Доступ" Style="{StaticResource CardTitle}" />
+                        <TextBlock Text=" вход по логину и паролю &#10; настройки подключения в config.ini."
                                    Foreground="{StaticResource TextSoft}" FontSize="12"
                                    TextWrapping="Wrap" LineHeight="20" />
                     </StackPanel>
                 </Border>
 
-                <TextBlock Text="© 2026 ООО «РОСПИВ». Учебный проект."
+                <TextBlock Text="© 2026 ООО «РОСПИВ»."
                            Foreground="{StaticResource TextMuted}" FontSize="11"
                            HorizontalAlignment="Center" Margin="0,16,0,0" />
             </StackPanel>

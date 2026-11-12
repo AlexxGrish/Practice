@@ -202,10 +202,10 @@
                     <StackPanel Grid.Row="0" Margin="18,16,18,0" VerticalAlignment="Top">
                         <Image Source="/Assets/logo.png"
                                Height="58"
-                               HorizontalAlignment="Left"
+                               HorizontalAlignment="Center"
                                Stretch="Uniform"
                                ToolTip="ООО «РОСПИВ» — пивоваренная компания" />
-                        <TextBlock Text="Информационная система"
+                        <TextBlock Text="Информационная система «РОСПИВ»"
                                    Foreground="#C8D6C8"
                                    FontSize="10"
                                    Margin="2,6,0,0"
@@ -277,7 +277,7 @@
                     <Border Grid.Row="2" Background="{StaticResource SidebarDeep}" Padding="16,12">
                         <StackPanel>
                             <TextBlock x:Name="FIO"
-                                       Text="Гость"
+                                       Text="Не авторизован"
                                        Foreground="White"
                                        FontSize="13"
                                        FontWeight="SemiBold"
@@ -314,7 +314,16 @@
                                 BorderBrush="#3E6B58" BorderThickness="1">
                             <StackPanel>
                                 <Image Source="/Assets/logo.png" Height="84" Stretch="Uniform"
-                                       HorizontalAlignment="Center" Margin="0,0,0,16" />
+       HorizontalAlignment="Center" Margin="0,0,0,16">
+                                    <Image.Effect>
+                                        <DropShadowEffect ShadowDepth="10"
+                                                          BlurRadius="30"
+                                                          Direction="-40"
+                                                          Opacity="0.5"
+                                                          />
+                                    </Image.Effect>
+                                </Image>
+
                                 <TextBlock Text="Вход в систему"
                                            Foreground="White"
                                            FontSize="22"
@@ -347,13 +356,7 @@
                                         Click="BtnLogin_Click"
                                         ToolTip="Проверить логин и пароль и войти в систему" />
 
-                                <TextBlock x:Name="LoginHintText"
-                                           Text="Доступ предоставляется администратором системы."
-                                           Foreground="{StaticResource TextMuted}"
-                                           FontSize="11"
-                                           TextWrapping="Wrap"
-                                           HorizontalAlignment="Center"
-                                           Margin="0,16,0,0" />
+                             
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -1295,13 +1298,13 @@
                                FontSize="11" Margin="5,0,0,0" />
                     <Rectangle Width="1" Height="12" Fill="#3A4A50" Margin="14,0" />
                     <TextBlock Text="Пользователь:" Foreground="{StaticResource TextMuted}" FontSize="11" />
-                    <TextBlock x:Name="StatusUser" Text="гость" Foreground="{StaticResource Gold}"
+                    <TextBlock x:Name="StatusUser" Text="Не авторизован" Foreground="{StaticResource Gold}"
                                FontSize="11" FontWeight="SemiBold" Margin="5,0,0,0" />
                     <TextBlock x:Name="StatusRole" Text="" Foreground="{StaticResource TextMuted}"
                                FontSize="11" Margin="8,0,0,0" />
                 </StackPanel>
-                <TextBlock Text="ООО «РОСПИВ» · информационная система"
-                           Foreground="{StaticResource TextMuted}" FontSize="10"
+                <TextBlock Text="© ООО «РОСПИВ» | информационная система" 
+                Foreground="{StaticResource TextMuted}" FontSize="10"
                            HorizontalAlignment="Right" VerticalAlignment="Center" />
             </Grid>
         </Border>

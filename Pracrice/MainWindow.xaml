@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-    Title="ООО «РОСПИВ» — информационная система"
+    Title="ООО «РОСПИВ» | информационная система"
     Width="1280"
     Height="760"
     MinWidth="1100"
@@ -131,13 +131,13 @@
 
         <Border Grid.Row="0" Background="#1C2427" BorderBrush="#33443D" BorderThickness="0,0,0,1">
             <Menu VerticalAlignment="Center" Background="Transparent">
-                <MenuItem Header="Файл">
+                <MenuItem Header="Пользователи">
                     <MenuItem Header="Сменить пользователя" Click="LogoutMenuItem_Click" />
                     <Separator />
                     <MenuItem Header="Выход" Click="ExitMenuItem_Click" />
                 </MenuItem>
 
-                <MenuItem x:Name="ModulesMenu" Header="Модули" IsEnabled="False">
+                <MenuItem x:Name="ModulesMenu" Header="Вычисления" IsEnabled="False">
                     <MenuItem Header="План выпуска продукции" Tag="OptPlan" Click="ModuleMenu_Click" />
                     <MenuItem Header="План перевозок" Tag="OptimalRoute" Click="ModuleMenu_Click" />
                     <MenuItem Header="Обновление оборудования" Tag="OptimalEq" Click="ModuleMenu_Click" />
@@ -148,7 +148,7 @@
                     <MenuItem Header="Отчёты" Tag="Reports" Click="ModuleMenu_Click" />
                 </MenuItem>
 
-                <MenuItem x:Name="ReferencesMenu" Header="Справочники" IsEnabled="False">
+                <MenuItem x:Name="ReferencesMenu" Header="Таблицы справочники" IsEnabled="False">
                     <MenuItem Header="Все справочники" Click="OpenReferences_Click" />
                     <Separator />
                     <MenuItem Header="Ресурсы" Tag="Resources" Click="OpenReferenceSection_Click" />
@@ -161,7 +161,7 @@
                     <MenuItem Header="Инвестиционные ставки" Tag="InvestmentRates" Click="OpenReferenceSection_Click" />
                 </MenuItem>
 
-                <MenuItem x:Name="ReportsMenu" Header="Отчёты" IsEnabled="False">
+                <MenuItem x:Name="ReportsMenu" Header="Генерация отчетов" IsEnabled="False">
                     <MenuItem Header="Центр отчётов" Tag="Reports" Click="ModuleMenu_Click" />
                     <Separator />
                     <MenuItem Header="Товары и изображения" Tag="Products" Click="GenerateReportMenu_Click" />
@@ -179,7 +179,7 @@
                     <MenuItem Header="Изменить свою учётную запись" Click="MenuItemChangeOwnPassword_Click" />
                 </MenuItem>
 
-                <MenuItem Header="Справка">
+                <MenuItem Header="О программе">
                     <MenuItem Header="О программе" Click="AboutMenuItem_Click" />
                 </MenuItem>
             </Menu>
@@ -314,7 +314,7 @@
                                 BorderBrush="#3E6B58" BorderThickness="1">
                             <StackPanel>
                                 <Image Source="/Assets/logo.png" Height="84" Stretch="Uniform"
-       HorizontalAlignment="Center" Margin="0,0,0,16">
+                                        HorizontalAlignment="Center" Margin="0,0,0,16">
                                     <Image.Effect>
                                         <DropShadowEffect ShadowDepth="10"
                                                           BlurRadius="30"
@@ -325,36 +325,43 @@
                                 </Image>
 
                                 <TextBlock Text="Вход в систему"
-                                           Foreground="White"
                                            FontSize="22"
                                            FontWeight="SemiBold"
-                                           HorizontalAlignment="Center" />
+                                           HorizontalAlignment="Center"
+                                           Foreground="{StaticResource Gold}"
+                                           />
                                 <TextBlock Text="ООО «РОСПИВ» · информационная система"
-                                           Foreground="{StaticResource TextMuted}"
+                                           Foreground="{StaticResource GoldLight}"
                                            FontSize="12"
                                            HorizontalAlignment="Center"
                                            Margin="0,6,0,24" />
 
-                                <TextBlock Text="Логин *" Style="{StaticResource FieldLabel}" />
+                                <TextBlock Text="Логин" Style="{StaticResource GoldText}" />
                                 <TextBox x:Name="LoginText"
                                          Height="42"
                                          Margin="0,0,0,16"
                                          ToolTip="Введите логин учётной записи, выданный администратором"
-                                         KeyDown="LoginField_KeyDown" />
+                                         KeyDown="LoginField_KeyDown"
+                                         Foreground="{StaticResource Gold}"
+                                         />
 
-                                <TextBlock Text="Пароль *" Style="{StaticResource FieldLabel}" />
+                                <TextBlock Text="Пароль" Style="{StaticResource GoldText}" />
                                 <PasswordBox x:Name="PassText"
                                              Height="42"
                                              Margin="0,0,0,24"
-                                             ToolTip="Введите пароль учётной записи. Пароль хранится в базе данных в виде хеша"
-                                             KeyDown="LoginField_KeyDown" />
+                                             ToolTip="Введите пароль учётной записи. "
+                                             KeyDown="LoginField_KeyDown"
+                                             Foreground="{StaticResource Gold}"
+                                             />
 
                                 <Button x:Name="BtnLogin"
                                         Content="Войти"
                                         Style="{StaticResource PrimaryButton}"
                                         Height="44"
                                         Click="BtnLogin_Click"
-                                        ToolTip="Проверить логин и пароль и войти в систему" />
+                                        ToolTip="Проверить логин и пароль и войти в систему"
+                                        Foreground="{StaticResource BorderMuted}"
+                                        />
 
                              
                             </StackPanel>
@@ -428,17 +435,18 @@
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">
                                             <TextBlock Text="Сырьё, кг" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="RawLimitText" Height="38" Text="6 400"
+                                            <TextBox x:Name="RawLimitText" Height="38" Text="" 
                                                      ToolTip="Максимальный запас сырья на планируемый период, кг" />
+
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="Вода, л" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="FillLimitText" Height="38" Text="4 800"
+                                            <TextBox x:Name="FillLimitText" Height="38" Text="" 
                                                      ToolTip="Максимальный расход воды на планируемый период, литров" />
                                         </StackPanel>
                                         <StackPanel Margin="0,10,5,0">
                                             <TextBlock Text="Упаковка, шт." Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="PackLimitText" Height="38" Text="3 600"
+                                            <TextBox x:Name="PackLimitText" Height="38" Text="" 
                                                      ToolTip="Максимальное количество упаковочных комплектов на период, штук" />
                                         </StackPanel>
                                     </UniformGrid>

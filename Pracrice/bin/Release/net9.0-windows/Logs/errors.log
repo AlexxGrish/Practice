@@ -1,0 +1,6 @@
+[2026-11-11 16:55:15] System.ComponentModel.Win32Exception: An error occurred trying to start process 'C:\Users\ALX\Desktop\Practice-master\Pracrice\bin\Release\net9.0-windows\Reports' with working directory 'C:\Users\ALX\Desktop\Practice-master\Pracrice\bin\Release\net9.0-windows'. Отказано в доступе.
+System.ComponentModel.Win32Exception (5): An error occurred trying to start process 'C:\Users\ALX\Desktop\Practice-master\Pracrice\bin\Release\net9.0-windows\Reports' with working directory 'C:\Users\ALX\Desktop\Practice-master\Pracrice\bin\Release\net9.0-windows'. Отказано в доступе.
+   at System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   at System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   at Pracrice.MainWindow.BtnOpenReportsFolder_Click(Object sender, RoutedEventArgs e) in C:\Users\ALX\Desktop\Practice-master\Pracrice\MainWindow.xaml.cs:line 447
+

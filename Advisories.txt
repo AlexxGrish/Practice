@@ -1,0 +1,489 @@
+Advisory File Created 02 ��� 08:44:34 
+
+<Level=0><Information> Reverse Engineer
+<Level=1><Error> Syntax Error - Line 3, Offset 12 AUTO_INCREMENT
+     -- 1. Таблица Пользователей (User)
+     CREATE TABLE users (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         login VARCHAR(50) UNIQUE NOT NULL,
+         pass VARCHAR(255) NOT NULL, -- Пароль (хэш)
+         full_name VARCHAR(150) NOT NULL,
+         role INT NOT NULL,
+         last_changes TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+<Level=1><Error> Syntax Error - Line 4, Offset 19 50
+     -- 1. Таблица Пользователей (User)
+     CREATE TABLE users (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+---->    login VARCHAR(50) UNIQUE NOT NULL,
+         pass VARCHAR(255) NOT NULL, -- Пароль (хэш)
+         full_name VARCHAR(150) NOT NULL,
+         role INT NOT NULL,
+         last_changes TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+     );
+
+<Level=1><Error> Syntax Error - Line 5, Offset 18 255
+     -- 1. Таблица Пользователей (User)
+     CREATE TABLE users (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         login VARCHAR(50) UNIQUE NOT NULL,
+---->    pass VARCHAR(255) NOT NULL, -- Пароль (хэш)
+         full_name VARCHAR(150) NOT NULL,
+         role INT NOT NULL,
+         last_changes TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+     );
+     
+
+<Level=1><Error> Syntax Error - Line 6, Offset 23 150
+     -- 1. Таблица Пользователей (User)
+     CREATE TABLE users (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         login VARCHAR(50) UNIQUE NOT NULL,
+         pass VARCHAR(255) NOT NULL, -- Пароль (хэш)
+---->    full_name VARCHAR(150) NOT NULL,
+         role INT NOT NULL,
+         last_changes TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+     );
+     
+     -- 2. Таблица Оборудования (Equipment)
+
+<Level=1><Error> Syntax Error - Line 9, Offset 1 )
+         login VARCHAR(50) UNIQUE NOT NULL,
+         pass VARCHAR(255) NOT NULL, -- Пароль (хэш)
+         full_name VARCHAR(150) NOT NULL,
+         role INT NOT NULL,
+         last_changes TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+---->);
+     
+     -- 2. Таблица Оборудования (Equipment)
+     CREATE TABLE equipment (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(255) NOT NULL,
+
+<Level=1><Error> Syntax Error - Line 13, Offset 12 AUTO_INCREMENT
+         last_changes TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+     );
+     
+     -- 2. Таблица Оборудования (Equipment)
+     CREATE TABLE equipment (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(255) NOT NULL,
+         new_price DECIMAL(15, 2),
+         old_price DECIMAL(15, 2),
+         profit DECIMAL(15, 2),
+         age INT
+
+<Level=1><Error> Syntax Error - Line 14, Offset 18 255
+     );
+     
+     -- 2. Таблица Оборудования (Equipment)
+     CREATE TABLE equipment (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+---->    name VARCHAR(255) NOT NULL,
+         new_price DECIMAL(15, 2),
+         old_price DECIMAL(15, 2),
+         profit DECIMAL(15, 2),
+         age INT
+     );
+
+<Level=1><Error> Syntax Error - Line 15, Offset 23 15
+     
+     -- 2. Таблица Оборудования (Equipment)
+     CREATE TABLE equipment (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(255) NOT NULL,
+---->    new_price DECIMAL(15, 2),
+         old_price DECIMAL(15, 2),
+         profit DECIMAL(15, 2),
+         age INT
+     );
+     
+
+<Level=1><Error> Syntax Error - Line 16, Offset 23 15
+     -- 2. Таблица Оборудования (Equipment)
+     CREATE TABLE equipment (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(255) NOT NULL,
+         new_price DECIMAL(15, 2),
+---->    old_price DECIMAL(15, 2),
+         profit DECIMAL(15, 2),
+         age INT
+     );
+     
+     -- 3. Таблица Инвестиций (Investments)
+
+<Level=1><Error> Syntax Error - Line 17, Offset 20 15
+     CREATE TABLE equipment (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(255) NOT NULL,
+         new_price DECIMAL(15, 2),
+         old_price DECIMAL(15, 2),
+---->    profit DECIMAL(15, 2),
+         age INT
+     );
+     
+     -- 3. Таблица Инвестиций (Investments)
+     CREATE TABLE investments (
+
+<Level=1><Error> Syntax Error - Line 23, Offset 12 AUTO_INCREMENT
+         age INT
+     );
+     
+     -- 3. Таблица Инвестиций (Investments)
+     CREATE TABLE investments (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         total_resources INT,
+         step_resource INT,
+         profit_matrix TEXT -- Используется TEXT или JSON для хранения массивов/матриц
+     );
+     
+
+<Level=1><Error> Syntax Error - Line 31, Offset 12 AUTO_INCREMENT
+         profit_matrix TEXT -- Используется TEXT или JSON для хранения массивов/матриц
+     );
+     
+     -- 4. Таблица Магазинов (Shops)
+     CREATE TABLE shops (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         address VARCHAR(255) NOT NULL,
+         number_of_counters INT,
+         avg_attendance DECIMAL(10, 2)
+     );
+     
+
+<Level=1><Error> Syntax Error - Line 32, Offset 21 255
+     );
+     
+     -- 4. Таблица Магазинов (Shops)
+     CREATE TABLE shops (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+---->    address VARCHAR(255) NOT NULL,
+         number_of_counters INT,
+         avg_attendance DECIMAL(10, 2)
+     );
+     
+     -- 5. Таблица Складов (Warehouse)
+
+<Level=1><Error> Syntax Error - Line 34, Offset 28 10
+     -- 4. Таблица Магазинов (Shops)
+     CREATE TABLE shops (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         address VARCHAR(255) NOT NULL,
+         number_of_counters INT,
+---->    avg_attendance DECIMAL(10, 2)
+     );
+     
+     -- 5. Таблица Складов (Warehouse)
+     CREATE TABLE warehouses (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+
+<Level=1><Error> Syntax Error - Line 39, Offset 12 AUTO_INCREMENT
+         avg_attendance DECIMAL(10, 2)
+     );
+     
+     -- 5. Таблица Складов (Warehouse)
+     CREATE TABLE warehouses (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(150) NOT NULL,
+         address VARCHAR(255),
+         resources INT
+     );
+     
+
+<Level=1><Error> Syntax Error - Line 40, Offset 18 150
+     );
+     
+     -- 5. Таблица Складов (Warehouse)
+     CREATE TABLE warehouses (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+---->    name VARCHAR(150) NOT NULL,
+         address VARCHAR(255),
+         resources INT
+     );
+     
+     -- 6. Таблица Продуктов / Товаров (Products)
+
+<Level=1><Error> Syntax Error - Line 41, Offset 21 255
+     
+     -- 5. Таблица Складов (Warehouse)
+     CREATE TABLE warehouses (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(150) NOT NULL,
+---->    address VARCHAR(255),
+         resources INT
+     );
+     
+     -- 6. Таблица Продуктов / Товаров (Products)
+     CREATE TABLE products (
+
+<Level=1><Error> Syntax Error - Line 47, Offset 12 AUTO_INCREMENT
+         resources INT
+     );
+     
+     -- 6. Таблица Продуктов / Товаров (Products)
+     CREATE TABLE products (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         demand DECIMAL(12, 2),
+         max_inventory DECIMAL(12, 2),
+         max_production DECIMAL(12, 2),
+         dp_table TEXT,       -- Для хранения массивов данных Double[]
+         choice_table TEXT    -- Для хранения массивов данных Double[]
+
+<Level=1><Error> Syntax Error - Line 48, Offset 20 12
+     );
+     
+     -- 6. Таблица Продуктов / Товаров (Products)
+     CREATE TABLE products (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+---->    demand DECIMAL(12, 2),
+         max_inventory DECIMAL(12, 2),
+         max_production DECIMAL(12, 2),
+         dp_table TEXT,       -- Для хранения массивов данных Double[]
+         choice_table TEXT    -- Для хранения массивов данных Double[]
+     );
+
+<Level=1><Error> Syntax Error - Line 49, Offset 27 12
+     
+     -- 6. Таблица Продуктов / Товаров (Products)
+     CREATE TABLE products (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         demand DECIMAL(12, 2),
+---->    max_inventory DECIMAL(12, 2),
+         max_production DECIMAL(12, 2),
+         dp_table TEXT,       -- Для хранения массивов данных Double[]
+         choice_table TEXT    -- Для хранения массивов данных Double[]
+     );
+     
+
+<Level=1><Error> Syntax Error - Line 50, Offset 28 12
+     -- 6. Таблица Продуктов / Товаров (Products)
+     CREATE TABLE products (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         demand DECIMAL(12, 2),
+         max_inventory DECIMAL(12, 2),
+---->    max_production DECIMAL(12, 2),
+         dp_table TEXT,       -- Для хранения массивов данных Double[]
+         choice_table TEXT    -- Для хранения массивов данных Double[]
+     );
+     
+     -- 7. Таблица Маршрутов (routes)
+
+<Level=1><Error> Syntax Error - Line 58, Offset 12 AUTO_INCREMENT
+     );
+     
+     -- 7. Таблица Маршрутов (routes)
+     -- Связывает Магазины, Склады и Продукты в соответствии с линиями взаимосвязи
+     CREATE TABLE routes (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+         FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+         FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+
+<Level=1><Error> Syntax Error - Line 62, Offset 18 shop_id
+     CREATE TABLE routes (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+---->    FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+         FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+
+<Level=1><Error> Syntax Error - Line 62, Offset 44 id
+     CREATE TABLE routes (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+---->    FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+         FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+
+<Level=1><Error> Syntax Error - Line 62, Offset 65 ,
+     CREATE TABLE routes (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+---->    FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+         FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+
+<Level=1><Error> Syntax Error - Line 63, Offset 18 warehouse_id
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+         FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+---->    FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+     CREATE TABLE reports (
+
+<Level=1><Error> Syntax Error - Line 63, Offset 54 id
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+         FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+---->    FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+     CREATE TABLE reports (
+
+<Level=1><Error> Syntax Error - Line 63, Offset 75 ,
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+         FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+---->    FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+     CREATE TABLE reports (
+
+<Level=1><Error> Syntax Error - Line 64, Offset 18 product_id
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+         FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+         FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+---->    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+     CREATE TABLE reports (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+
+<Level=1><Error> Syntax Error - Line 64, Offset 50 id
+         shop_id INT,
+         warehouse_id INT,
+         product_id INT,
+         FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+         FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+---->    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+     CREATE TABLE reports (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+
+<Level=1><Error> Syntax Error - Line 65, Offset 1 )
+         warehouse_id INT,
+         product_id INT,
+         FOREIGN KEY (shop_id) REFERENCES shops(id) ON DELETE CASCADE,
+         FOREIGN KEY (warehouse_id) REFERENCES warehouses(id) ON DELETE CASCADE,
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+---->);
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+     CREATE TABLE reports (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         report_type INT NOT NULL,
+
+<Level=1><Error> Syntax Error - Line 69, Offset 12 AUTO_INCREMENT
+         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+     );
+     
+     -- 8. Таблица для генерации/логов отчетов (GenerateReport)
+     CREATE TABLE reports (
+---->    id INT AUTO_INCREMENT PRIMARY KEY,
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+
+<Level=1><Error> Syntax Error - Line 74, Offset 18 user_id
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+---->    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+         FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+
+<Level=1><Error> Syntax Error - Line 74, Offset 44 id
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+---->    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+         FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+
+<Level=1><Error> Syntax Error - Line 74, Offset 58 SET
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+---->    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+         FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+
+<Level=1><Error> Syntax Error - Line 74, Offset 62 NULL
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+---->    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+         FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+
+<Level=1><Error> Syntax Error - Line 75, Offset 18 route_id
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+---->    FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+
+<Level=1><Error> Syntax Error - Line 75, Offset 46 id
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+---->    FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+
+<Level=1><Error> Syntax Error - Line 75, Offset 60 SET
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+---->    FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+
+<Level=1><Error> Syntax Error - Line 75, Offset 64 NULL
+         report_type INT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+         user_id INT, -- Автор отчета (связь от User)
+         route_id INT, -- Связь с маршрутами, как показано пунктиром
+         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+---->    FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE SET NULL
+     );
+

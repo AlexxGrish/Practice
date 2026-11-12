@@ -1,0 +1,1309 @@
+<Window
+    x:Class="Pracrice.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+    Title="ООО «РОСПИВ» — информационная система"
+    Width="1280"
+    Height="760"
+    MinWidth="1100"
+    MinHeight="680"
+    Background="{StaticResource MainBg}"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="CanResize"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+
+        <Style x:Key="NavigationTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource TextMain}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="14,0,0,0" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        </Style>
+
+        <Style x:Key="NavigationItemStyle" TargetType="RadioButton">
+            <Setter Property="Height" Value="42" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="GroupName" Value="MainNavigation" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="ItemBorder"
+                                Background="{TemplateBinding Background}"
+                                Padding="14,0"
+                                CornerRadius="8"
+                                Margin="8,2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="0"
+                                                  Content="{TemplateBinding Content}"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center" />
+                                <TextBlock x:Name="BtnText"
+                                           Grid.Column="1"
+                                           Text="{TemplateBinding AutomationProperties.Name}"
+                                           Style="{StaticResource NavigationTextStyle}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SidebarHover}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SidebarHover}" />
+                                <Setter TargetName="BtnText" Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.38" />
+                                <Setter Property="Cursor" Value="Arrow" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NavigationButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="42" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ItemBorder"
+                                Background="{TemplateBinding Background}"
+                                Padding="14,0"
+                                CornerRadius="8"
+                                Margin="8,2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="0"
+                                                  Content="{TemplateBinding Content}"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center" />
+                                <TextBlock x:Name="BtnText"
+                                           Grid.Column="1"
+                                           Text="{TemplateBinding AutomationProperties.Name}"
+                                           Style="{StaticResource NavigationTextStyle}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SidebarHover}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.38" />
+                                <Setter Property="Cursor" Value="Arrow" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NavSectionHeader" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#7FA08B" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="22,16,0,6" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1C2427" BorderBrush="#33443D" BorderThickness="0,0,0,1">
+            <Menu VerticalAlignment="Center" Background="Transparent">
+                <MenuItem Header="Файл">
+                    <MenuItem Header="Сменить пользователя" Click="LogoutMenuItem_Click" />
+                    <Separator />
+                    <MenuItem Header="Выход" Click="ExitMenuItem_Click" />
+                </MenuItem>
+
+                <MenuItem x:Name="ModulesMenu" Header="Модули" IsEnabled="False">
+                    <MenuItem Header="План выпуска продукции" Tag="OptPlan" Click="ModuleMenu_Click" />
+                    <MenuItem Header="План перевозок" Tag="OptimalRoute" Click="ModuleMenu_Click" />
+                    <MenuItem Header="Обновление оборудования" Tag="OptimalEq" Click="ModuleMenu_Click" />
+                    <MenuItem Header="Планирование касс" Tag="OptTick" Click="ModuleMenu_Click" />
+                    <MenuItem Header="Распределение инвестиций" Tag="Invest" Click="ModuleMenu_Click" />
+                    <Separator />
+                    <MenuItem Header="Товары и изображения" Tag="ProductsNav" Click="ModuleMenu_Click" />
+                    <MenuItem Header="Отчёты" Tag="Reports" Click="ModuleMenu_Click" />
+                </MenuItem>
+
+                <MenuItem x:Name="ReferencesMenu" Header="Справочники" IsEnabled="False">
+                    <MenuItem Header="Все справочники" Click="OpenReferences_Click" />
+                    <Separator />
+                    <MenuItem Header="Ресурсы" Tag="Resources" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Склады" Tag="Warehouses" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Магазины" Tag="Stores" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Рецептуры" Tag="ProductRecipes" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Расстояния" Tag="Distances" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Складские остатки" Tag="Stocks" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Инвестиционные компании" Tag="InvestmentCompanies" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Инвестиционные ставки" Tag="InvestmentRates" Click="OpenReferenceSection_Click" />
+                </MenuItem>
+
+                <MenuItem x:Name="ReportsMenu" Header="Отчёты" IsEnabled="False">
+                    <MenuItem Header="Центр отчётов" Tag="Reports" Click="ModuleMenu_Click" />
+                    <Separator />
+                    <MenuItem Header="Товары и изображения" Tag="Products" Click="GenerateReportMenu_Click" />
+                    <MenuItem Header="Складские остатки" Tag="Stocks" Click="GenerateReportMenu_Click" />
+                    <MenuItem Header="Рецептуры" Tag="Recipes" Click="GenerateReportMenu_Click" />
+                    <MenuItem Header="Инвестиционные ставки" Tag="InvestmentRates" Click="GenerateReportMenu_Click" />
+                    <MenuItem x:Name="UsersReportMenuItem" Header="Пользователи системы" Tag="Users"
+                              Click="GenerateReportMenu_Click" Visibility="Collapsed" />
+                </MenuItem>
+
+                <MenuItem x:Name="AdminMenu" Header="Администрирование" Visibility="Collapsed">
+                    <MenuItem Header="Пользователи" Tag="AdminPanel" Click="ModuleMenu_Click" />
+                    <MenuItem Header="Добавить пользователя" Click="BtnAddUser_Click" />
+                    <Separator />
+                    <MenuItem Header="Изменить свою учётную запись" Click="MenuItemChangeOwnPassword_Click" />
+                </MenuItem>
+
+                <MenuItem Header="Справка">
+                    <MenuItem Header="О программе" Click="AboutMenuItem_Click" />
+                </MenuItem>
+            </Menu>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource SidebarBg}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="112" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="18,16,18,0" VerticalAlignment="Top">
+                        <Image Source="/Assets/logo.png"
+                               Height="58"
+                               HorizontalAlignment="Left"
+                               Stretch="Uniform"
+                               ToolTip="ООО «РОСПИВ» — пивоваренная компания" />
+                        <TextBlock Text="Информационная система"
+                                   Foreground="#C8D6C8"
+                                   FontSize="10"
+                                   Margin="2,6,0,0"
+                                   TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="NavigationPanel">
+                            <RadioButton x:Name="MenuLogin"
+                                         AutomationProperties.Name="Вход в систему"
+                                         Style="{StaticResource NavigationItemStyle}"
+                                         IsChecked="True"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/login.svg" Width="18" Height="18" />
+                            </RadioButton>
+
+                            <TextBlock Text="МОДУЛИ" Style="{StaticResource NavSectionHeader}" />
+                            <RadioButton x:Name="OptPlan" AutomationProperties.Name="План выпуска продукции"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/plan.svg" Width="18" Height="18" />
+                            </RadioButton>
+                            <RadioButton x:Name="OptimalRoute" AutomationProperties.Name="План перевозок"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/route.svg" Width="18" Height="18" />
+                            </RadioButton>
+                            <RadioButton x:Name="OptimalEq" AutomationProperties.Name="Обновление оборудования"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/equipment.svg" Width="18" Height="18" />
+                            </RadioButton>
+                            <RadioButton x:Name="OptTick" AutomationProperties.Name="Планирование касс"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/cash.svg" Width="18" Height="18" />
+                            </RadioButton>
+                            <RadioButton x:Name="Invest" AutomationProperties.Name="Распределение инвестиций"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/invest.svg" Width="18" Height="18" />
+                            </RadioButton>
+
+                            <TextBlock Text="ДАННЫЕ" Style="{StaticResource NavSectionHeader}" />
+                            <RadioButton x:Name="ProductsNav" AutomationProperties.Name="Товары и изображения"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/products.svg" Width="18" Height="18" />
+                            </RadioButton>
+                            <RadioButton x:Name="Reports" AutomationProperties.Name="Отчёты"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/report.svg" Width="18" Height="18" />
+                            </RadioButton>
+                            <Button x:Name="ReferencesNav" AutomationProperties.Name="Справочники"
+                                    Style="{StaticResource NavigationButtonStyle}" IsEnabled="False"
+                                    Click="OpenReferences_Click">
+                                <svgc:SvgViewbox Source="/Icons/catalog.svg" Width="18" Height="18" />
+                            </Button>
+
+                            <RadioButton x:Name="AdminPanel" AutomationProperties.Name="Администрирование"
+                                         Style="{StaticResource NavigationItemStyle}" IsEnabled="False"
+                                         Visibility="Collapsed" Checked="NavigationItem_Checked">
+                                <svgc:SvgViewbox Source="/Icons/admin.svg" Width="18" Height="18" />
+                            </RadioButton>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <Border Grid.Row="2" Background="{StaticResource SidebarDeep}" Padding="16,12">
+                        <StackPanel>
+                            <TextBlock x:Name="FIO"
+                                       Text="Гость"
+                                       Foreground="White"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       TextTrimming="CharacterEllipsis"
+                                       ToolTip="Текущий пользователь" />
+                            <TextBlock x:Name="humRole"
+                                       Text="Вход не выполнен"
+                                       Foreground="{StaticResource TextMuted}"
+                                       FontSize="11"
+                                       Margin="0,2,0,0"
+                                       TextTrimming="CharacterEllipsis" />
+                            <Button x:Name="LogoutButton"
+                                    Content="Выйти из учётной записи"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Height="32"
+                                    FontSize="11"
+                                    Margin="0,10,0,0"
+                                    Visibility="Collapsed"
+                                    Click="LogoutButton_Click" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Background="{StaticResource MainBg}" Padding="26">
+                <Grid>
+
+                    <Grid x:Name="LoginView"
+                          Visibility="{Binding IsChecked, ElementName=MenuLogin, Converter={StaticResource BoolToVis}}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Width="470">
+                        <Border Background="{StaticResource CardBg}" CornerRadius="10" Padding="38,30"
+                                BorderBrush="#3E6B58" BorderThickness="1">
+                            <StackPanel>
+                                <Image Source="/Assets/logo.png" Height="84" Stretch="Uniform"
+                                       HorizontalAlignment="Center" Margin="0,0,0,16" />
+                                <TextBlock Text="Вход в систему"
+                                           Foreground="White"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Text="ООО «РОСПИВ» · информационная система"
+                                           Foreground="{StaticResource TextMuted}"
+                                           FontSize="12"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,6,0,24" />
+
+                                <TextBlock Text="Логин *" Style="{StaticResource FieldLabel}" />
+                                <TextBox x:Name="LoginText"
+                                         Height="42"
+                                         Margin="0,0,0,16"
+                                         ToolTip="Введите логин учётной записи, выданный администратором"
+                                         KeyDown="LoginField_KeyDown" />
+
+                                <TextBlock Text="Пароль *" Style="{StaticResource FieldLabel}" />
+                                <PasswordBox x:Name="PassText"
+                                             Height="42"
+                                             Margin="0,0,0,24"
+                                             ToolTip="Введите пароль учётной записи. Пароль хранится в базе данных в виде хеша"
+                                             KeyDown="LoginField_KeyDown" />
+
+                                <Button x:Name="BtnLogin"
+                                        Content="Войти"
+                                        Style="{StaticResource PrimaryButton}"
+                                        Height="44"
+                                        Click="BtnLogin_Click"
+                                        ToolTip="Проверить логин и пароль и войти в систему" />
+
+                                <TextBlock x:Name="LoginHintText"
+                                           Text="Доступ предоставляется администратором системы."
+                                           Foreground="{StaticResource TextMuted}"
+                                           FontSize="11"
+                                           TextWrapping="Wrap"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,16,0,0" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Grid x:Name="OptPlanv" Visibility="{Binding IsChecked, ElementName=OptPlan, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="План выпуска продукции" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="Оптимальные объёмы выпуска с максимальной прибылью при лимитах ресурсов"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="BtnPlanExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnPlanExport_Click"
+                                        ToolTip="Сформировать HTML-отчёт по плану выпуска" />
+                                <Button Content="Рассчитать план" Width="150" Style="{StaticResource PrimaryButton}"
+                                        Click="BtnPlanCalc_Click"
+                                        ToolTip="Рассчитать оптимальный план выпуска по данным справочников" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}"
+                                    Margin="0,0,10,10" CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Нормы расхода и прибыль (на 1 шт.)"
+                                               Style="{StaticResource CardTitle}" />
+                                    <DataGrid Grid.Row="1" Name="ProductsPlanGrid" IsReadOnly="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="Вкл." Width="42">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  HorizontalAlignment="Center"
+                                                                  ToolTip="Включить товар в расчёт" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Продукция" Width="*" Binding="{Binding Product}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Сырьё, кг" Width="75" Binding="{Binding Raw, StringFormat=F2}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Вода, л" Width="80" Binding="{Binding Fill, StringFormat=F2}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Упаковка, шт." Width="95" Binding="{Binding Pack, StringFormat=F2}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Прибыль, ₽" Width="95" Binding="{Binding Profit, StringFormat=F0}" IsReadOnly="True" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}"
+                                    Margin="10,0,0,10" CornerRadius="8" Padding="18">
+                                <StackPanel>
+                                    <TextBlock Text="Ограничения ресурсов" Style="{StaticResource CardTitle}" />
+                                    <UniformGrid Columns="2">
+                                        <StackPanel Margin="0,0,5,0">
+                                            <TextBlock Text="Сырьё, кг" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="RawLimitText" Height="38" Text="6 400"
+                                                     ToolTip="Максимальный запас сырья на планируемый период, кг" />
+                                        </StackPanel>
+                                        <StackPanel Margin="5,0,0,0">
+                                            <TextBlock Text="Вода, л" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="FillLimitText" Height="38" Text="4 800"
+                                                     ToolTip="Максимальный расход воды на планируемый период, литров" />
+                                        </StackPanel>
+                                        <StackPanel Margin="0,10,5,0">
+                                            <TextBlock Text="Упаковка, шт." Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="PackLimitText" Height="38" Text="3 600"
+                                                     ToolTip="Максимальное количество упаковочных комплектов на период, штук" />
+                                        </StackPanel>
+                                    </UniformGrid>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Background="{StaticResource CardBg}" Margin="0,10,0,0"
+                                    CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Максимальная прибыль" Style="{StaticResource MutedText}" />
+                                        <TextBlock x:Name="PlanProfitText" Text="—" Foreground="White"
+                                                   FontSize="30" FontWeight="Bold" />
+                                        <TextBlock x:Name="PlanUsageText" Text="Расчёт не выполнен"
+                                                   Foreground="{StaticResource AccentGreen}" FontSize="12"
+                                                   Margin="0,6,0,0" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <Grid Grid.Column="1" Margin="20,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="Оптимальный выпуск"
+                                                   Foreground="{StaticResource AccentGreen}" FontSize="14"
+                                                   FontWeight="SemiBold" Margin="0,0,0,8" />
+                                        <DataGrid Grid.Row="1" Name="PlanResultGrid">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Продукция" Width="*" Binding="{Binding Product}" />
+                                                <DataGridTextColumn Header="Выпуск, шт." Width="110" Binding="{Binding Volume}" />
+                                                <DataGridTextColumn Header="Прибыль, ₽" Width="110" Binding="{Binding Profit}" />
+                                                <DataGridTextColumn Header="Доля" Width="80" Binding="{Binding Share}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="OptimalRoutev" Visibility="{Binding IsChecked, ElementName=OptimalRoute, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="План перевозок" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="Оптимальное распределение продукции от складов к магазинам"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="BtnRouteExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnRouteExport_Click"
+                                        ToolTip="Сформировать HTML-отчёт по плану перевозок" />
+                                <Button Content="Рассчитать план" Width="150" Style="{StaticResource PrimaryButton}"
+                                        Click="BtnRouteCalc_Click" ToolTip="Рассчитать оптимальный план перевозок" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.2*" />
+                                <RowDefinition Height="0.8*" />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}"
+                                    Margin="0,0,10,10" CornerRadius="8" Padding="14">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Тарифы и запасы (₽ / ед.)" Style="{StaticResource CardTitle}"
+                                               Margin="0,0,0,6" />
+                                    <DataGrid Grid.Row="1" Name="TariffsDataGrid" IsReadOnly="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="Вкл." Width="42">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  HorizontalAlignment="Center"
+                                                                  ToolTip="Включить склад в расчёт" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Warehouse}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Магазин 1" Width="110" Binding="{Binding Shop1}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Магазин 2" Width="110" Binding="{Binding Shop2}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Магазин 3" Width="110" Binding="{Binding Shop3}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Запас, ед." Width="90" Binding="{Binding Supply}" IsReadOnly="True" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <TextBlock Grid.Row="2" Text="Магазины для расчёта" Style="{StaticResource FieldLabel}"
+                                               Margin="0,6,0,4" />
+                                    <DataGrid Grid.Row="3" x:Name="TransportStoresGrid" Height="75"
+                                              RowHeight="25" HeadersVisibility="None" IsReadOnly="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="Вкл." Width="40">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  HorizontalAlignment="Center"
+                                                                  ToolTip="Включить магазин в расчёт" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Магазин" Width="*" Binding="{Binding Name}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Потребность, ед." Width="110" Binding="{Binding Demand}" IsReadOnly="True" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}"
+                                    Margin="10,0,0,10" CornerRadius="8" Padding="18">
+                                <StackPanel>
+                                    <TextBlock Text="Условия перевозки" Style="{StaticResource CardTitle}" />
+                                    <TextBlock Text="Период планирования" Style="{StaticResource FieldLabel}" />
+                                    <ComboBox Height="38" SelectedIndex="0" Margin="0,0,0,15"
+                                              ToolTip="Период, на который рассчитывается план перевозок">
+                                        <ComboBoxItem Content="Ноябрь 2026" />
+                                    </ComboBox>
+                                    <TextBlock Text="Тип задачи" Style="{StaticResource FieldLabel}" />
+                                    <ComboBox x:Name="TransportTaskTypeCombo" Height="38" SelectedIndex="0"
+                                              ToolTip="Тип транспортной задачи: закрытая или открытая">
+                                        <ComboBoxItem Content="Закрытая" />
+                                        <ComboBoxItem Content="Открытая" />
+                                    </ComboBox>
+                                    <TextBlock x:Name="RouteDemandText" Text="Данные о спросе ещё не загружены"
+                                               Style="{StaticResource MutedText}" TextWrapping="Wrap"
+                                               Margin="0,10,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Background="{StaticResource CardBg}" Margin="0,10,0,0"
+                                    CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Минимальные затраты" Style="{StaticResource MutedText}" />
+                                        <TextBlock x:Name="RouteCostText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
+                                        <TextBlock x:Name="RouteStatusText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap" />
+                                        <TextBlock x:Name="RouteSummaryText" Text="" Foreground="{StaticResource TextSoft}" FontSize="11" Margin="0,8,0,0" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <Grid Grid.Column="1" Margin="20,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="Отгрузка, ед."
+                                                   Foreground="{StaticResource AccentGreen}" FontSize="14"
+                                                   FontWeight="SemiBold" Margin="0,0,0,8" />
+                                        <DataGrid Grid.Row="1" Name="ResultRouteGrid">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Warehouse}" />
+                                                <DataGridTextColumn Header="Магазин 1" Width="110" Binding="{Binding Shop1}" />
+                                                <DataGridTextColumn Header="Магазин 2" Width="110" Binding="{Binding Shop2}" />
+                                                <DataGridTextColumn Header="Магазин 3" Width="110" Binding="{Binding Shop3}" />
+                                                <DataGridTextColumn Header="Резерв" Width="85" Binding="{Binding Reserve}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="OptimalEqv" Visibility="{Binding IsChecked, ElementName=OptimalEq, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="Обновление оборудования" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="Выбор стратегии замены с минимальными совокупными затратами"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="BtnEquipmentExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnEquipmentExport_Click"
+                                        ToolTip="Сформировать HTML-отчёт по стратегии замены" />
+                                <Button Content="Рассчитать стратегию" Width="170" Style="{StaticResource PrimaryButton}"
+                                        Click="BtnEquipmentCalc_Click" ToolTip="Рассчитать стратегию замены оборудования" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1.5*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}"
+                                    Margin="0,0,10,10" CornerRadius="8" Padding="18">
+                                <StackPanel>
+                                    <TextBlock Text="Оборудование и горизонт" Style="{StaticResource CardTitle}" />
+                                    <TextBlock Text="Производственный объект" Style="{StaticResource FieldLabel}" />
+                                    <ComboBox x:Name="EquipmentCombo" Height="38" SelectedIndex="0" Margin="0,0,0,15"
+                                              ToolTip="Производственная линия или единица оборудования">
+                                        <ComboBoxItem Content="Линия розлива · ЛР-01" />
+                                    </ComboBox>
+                                    <UniformGrid Columns="2">
+                                        <StackPanel Margin="0,0,5,0">
+                                            <TextBlock Text="Возраст" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="EquipmentAgeText" Height="38" Text="6 лет"
+                                                     ToolTip="Текущий возраст оборудования, лет" />
+                                        </StackPanel>
+                                        <StackPanel Margin="5,0,0,0">
+                                            <TextBlock Text="Горизонт" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="EquipmentHorizonText" Height="38" Text="3 года"
+                                                     ToolTip="Период планирования замены оборудования, лет" />
+                                        </StackPanel>
+                                    </UniformGrid>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}"
+                                    Margin="10,0,0,10" CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Эксплуатация и остаточная стоимость (млн ₽)"
+                                               Style="{StaticResource CardTitle}" />
+                                    <DataGrid Grid.Row="1" Name="EqCostsGrid" IsReadOnly="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="Вкл." Width="42">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  HorizontalAlignment="Center"
+                                                                  ToolTip="Учитывать оборудование в расчёте" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Оборудование" Width="*" Binding="{Binding Equipment}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Год 1" Width="80" Binding="{Binding Year1}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Год 2" Width="80" Binding="{Binding Year2}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Год 3" Width="80" Binding="{Binding Year3}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Остаток*" Width="80" Binding="{Binding Residual}" IsReadOnly="True" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Background="{StaticResource CardBg}" Margin="0,10,0,0"
+                                    CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock x:Name="EquipmentSavingLabel" Text="Экономия за 3 года" Style="{StaticResource MutedText}" />
+                                        <TextBlock x:Name="EquipmentSavingText" Text="—" Foreground="{StaticResource AccentGreen}"
+                                                   FontSize="30" FontWeight="Bold" />
+                                        <TextBlock x:Name="EquipmentDecisionText" Text="Расчёт не выполнен" Foreground="White"
+                                                   FontWeight="SemiBold" FontSize="12" Margin="0,6,0,0" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="StrategyGrid">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Стратегия" Width="*" Binding="{Binding Strategy}" />
+                                            <DataGridTextColumn Header="Общие затраты" Width="150" Binding="{Binding TotalCosts}" />
+                                            <DataGridTextColumn Header="Решение" Width="150" Binding="{Binding Decision}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="OptTickv" Visibility="{Binding IsChecked, ElementName=OptTick, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="Планирование касс" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="Оптимальное количество открытых касс в часы пиковой нагрузки"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="BtnCashExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnCashExport_Click"
+                                        ToolTip="Сформировать HTML-отчёт по расчёту касс" />
+                                <Button Content="Рассчитать кассы" Width="160" Style="{StaticResource PrimaryButton}"
+                                        Click="BtnCashCalc_Click" ToolTip="Рассчитать количество касс по потоку покупателей" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}"
+                                    Margin="0,0,10,10" CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Поток покупателей (в час пик)"
+                                               Style="{StaticResource CardTitle}" />
+                                    <DataGrid Grid.Row="1" Name="CashflowGrid" IsReadOnly="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="Вкл." Width="42">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  HorizontalAlignment="Center"
+                                                                  ToolTip="Включить магазин в расчёт" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Магазин" Width="*" Binding="{Binding Market}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Поток, чел./ч" Width="110" Binding="{Binding Flow}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Обслуживание" Width="110" Binding="{Binding ServiceRate}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Лимит касс" Width="95" Binding="{Binding Limit}" IsReadOnly="True" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}"
+                                    Margin="10,0,0,10" CornerRadius="8" Padding="18">
+                                <StackPanel>
+                                    <TextBlock Text="Целевой уровень сервиса" Style="{StaticResource CardTitle}" />
+                                    <TextBlock Text="Интервал наблюдения" Style="{StaticResource FieldLabel}" />
+                                    <ComboBox Height="38" SelectedIndex="0" Margin="0,0,0,15"
+                                              ToolTip="Интервал, для которого планируется количество касс">
+                                        <ComboBoxItem Content="Будни 18:00–19:00" />
+                                    </ComboBox>
+                                    <UniformGrid Columns="2">
+                                        <StackPanel Margin="0,0,5,0">
+                                            <TextBlock Text="Ожидание, не более" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="CashWaitLimitText" Height="38" Text="4"
+                                                     ToolTip="Максимальное допустимое время ожидания покупателя в очереди, минут" />
+                                        </StackPanel>
+                                        <StackPanel Margin="5,0,0,0">
+                                            <TextBlock Text="Загрузка, не более, %" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="CashLoadLimitText" Height="38" Text="80"
+                                                     ToolTip="Максимальная допустимая загрузка кассира, процентов" />
+                                        </StackPanel>
+                                    </UniformGrid>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Background="{StaticResource CardBg}" Margin="0,10,0,0"
+                                    CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Открыть в час пик" Style="{StaticResource MutedText}" />
+                                        <TextBlock x:Name="CashTotalText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
+                                        <TextBlock x:Name="CashSummaryText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="CashResultGrid">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Магазин" Width="*" Binding="{Binding Market}" />
+                                            <DataGridTextColumn Header="Касс" Width="100" Binding="{Binding Count}" />
+                                            <DataGridTextColumn Header="Загрузка" Width="120" Binding="{Binding LoadPercent}" />
+                                            <DataGridTextColumn Header="Ожидание" Width="150" Binding="{Binding WaitTime}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="Investv" Visibility="{Binding IsChecked, ElementName=Invest, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="Распределение инвестиций" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="Формирование портфеля проектов с максимальным годовым доходом"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="BtnInvestExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnInvestExport_Click"
+                                        ToolTip="Сформировать HTML-отчёт по инвестиционному портфелю" />
+                                <Button Content="Распределить бюджет" Width="180" Style="{StaticResource PrimaryButton}"
+                                        Click="BtnInvestCalc_Click" ToolTip="Распределить инвестиционный бюджет между проектами" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1.5*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}"
+                                    Margin="0,0,10,10" CornerRadius="8" Padding="18">
+                                <StackPanel>
+                                    <TextBlock Text="Инвестиционный бюджет" Style="{StaticResource CardTitle}" />
+                                    <TextBlock Text="Доступный бюджет" Style="{StaticResource FieldLabel}" />
+                                    <TextBox x:Name="InvestBudgetText" Height="38" Text="10 000 000" Margin="0,0,0,15"
+                                             ToolTip="Сумма, доступная для распределения между проектами, рублей" />
+                                    <UniformGrid Columns="2">
+                                        <StackPanel Margin="0,0,5,0">
+                                            <TextBlock Text="Горизонт" Style="{StaticResource FieldLabel}" />
+                                            <ComboBox Height="38" SelectedIndex="0"
+                                                      ToolTip="Период инвестиционного планирования">
+                                                <ComboBoxItem Content="1 год" />
+                                            </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Margin="5,0,0,0">
+                                            <TextBlock Text="Финансирование" Style="{StaticResource FieldLabel}" />
+                                            <ComboBox Height="38" SelectedIndex="0"
+                                                      ToolTip="Порядок финансирования проектов">
+                                                <ComboBoxItem Content="Целиком" />
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </UniformGrid>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}"
+                                    Margin="10,0,0,10" CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Проекты для оценки (млн ₽)"
+                                               Style="{StaticResource CardTitle}" />
+                                    <DataGrid Grid.Row="1" Name="InvestProjectsGrid" IsReadOnly="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="Вкл." Width="42">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  HorizontalAlignment="Center"
+                                                                  ToolTip="Включить проект в расчёт" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Проект" Width="*" Binding="{Binding ProjectName}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Вложения" Width="95" Binding="{Binding Invests}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Доход / год" Width="95" Binding="{Binding Income}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Доходность" Width="95" Binding="{Binding ProfitPercent}" IsReadOnly="True" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Background="{StaticResource CardBg}" Margin="0,10,0,0"
+                                    CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Ожидаемый доход / год" Style="{StaticResource MutedText}" />
+                                        <TextBlock x:Name="InvestIncomeText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
+                                        <TextBlock x:Name="InvestAllocatedText" Text="Распределение не выполнено" Foreground="{StaticResource AccentGreen}"
+                                                   FontSize="13" FontWeight="SemiBold" Margin="0,4,0,0" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <Grid Grid.Column="1" Margin="20,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="Рекомендуемый портфель"
+                                                   Foreground="{StaticResource AccentGreen}" FontSize="14"
+                                                   FontWeight="SemiBold" Margin="0,0,0,8" />
+                                        <DataGrid Grid.Row="1" Name="InvestPortfolioGrid">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Включенный проект" Width="*" Binding="{Binding SelectedProject}" />
+                                                <DataGridTextColumn Header="Выделено" Width="150" Binding="{Binding Allocated}" />
+                                                <DataGridTextColumn Header="Доля" Width="100" Binding="{Binding Share}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="Productsv" Visibility="{Binding IsChecked, ElementName=ProductsNav, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="Товары и изображения" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="Каталог выпускаемой продукции с изображениями, артикулами и ценами"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="BtnAddProduct" Content="+ Добавить" Width="110"
+                                        Style="{StaticResource PrimaryButton}" Margin="0,0,8,0"
+                                        Click="BtnAddProduct_Click"
+                                        ToolTip="Открыть окно добавления товара" />
+                                <Button x:Name="BtnEditProduct" Content="Изменить" Width="100"
+                                        Style="{StaticResource SecondaryButton}" Margin="0,0,8,0"
+                                        Click="BtnEditProduct_Click"
+                                        ToolTip="Открыть окно редактирования выбранного товара" />
+                                <Button x:Name="BtnDeleteProduct" Content="Удалить" Width="90"
+                                        Style="{StaticResource DangerButton}" Margin="0,0,8,0"
+                                        Click="BtnDeleteProduct_Click"
+                                        ToolTip="Удалить выбранный товар" />
+                                <Button Content="Отчёт" Width="90" Style="{StaticResource SecondaryButton}"
+                                        Click="BtnProductReport_Click"
+                                        ToolTip="Сформировать HTML-отчёт по товарам" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.7*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Background="{StaticResource CardBg}" CornerRadius="8"
+                                    Padding="18" Margin="0,0,10,0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Margin="0,0,0,12">
+                                        <TextBlock Text="Каталог продукции" Style="{StaticResource CardTitle}" />
+                                        <TextBlock x:Name="ProductsCountText" Text="0 позиций"
+                                                   Foreground="{StaticResource TextMuted}" FontSize="11"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    </Grid>
+                                    <DataGrid Grid.Row="1" x:Name="ProductsGrid"
+                                              SelectionChanged="ProductsGrid_SelectionChanged"
+                                              MouseDoubleClick="ProductsGrid_MouseDoubleClick">
+                                        <DataGrid.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Добавить товар" Click="BtnAddProduct_Click" />
+                                                <MenuItem Header="Редактировать товар" Click="BtnEditProduct_Click" />
+                                                <MenuItem Header="Сменить изображение" Click="BtnEditProduct_Click" />
+                                                <Separator />
+                                                <MenuItem Header="Удалить товар" Click="BtnDeleteProduct_Click" />
+                                                <MenuItem Header="Сформировать отчёт" Click="BtnProductReport_Click" />
+                                                <Separator />
+                                                <MenuItem Header="Обновить список" Click="BtnRefreshProducts_Click" />
+                                            </ContextMenu>
+                                        </DataGrid.ContextMenu>
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="" Width="58">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Border Width="40" Height="30" CornerRadius="3"
+                                                                Background="#161E1B" ClipToBounds="True">
+                                                            <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding Name}" />
+                                            <DataGridTextColumn Header="Артикул" Width="110" Binding="{Binding Sku}" />
+                                            <DataGridTextColumn Header="Цена, ₽" Width="110" Binding="{Binding PriceDisplay}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+                                        <Button Content="Обновить" Style="{StaticResource SmallButton}"
+                                                Click="BtnRefreshProducts_Click" Margin="0,0,8,0"
+                                                ToolTip="Перечитать каталог из базы данных" />
+                                        <TextBlock Text="Двойной щелчок по строке открывает карточку товара."
+                                                   Style="{StaticResource MutedText}" VerticalAlignment="Center"
+                                                   Margin="8,0,0,0" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Column="1" Background="{StaticResource CardBg}" CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Карточка товара" Style="{StaticResource CardTitle}" />
+
+                                    <StackPanel Grid.Row="1">
+                                        <Border Background="#182420" CornerRadius="6" Height="230" ClipToBounds="True"
+                                                BorderBrush="{StaticResource BorderMuted}" BorderThickness="1">
+                                            <Image x:Name="ProductDetailImage" Stretch="Uniform" />
+                                        </Border>
+                                        <TextBlock x:Name="ProductDetailName" Text="Товар не выбран"
+                                                   Foreground="White" FontSize="18" FontWeight="SemiBold"
+                                                   Margin="0,14,0,4" TextWrapping="Wrap" />
+                                        <TextBlock x:Name="ProductDetailSku" Text="—"
+                                                   Foreground="{StaticResource TextMuted}" FontSize="12" />
+                                        <TextBlock x:Name="ProductDetailPrice" Text="—"
+                                                   Foreground="{StaticResource Gold}" FontSize="20"
+                                                   FontWeight="SemiBold" Margin="0,10,0,0" />
+                                        <TextBlock x:Name="ProductDetailImagePath" Text="Изображение не задано"
+                                                   Foreground="{StaticResource TextMuted}" FontSize="11"
+                                                   TextWrapping="Wrap" Margin="0,10,0,0" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="2" Margin="0,14,0,0">
+                                        <Button Content="Открыть карточку" Style="{StaticResource PrimaryButton}"
+                                                Click="BtnEditProduct_Click"
+                                                ToolTip="Открыть окно редактирования товара и изображения" />
+                                        <TextBlock Text="Изображения хранятся в папке images рядом с исполняемым файлом."
+                                                   Style="{StaticResource MutedText}" TextWrapping="Wrap"
+                                                   Margin="0,10,0,0" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="Reportsv" Visibility="{Binding IsChecked, ElementName=Reports, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="Отчёты" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="HTML-отчёты с фирменным оформлением и возможностью печати"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <Button Content="Открыть папку отчётов" Width="180"
+                                    Style="{StaticResource SecondaryButton}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    Click="BtnOpenReportsFolder_Click"
+                                    ToolTip="Открыть каталог Reports рядом с исполняемым файлом" />
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="320" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Background="{StaticResource CardBg}" CornerRadius="8"
+                                    Padding="18" Margin="0,0,12,0">
+                                <StackPanel>
+                                    <TextBlock Text="Параметры отчёта" Style="{StaticResource CardTitle}" />
+
+                                    <TextBlock Text="Дата отчёта" Style="{StaticResource FieldLabel}" />
+                                    <DatePicker x:Name="ReportDatePicker" Height="38" Margin="0,0,0,16"
+                                                ToolTip="Дата, которая будет указана в отчёте" />
+
+                                    <TextBlock Text="Состав каталога товаров" Style="{StaticResource FieldLabel}" />
+                                    <RadioButton x:Name="ReportAllProducts" Content="Все товары"
+                                                 GroupName="ReportFilter" IsChecked="True" Margin="0,4,0,6"
+                                                 ToolTip="Включить в отчёт все товары" />
+                                    <RadioButton x:Name="ReportOnlyWithImages"
+                                                 Content="Только товары с изображением"
+                                                 GroupName="ReportFilter" Margin="0,0,0,16"
+                                                 ToolTip="Включить только товары, для которых загружено изображение" />
+
+                                    <Border Background="#1B2D26" CornerRadius="6" Padding="12" Margin="0,4,0,0">
+                                        <StackPanel>
+                                            <TextBlock Text="Как отправить на печать"
+                                                       Foreground="{StaticResource Gold}" FontSize="12"
+                                                       FontWeight="SemiBold" />
+                                            <TextBlock Text="Отчёт откроется в браузере. Для печати используйте меню браузера или сочетание Ctrl+P."
+                                                       Foreground="{StaticResource TextSoft}" FontSize="11"
+                                                       TextWrapping="Wrap" Margin="0,6,0,0" />
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="1" Background="{StaticResource CardBg}" CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Доступные отчёты" Style="{StaticResource CardTitle}" />
+                                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                        <ItemsControl x:Name="ReportsItems">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Background="#20372E" CornerRadius="7" Padding="14"
+                                                            Margin="0,0,0,9" BorderBrush="#365A49"
+                                                            BorderThickness="1">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <StackPanel Margin="0,0,12,0">
+                                                                <TextBlock Text="{Binding Title}" Foreground="White"
+                                                                           FontSize="14" FontWeight="SemiBold" />
+                                                                <TextBlock Text="{Binding Description}"
+                                                                           Foreground="{StaticResource TextMuted}"
+                                                                           FontSize="11" Margin="0,4,0,0"
+                                                                           TextWrapping="Wrap" />
+                                                            </StackPanel>
+                                                            <Button Grid.Column="1" Content="Сформировать"
+                                                                    Style="{StaticResource SmallButton}"
+                                                                    Tag="{Binding Kind}"
+                                                                    Click="BtnGenerateReport_Click"
+                                                                    ToolTip="Сформировать HTML-отчёт и открыть его в браузере" />
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <Grid x:Name="AdminPanelv" Visibility="{Binding IsChecked, ElementName=AdminPanel, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,18">
+                            <StackPanel>
+                                <TextBlock Text="Администрирование" Style="{StaticResource PageTitle}" />
+                                <TextBlock Text="Управление пользователями, ролями и доступом к разделам системы"
+                                           Style="{StaticResource PageSubtitle}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button x:Name="BtnAddUser" Content="+ Добавить пользователя" Width="190"
+                                        Style="{StaticResource PrimaryButton}" Margin="0,0,8,0"
+                                        Click="BtnAddUser_Click"
+                                        ToolTip="Открыть окно создания учётной записи" />
+                                <Button x:Name="BtnEditUser" Content="Изменить" Width="95"
+                                        Style="{StaticResource SecondaryButton}" Margin="0,0,8,0"
+                                        Click="BtnEditUser_Click"
+                                        ToolTip="Открыть окно редактирования выбранного пользователя" />
+                                <Button x:Name="BtnDeleteUser" Content="Удалить" Width="90"
+                                        Style="{StaticResource DangerButton}"
+                                        Click="BtnDeleteUser_Click"
+                                        ToolTip="Удалить выбранного пользователя. Свою учётную запись удалить нельзя" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0.9*" />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Background="{StaticResource CardBg}" Margin="0,0,0,10"
+                                    CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Margin="0,0,0,10">
+                                        <TextBlock Text="Пользователи системы" Style="{StaticResource CardTitle}" />
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center">
+                                            <TextBlock x:Name="UsersCountText" Text="0 учётных записей"
+                                                       Style="{StaticResource MutedText}" Margin="0,0,12,0" />
+                                            <Button Content="Обновить" Style="{StaticResource SmallButton}"
+                                                    Click="BtnRefreshUsers_Click"
+                                                    ToolTip="Перечитать список пользователей из базы данных" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <DataGrid Grid.Row="1" x:Name="UsersGrid"
+                                              SelectionChanged="UsersGrid_SelectionChanged"
+                                              MouseDoubleClick="UsersGrid_MouseDoubleClick">
+                                        <DataGrid.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Добавить пользователя" Click="BtnAddUser_Click" />
+                                                <MenuItem Header="Редактировать пользователя" Click="BtnEditUser_Click" />
+                                                <Separator />
+                                                <MenuItem Header="Удалить пользователя" Click="BtnDeleteUser_Click" />
+                                                <MenuItem Header="Обновить список" Click="BtnRefreshUsers_Click" />
+                                            </ContextMenu>
+                                        </DataGrid.ContextMenu>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Фамилия и имя" Width="*" Binding="{Binding FullName}" />
+                                            <DataGridTextColumn Header="Логин" Width="160" Binding="{Binding Login}" />
+                                            <DataGridTextColumn Header="Роль" Width="160" Binding="{Binding RoleDisplay}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="1" Background="{StaticResource CardBg}" Margin="0,10,0,0"
+                                    CornerRadius="8" Padding="18">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Роли и права доступа к разделам"
+                                               Style="{StaticResource CardTitle}" />
+                                    <DataGrid Grid.Row="1" x:Name="RightsGrid">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Раздел системы" Width="*" Binding="{Binding SectionName}" />
+                                            <DataGridTextColumn Header="Администратор" Width="170" Binding="{Binding AdminRight}" />
+                                            <DataGridTextColumn Header="Руководитель" Width="170" Binding="{Binding DirectorRight}" />
+                                            <DataGridTextColumn Header="Менеджер" Width="170" Binding="{Binding ManagerRight}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Background="#1C2427" BorderBrush="#33443D" BorderThickness="0,1,0,0"
+                Padding="16,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Дата:" Foreground="{StaticResource TextMuted}" FontSize="11" />
+                    <TextBlock x:Name="StatusDate" Text="—" Foreground="{StaticResource TextSoft}"
+                               FontSize="11" Margin="5,0,0,0" />
+                    <Rectangle Width="1" Height="12" Fill="#3A4A50" Margin="14,0" />
+                    <TextBlock Text="Время:" Foreground="{StaticResource TextMuted}" FontSize="11" />
+                    <TextBlock x:Name="StatusTime" Text="—" Foreground="{StaticResource TextSoft}"
+                               FontSize="11" Margin="5,0,0,0" />
+                    <Rectangle Width="1" Height="12" Fill="#3A4A50" Margin="14,0" />
+                    <TextBlock Text="Пользователь:" Foreground="{StaticResource TextMuted}" FontSize="11" />
+                    <TextBlock x:Name="StatusUser" Text="гость" Foreground="{StaticResource Gold}"
+                               FontSize="11" FontWeight="SemiBold" Margin="5,0,0,0" />
+                    <TextBlock x:Name="StatusRole" Text="" Foreground="{StaticResource TextMuted}"
+                               FontSize="11" Margin="8,0,0,0" />
+                </StackPanel>
+                <TextBlock Text="ООО «РОСПИВ» · информационная система"
+                           Foreground="{StaticResource TextMuted}" FontSize="10"
+                           HorizontalAlignment="Right" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

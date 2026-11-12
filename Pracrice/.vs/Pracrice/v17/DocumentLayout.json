@@ -90,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 507,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -154,18 +154,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AppDatabase.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Data\\AppDatabase.cs",
-              "RelativeDocumentMoniker": "Data\\AppDatabase.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Data\\AppDatabase.cs",
-              "RelativeToolTip": "Data\\AppDatabase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:13:29.992Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
               "Title": "ProductRecipe.cs",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\ProductRecipe.cs",
@@ -202,6 +190,30 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-12T06:57:19.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDatabase.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Data\\AppDatabase.cs",
+              "RelativeDocumentMoniker": "Data\\AppDatabase.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Data\\AppDatabase.cs",
+              "RelativeToolTip": "Data\\AppDatabase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-12T07:13:29.992Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 10,
               "Title": "ValidationException.cs",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Services\\ValidationException.cs",
@@ -235,18 +247,6 @@
               "ViewState": "AgIAADAAAAAAAAAAAAAiwCYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-12T07:11:19.975Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-11-12T06:57:19.297Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",

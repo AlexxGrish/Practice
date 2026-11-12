@@ -274,7 +274,7 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <Border Grid.Row="2" Background="{StaticResource SidebarDeep}" Padding="16,12">
+                    <Border Grid.Row="2" Background="{StaticResource CardDeep}" Padding="16,12">
                         <StackPanel>
                             <TextBlock x:Name="FIO"
                                        Text="Не авторизован"

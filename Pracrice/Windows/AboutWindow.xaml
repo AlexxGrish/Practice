@@ -1,0 +1,67 @@
+<Window x:Class="Pracrice.Windows.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="О программе — ООО «РОСПИВ»"
+        Width="620"
+        Height="600"
+        Style="{StaticResource DialogWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1C2427" Padding="26,20" BorderBrush="#33443D" BorderThickness="0,0,0,1">
+            <StackPanel>
+                <TextBlock Text="О программе" Foreground="White" FontSize="20" FontWeight="SemiBold" />
+                <TextBlock Text="Информационная система ООО «РОСПИВ»"
+                           Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,4,0,0" />
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="26,22">
+            <StackPanel>
+                <Border Background="{StaticResource CardBg}" CornerRadius="10" Padding="24" HorizontalAlignment="Stretch">
+                    <StackPanel>
+                        <Image Source="/Assets/logo.png" Height="110" Stretch="Uniform"
+                               HorizontalAlignment="Center" />
+                        <TextBlock Text="ООО «РОСПИВ»" Foreground="White" FontSize="22"
+                                   FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,12,0,2" />
+                        <TextBlock Text="Пивоваренная компания"
+                                   Foreground="{StaticResource Gold}" FontSize="12"
+                                   HorizontalAlignment="Center" />
+                        <Rectangle Height="1" Fill="#3E6B58" Margin="0,16,0,14" />
+                        <TextBlock Text="Информационная система управления производством, складом и продажами"
+                                   Foreground="{StaticResource TextSoft}" FontSize="12"
+                                   TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" />
+                        <TextBlock x:Name="VersionText" Text="Версия 1.0.0"
+                                   Foreground="{StaticResource TextMuted}" FontSize="11"
+                                   HorizontalAlignment="Center" Margin="0,8,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <Border Background="{StaticResource CardBg}" CornerRadius="8" Padding="18" Margin="0,14,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Реализованные возможности" Style="{StaticResource CardTitle}" />
+                        <TextBlock Text="• вход по логину и паролю с хешированием BCrypt;&#10;• роли: администратор, руководитель, менеджер;&#10;• администрирование пользователей;&#10;• справочники товаров, ресурсов, складов, магазинов и рецептур;&#10;• изображения товаров в папке images;&#10;• HTML-отчёты с печатью;&#10;• настройки подключения в config.ini."
+                                   Foreground="{StaticResource TextSoft}" FontSize="12"
+                                   TextWrapping="Wrap" LineHeight="20" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Text="© 2026 ООО «РОСПИВ». Учебный проект."
+                           Foreground="{StaticResource TextMuted}" FontSize="11"
+                           HorizontalAlignment="Center" Margin="0,16,0,0" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="2" Background="#1C2427" Padding="26,14" BorderBrush="#33443D" BorderThickness="0,1,0,0">
+            <Button Content="Закрыть" Width="120" Style="{StaticResource PrimaryButton}"
+                    HorizontalAlignment="Right" Click="BtnClose_Click"
+                    ToolTip="Закрыть окно" />
+        </Border>
+    </Grid>
+</Window>

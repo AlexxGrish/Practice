@@ -1,0 +1,683 @@
+<Window
+    x:Class="Pracrice.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+    Title="Роспив — Информационная система управления"
+    Width="1280"
+    Height="720"
+    MinWidth="1024"
+    MinHeight="650"
+    Background="#222B2F"
+    FontFamily="Inter, Segoe UI"
+    ResizeMode="CanResize"
+    WindowStartupLocation="CenterScreen"
+    UseLayoutRounding="True"
+    TextOptions.TextFormattingMode="Display"
+    TextOptions.TextRenderingMode="ClearType"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <!-- Цветовая палитра Figma -->
+        <SolidColorBrush x:Key="SidebarBg" Color="#2B5748" />
+        <SolidColorBrush x:Key="SidebarHover" Color="#9CB080" />
+        <SolidColorBrush x:Key="SidebarActive" Color="#ffffff" />
+        <SolidColorBrush x:Key="MainBg" Color="#273338" />
+        <SolidColorBrush x:Key="CardBg" Color="#2B5748" />
+        <SolidColorBrush x:Key="AccentGreen" Color="#9EB291" />
+        <SolidColorBrush x:Key="TextMuted" Color="#8A999E" />
+        <SolidColorBrush x:Key="BorderMuted" Color="#2D3A3F" />
+
+        <!-- Стили текста -->
+        <Style x:Key="MenuTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="16,0,0,0" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        </Style>
+
+        <Style x:Key="NavigationItemStyle" TargetType="RadioButton">
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="GroupName" Value="MainNavigation" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="ItemBorder" Background="{TemplateBinding Background}" Padding="16,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="0" Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{TemplateBinding AutomationProperties.Name}" Style="{StaticResource MenuTextStyle}" x:Name="BtnText"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SidebarHover}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SidebarHover}" />
+                                <Setter TargetName="BtnText" Property="Foreground" Value="{StaticResource SidebarActive}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стили таблиц (DataGrid) -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowBackground" Value="#202A2E"/>
+            <Setter Property="AlternatingRowBackground" Value="#1C2427"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="RowHeight" Value="38"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#171E21" />
+            <Setter Property="Foreground" Value="#8A999E" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- ЛЕВОЙ САЙДБАР (ОБЩИЙ ДЛЯ ВСЕХ ЭКРАНОВ) -->
+        <Grid Grid.Column="0" Background="{StaticResource SidebarBg}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="20,20,20,0" VerticalAlignment="Center">
+                <TextBlock x:Name="FIO" Text="Алексей Смирнов" Foreground="White" FontSize="14" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                <TextBlock x:Name="humRole" Text="Администратор" Foreground="{StaticResource TextMuted}" FontSize="11" Margin="0,2,0,0" TextTrimming="CharacterEllipsis"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="0,15,0,0">
+                <RadioButton x:Name="MenuLogin" AutomationProperties.Name="Вход" Style="{StaticResource NavigationItemStyle}" IsChecked="True">
+                    <svgc:SvgViewbox Source="/Icons/login.svg" Width="18" Height="18"/>
+                </RadioButton>
+                <RadioButton x:Name="OptPlan" AutomationProperties.Name="План выпуска продукции" Style="{StaticResource NavigationItemStyle}" Checked="OptPlan_Checked">
+                    <svgc:SvgViewbox Source="/Icons/package-delivery-icon.svg" Width="18" Height="18"/>
+                </RadioButton>
+                <RadioButton x:Name="OptimalRoute" AutomationProperties.Name="План перевозок" Style="{StaticResource NavigationItemStyle}">
+                    <svgc:SvgViewbox Source="/Icons/boxes-icon.svg" Width="18" Height="18"/>
+                </RadioButton>
+                <RadioButton x:Name="OptimalEq" AutomationProperties.Name="Обновление оборудования" Style="{StaticResource NavigationItemStyle}">
+                    <svgc:SvgViewbox Source="/Icons/tools-icon.svg" Width="18" Height="18"/>
+                </RadioButton>
+                <RadioButton x:Name="OptTick" AutomationProperties.Name="Планирование касс" Style="{StaticResource NavigationItemStyle}">
+                    <svgc:SvgViewbox Source="/Icons/pos-terminal-icon.svg" Width="18" Height="18"/>
+                </RadioButton>
+                <RadioButton x:Name="Invest" AutomationProperties.Name="Распределение инвестиций" Style="{StaticResource NavigationItemStyle}">
+                    <svgc:SvgViewbox Source="/Icons/investment-icon.svg" Width="18" Height="18"/>
+                </RadioButton>
+                <RadioButton x:Name="AdminPanel" AutomationProperties.Name="Администрирование" Style="{StaticResource NavigationItemStyle}">
+                    <svgc:SvgViewbox Source="/Icons/settings.svg" Width="18" Height="18"/>
+                </RadioButton>
+            </StackPanel>
+
+          
+        </Grid>
+
+        <!-- ОСНОВНОЙ КОНТЕНТНЫЙ БЛОК -->
+        <Border Grid.Column="1" Background="{StaticResource MainBg}" Padding="30">
+            <Grid>
+                <!-- 1. ЭКРАН: ВХОД В СИСТЕМУ -->
+                <Grid Visibility="{Binding IsChecked, ElementName=MenuLogin, Converter={StaticResource BoolToVis}}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="420">
+                    <Border Background="{StaticResource CardBg}" CornerRadius="6" Padding="35" BorderBrush="{StaticResource BorderMuted}" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Вход в систему" Foreground="White" FontSize="22" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+                            <TextBlock Text="Логин" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                            <TextBox x:Name="LoginText" Height="40" Background="#242F33" Foreground="White" BorderThickness="0" Padding="10,0" Margin="0,0,0,16" VerticalContentAlignment="Center"/>
+                            <TextBlock Text="Пароль" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                            <PasswordBox x:Name="PassText" Height="40" Background="#242F33" Foreground="White" BorderThickness="0" Padding="10,0" Margin="0,0,0,25" VerticalContentAlignment="Center"/>
+                            <Button Content="Войти" Height="44" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand" Click="BtnLogin_Click" x:Name="BtnLogin"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- 2. ЭКРАН: ПЛАН ВЫПУСКА ПРОДУКЦИИ -->
+                <Grid Visibility="{Binding IsChecked, ElementName=OptPlan, Converter={StaticResource BoolToVis}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="План выпуска продукции" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="Оптимальные объёмы выпуска с максимальной прибылью при лимитах ресурсов" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="Экспорт" Width="100" Height="36" Margin="0,0,10,0" Background="#242F33" Foreground="White" BorderThickness="0" Click="BtnPlanExport_Click"/>
+                            <Button Content="Рассчитать план" Width="140" Height="36" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0" Click="BtnPlanCalc_Click"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Нормы расхода и прибыль -->
+                        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}" Margin="0,0,10,10" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Нормы расхода и прибыль (на 1 шт.)" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <DataGrid Grid.Row="1" Name="ProductsGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Продукция" Width="*" Binding="{Binding Product}"/>
+                                        <DataGridTextColumn Header="Сырьё" Width="75" Binding="{Binding Raw, StringFormat=F2}"/>
+                                        <DataGridTextColumn Header="Розлив" Width="80" Binding="{Binding Fill, StringFormat=F2}"/>
+                                        <DataGridTextColumn Header="Упаковка" Width="85" Binding="{Binding Pack, StringFormat=F2}"/>
+                                        <DataGridTextColumn Header="Прибыль, ₽" Width="95" Binding="{Binding Profit, StringFormat=F0}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                        <!-- Ограничения ресурсов -->
+                        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}" Margin="10,0,0,10" CornerRadius="6" Padding="20">
+                            <StackPanel>
+                                <TextBlock Text="Ограничения ресурсов" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <UniformGrid Columns="2">
+                                    <StackPanel Margin="0,0,5,0">
+                                        <TextBlock Text="Сырьё, кг" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="RawLimitText" Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="6 400" VerticalContentAlignment="Center" Padding="8,0"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="5,0,0,0">
+                                        <TextBlock Text="Розлив, мин" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="FillLimitText" Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="4 800" VerticalContentAlignment="Center" Padding="8,0"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="0,10,5,0">
+                                        <TextBlock Text="Упаковка, мин" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <TextBox x:Name="PackLimitText" Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="3 600" VerticalContentAlignment="Center" Padding="8,0"/>
+                                    </StackPanel>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+                        <!-- Оптимальный план -->
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource CardBg}" Margin="0,10,0,0" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Максимальная прибыль" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,0,0,4"/>
+                                    <TextBlock x:Name="PlanProfitText" Text="197 600 ₽" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                                    <TextBlock x:Name="PlanUsageText" Text="Сырьё — 100 % · Розлив — 100 % · Упаковка — 90 %" Foreground="{StaticResource AccentGreen}" FontSize="12" Margin="0,6,0,0" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <Grid Grid.Column="1" Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Оптимальный выпуск" Foreground="{StaticResource AccentGreen}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                    <DataGrid Grid.Row="1" Name="PlanResultGrid">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Продукция" Width="*" Binding="{Binding Product}"/>
+                                            <DataGridTextColumn Header="Выпуск, шт." Width="110" Binding="{Binding Volume}"/>
+                                            <DataGridTextColumn Header="Прибыль, ₽" Width="110" Binding="{Binding Profit}"/>
+                                            <DataGridTextColumn Header="Доля" Width="80" Binding="{Binding Share}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- 3. ЭКРАН: ПЛАН ПЕРЕВОЗОК -->
+                <Grid Visibility="{Binding IsChecked, ElementName=OptimalRoute, Converter={StaticResource BoolToVis}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="План перевозок" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="Оптимальное распределение продукции от складов к магазинам" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="Экспорт" Width="100" Height="36" Margin="0,0,10,0" Background="#242F33" Foreground="White" BorderThickness="0"/>
+                            <Button Content="Рассчитать план" Width="140" Height="36" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Тарифы и запасы -->
+                        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}" Margin="0,0,10,10" CornerRadius="6" Padding="20" >
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Тарифы и запасы (₽ / ед.)" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <DataGrid Grid.Row="1" Name="TariffsDataGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Warehouse}"/>
+                                        <DataGridTextColumn Header="Магазин 1" Width="90" Binding="{Binding Shop1}"/>
+                                        <DataGridTextColumn Header="Магазин 2" Width="90" Binding="{Binding Shop2}"/>
+                                        <DataGridTextColumn Header="Магазин 3" Width="90" Binding="{Binding Shop3}"/>
+                                        <DataGridTextColumn Header="Запас, ед." Width="90" Binding="{Binding Supply}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                        <!-- Условия перевозки -->
+                        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}" Margin="10,0,0,10" CornerRadius="6" Padding="20">
+                            <StackPanel>
+                                <TextBlock Text="Условия перевозки" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Период планирования" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                <ComboBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" SelectedIndex="0" Margin="0,0,0,15">
+                                    <ComboBoxItem Content="Ноябрь 2026"/>
+                                </ComboBox>
+                                <TextBlock Text="Тип задачи" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                <ComboBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" SelectedIndex="0">
+                                    <ComboBoxItem Content="Закрытая"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </Border>
+                        <!-- Оптимальный план -->
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource CardBg}" Margin="0,10,0,0" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Минимальные затраты" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,0,0,4"/>
+                                    <TextBlock Text="44 000 ₽" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                                    <TextBlock Text="На 8 000 ₽ ниже базового" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <Grid Grid.Column="1" Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Отгрузка, ед." Foreground="{StaticResource AccentGreen}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                    <DataGrid Grid.Row="1" Name="ResultRouteGrid">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Warehouse}"/>
+                                            <DataGridTextColumn Header="Магазин 1" Width="100" Binding="{Binding Shop1}"/>
+                                            <DataGridTextColumn Header="Магазин 2" Width="100" Binding="{Binding Shop2}"/>
+                                            <DataGridTextColumn Header="Магазин 3" Width="100" Binding="{Binding Shop3}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- 4. ЭКРАН: ОБНОВЛЕНИЕ ОБОРУДОВАНИЯ -->
+                <Grid Visibility="{Binding IsChecked, ElementName=OptimalEq, Converter={StaticResource BoolToVis}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Обновление оборудования" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="Выбор стратегии замены с минимальными совокупными затратами" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="Экспорт" Width="100" Height="36" Margin="0,0,10,0" Background="#242F33" Foreground="White" BorderThickness="0"/>
+                            <Button Content="Рассчитать стратегию" Width="160" Height="36" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.2*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Оборудование и горизонт -->
+                        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}" Margin="0,0,10,10" CornerRadius="6" Padding="20">
+                            <StackPanel>
+                                <TextBlock Text="Оборудование и горизонт" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Производственный объект" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                <ComboBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" SelectedIndex="0" Margin="0,0,0,15">
+                                    <ComboBoxItem Content="Линия розлива · ЛР-01"/>
+                                </ComboBox>
+                                <UniformGrid Columns="2">
+                                    <StackPanel Margin="0,0,5,0">
+                                        <TextBlock Text="Возраст" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <TextBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="6 лет" VerticalContentAlignment="Center" Padding="8,0"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="5,0,0,0">
+                                        <TextBlock Text="Горизонт" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <TextBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="3 года" VerticalContentAlignment="Center" Padding="8,0"/>
+                                    </StackPanel>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+                        <!-- Эксплуатация и стоимость -->
+                        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}" Margin="10,0,0,10" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Эксплуатация и остаточная стоимость (млн ₽)" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <DataGrid Grid.Row="1" Name="EqCostsGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Оборудование" Width="*" Binding="{Binding Equipment}"/>
+                                        <DataGridTextColumn Header="Год 1" Width="80" Binding="{Binding Year1}"/>
+                                        <DataGridTextColumn Header="Год 2" Width="80" Binding="{Binding Year2}"/>
+                                        <DataGridTextColumn Header="Год 3" Width="80" Binding="{Binding Year3}"/>
+                                        <DataGridTextColumn Header="Остаток*" Width="80" Binding="{Binding Residual}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                        <!-- Рекомендованная стратегия -->
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource CardBg}" Margin="0,10,0,0" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Экономия за 3 года" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,0,0,4"/>
+                                    <TextBlock Text="500 000 ₽" Foreground="{StaticResource AccentGreen}" FontSize="32" FontWeight="Bold"/>
+                                    <TextBlock Text="ЗАМЕНИТЬ СЕЙЧАС" Foreground="White" FontWeight="SemiBold" FontSize="12" Margin="0,6,0,0"/>
+                                </StackPanel>
+                                <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="StrategyGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Стратегия" Width="*" Binding="{Binding Strategy}"/>
+                                        <DataGridTextColumn Header="Общие затраты" Width="150" Binding="{Binding TotalCosts}"/>
+                                        <DataGridTextColumn Header="Решение" Width="150" Binding="{Binding Decision}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- 5. ЭКРАН: ПЛАНИРОВАНИЕ КАСС -->
+                <Grid Visibility="{Binding IsChecked, ElementName=OptTick, Converter={StaticResource BoolToVis}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Планирование касс" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="Оптимальное количество открытых касс в часы пиковой нагрузки" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="Экспорт" Width="100" Height="36" Margin="0,0,10,0" Background="#242F33" Foreground="White" BorderThickness="0"/>
+                            <Button Content="Рассчитать кассы" Width="150" Height="36" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.2*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Поток покупателей -->
+                        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}" Margin="0,0,10,10" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Поток покупателей (в час пик)" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <DataGrid Grid.Row="1" Name="CashflowGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Магазин" Width="*" Binding="{Binding Market}"/>
+                                        <DataGridTextColumn Header="Поток, чел./ч" Width="120" Binding="{Binding Flow}"/>
+                                        <DataGridTextColumn Header="Обслуживание" Width="120" Binding="{Binding ServiceRate}"/>
+                                        <DataGridTextColumn Header="Лимит касс" Width="100" Binding="{Binding Limit}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                        <!-- Целевой уровень сервиса -->
+                        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}" Margin="10,0,0,10" CornerRadius="6" Padding="20">
+                            <StackPanel>
+                                <TextBlock Text="Целевой уровень сервиса" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Интервал наблюдения" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                <ComboBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" SelectedIndex="0" Margin="0,0,0,15">
+                                    <ComboBoxItem Content="Будни 18:00–19:00"/>
+                                </ComboBox>
+                                <UniformGrid Columns="2">
+                                    <StackPanel Margin="0,0,5,0">
+                                        <TextBlock Text="Ожидание, не более" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <TextBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="4 мин" VerticalContentAlignment="Center" Padding="8,0"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="5,0,0,0">
+                                        <TextBlock Text="Загрузка, не более" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <TextBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="80 %" VerticalContentAlignment="Center" Padding="8,0"/>
+                                    </StackPanel>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+                        <!-- Рекомендации по кассам -->
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource CardBg}" Margin="0,10,0,0" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Открыть в час пик" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,0,0,4"/>
+                                    <TextBlock Text="9 касс" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                                    <TextBlock Text="Из 13 доступных в магазинах" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="CashResultGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Магазин" Width="*" Binding="{Binding Market}"/>
+                                        <DataGridTextColumn Header="Касс" Width="100" Binding="{Binding Count}"/>
+                                        <DataGridTextColumn Header="Загрузка" Width="120" Binding="{Binding LoadPercent}"/>
+                                        <DataGridTextColumn Header="Ожидание" Width="150" Binding="{Binding WaitTime}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- 6. ЭКРАН: РАСПРЕДЕЛЕНИЕ ИНВЕСТИЦИЙ -->
+                <Grid Visibility="{Binding IsChecked, ElementName=Invest, Converter={StaticResource BoolToVis}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Распределение инвестиций" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="Формирование портфеля проектов с максимальным годовым доходом" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="Экспорт" Width="100" Height="36" Margin="0,0,10,0" Background="#242F33" Foreground="White" BorderThickness="0"/>
+                            <Button Content="Распределить бюджет" Width="170" Height="36" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.2*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Бюджет -->
+                        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}" Margin="0,0,10,10" CornerRadius="6" Padding="20">
+                            <StackPanel>
+                                <TextBlock Text="Инвестиционный бюджет" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Доступный бюджет" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                <TextBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" Text="10 000 000 ₽" VerticalContentAlignment="Center" Padding="8,0" Margin="0,0,0,15"/>
+                                <UniformGrid Columns="2">
+                                    <StackPanel Margin="0,0,5,0">
+                                        <TextBlock Text="Горизонт" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <ComboBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" SelectedIndex="0">
+                                            <ComboBoxItem Content="1 год"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Margin="5,0,0,0">
+                                        <TextBlock Text="Финансирование" Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,0,0,6"/>
+                                        <ComboBox Height="36" Background="#242F33" Foreground="White" BorderThickness="0" SelectedIndex="0">
+                                            <ComboBoxItem Content="Целиком"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+                        <!-- Проекты -->
+                        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}" Margin="10,0,0,10" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Проекты для оценки (млн ₽)" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <DataGrid Grid.Row="1" Name="InvestProjectsGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Проект" Width="*" Binding="{Binding ProjectName}"/>
+                                        <DataGridTextColumn Header="Вложения" Width="100" Binding="{Binding Invests}"/>
+                                        <DataGridTextColumn Header="Доход / год" Width="100" Binding="{Binding Income}"/>
+                                        <DataGridTextColumn Header="Доходность" Width="100" Binding="{Binding ProfitPercent}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                        <!-- Результаты портфеля -->
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource CardBg}" Margin="0,10,0,0" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Ожидаемый доход / год" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,0,0,4"/>
+                                    <TextBlock Text="2,55 млн ₽" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                                    <TextBlock Text="Распределено: 10,00 млн ₽" Foreground="{StaticResource AccentGreen}" FontSize="13" FontWeight="SemiBold" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <Grid Grid.Column="1" Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Рекомендуемый портфель" Foreground="{StaticResource AccentGreen}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                    <DataGrid Grid.Row="1" Name="InvestPortfolioGrid">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Включенный проект" Width="*" Binding="{Binding SelectedProject}"/>
+                                            <DataGridTextColumn Header="Выделено" Width="150" Binding="{Binding Allocated}"/>
+                                            <DataGridTextColumn Header="Доля" Width="100" Binding="{Binding Share}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- 7. ЭКРАН: АДМИНИСТРИРОВАНИЕ -->
+                <Grid Visibility="{Binding IsChecked, ElementName=AdminPanel, Converter={StaticResource BoolToVis}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Администрирование" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                            <TextBlock Text="Управление пользователями, ролями и доступом к разделам системы" Foreground="{StaticResource TextMuted}" FontSize="13" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="+ Добавить пользователя" Width="180" Height="36" Margin="0,0,10,0" Background="#242F33" Foreground="White" BorderThickness="0"/>
+                            <Button Content="Сохранить изменения" Width="180" Height="36" Background="{StaticResource AccentGreen}" Foreground="#151C1E" FontWeight="SemiBold" BorderThickness="0"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Пользователи -->
+                        <Border Grid.Row="0" Background="{StaticResource CardBg}" Margin="0,0,0,10" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Пользователи системы" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <DataGrid Grid.Row="1" Name="UsersGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Пользователь / логин" Width="*" Binding="{Binding UserLogin}"/>
+                                        <DataGridTextColumn Header="Роль" Width="150" Binding="{Binding UserRole}"/>
+                                        <DataGridTextColumn Header="Статус" Width="120" Binding="{Binding Status}"/>
+                                        <DataGridTextColumn Header="Действие" Width="120" Binding="{Binding Action}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                        <!-- Роли и права -->
+                        <Border Grid.Row="1" Background="{StaticResource CardBg}" Margin="0,10,0,0" CornerRadius="6" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Роли и права доступа к разделам" Foreground="{StaticResource AccentGreen}" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                <DataGrid Grid.Row="1" Name="RightsGrid">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Раздел системы" Width="*" Binding="{Binding SectionName}"/>
+                                        <DataGridTextColumn Header="Администратор" Width="150" Binding="{Binding AdminRight}"/>
+                                        <DataGridTextColumn Header="Аналитик" Width="150" Binding="{Binding AnalystRight}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

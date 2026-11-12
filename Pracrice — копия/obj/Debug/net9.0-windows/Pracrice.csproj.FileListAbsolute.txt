@@ -1,0 +1,147 @@
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Pracrice.exe
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Properties\Resources.resx
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Pracrice.deps.json
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Pracrice.runtimeconfig.json
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Pracrice.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Pracrice.pdb
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Humanizer.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.CodeAnalysis.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.CodeAnalysis.CSharp.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.CodeAnalysis.Workspaces.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.EntityFrameworkCore.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.Caching.Memory.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.Logging.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.Options.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Extensions.Primitives.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Mono.TextTemplating.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\MySqlConnector.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Converters.Wpf.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Core.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Css.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Dom.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Model.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Rendering.Gdi.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Rendering.Wpf.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\SharpVectors.Runtime.Wpf.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\System.Composition.AttributedModel.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\System.Composition.Convention.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\System.Composition.Hosting.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\System.Composition.Runtime.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\System.Composition.TypedParts.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\cs\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\de\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\es\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\fr\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\it\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ja\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ko\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pl\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ru\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\tr\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.csproj.AssemblyReference.cache
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\MainWindow.baml
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\MainWindow.g.cs
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\App.g.cs
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice_MarkupCompile.cache
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.g.resources
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.Properties.Resources.resources
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.csproj.GenerateResource.cache
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.GeneratedMSBuildEditorConfig.editorconfig
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.AssemblyInfoInputs.cache
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.AssemblyInfo.cs
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.csproj.CoreCompileInputs.cache
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.sourcelink.json
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.csproj.Up2Date
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.dll
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\refint\Pracrice.dll
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.pdb
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\Pracrice.genruntimeconfig.cache
+D:\IP2023\Practice\Pracrice\obj\Debug\net9.0-windows\ref\Pracrice.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.Build.Locator.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\INIFileParser.dll
+D:\IP2023\Practice\Pracrice\bin\Debug\net9.0-windows\BCrypt-Net-Next.dll
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.csproj.AssemblyReference.cache
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\MainWindow.baml
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\MainWindow.g.cs
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\App.g.cs
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice_MarkupCompile.cache
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.g.resources
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.Properties.Resources.resources
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.csproj.GenerateResource.cache
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.GeneratedMSBuildEditorConfig.editorconfig
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.AssemblyInfoInputs.cache
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.AssemblyInfo.cs
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.csproj.CoreCompileInputs.cache
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.sourcelink.json
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.dll
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\refint\Pracrice.dll
+D:\IP2023\Practice\Pracrice — копия\obj\Debug\net9.0-windows\Pracrice.pdb

@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\IP2023\\Practice\\Pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\models\\investmentcompany.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\investmentcompany.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 507,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InvestmentCompany.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\Models\\InvestmentCompany.cs",
+              "RelativeDocumentMoniker": "Models\\InvestmentCompany.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\Models\\InvestmentCompany.cs",
+              "RelativeToolTip": "Models\\InvestmentCompany.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-10T05:36:11.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-10T05:31:20.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "..\\Pracrice\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\MainWindow.xaml.cs",
+              "RelativeToolTip": "..\\Pracrice\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAjwPYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-10T05:30:05.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "D:\\IP2023\\Practice\\Pracrice \u2014 \u043A\u043E\u043F\u0438\u044F\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-10T05:30:02.772Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

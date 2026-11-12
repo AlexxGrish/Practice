@@ -1,0 +1,125 @@
+<Window x:Class="Pracrice.Windows.ReferenceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Справочники — ООО «РОСПИВ»"
+        Width="1120"
+        Height="720"
+        Style="{StaticResource DialogWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1C2427" Padding="26,18" BorderBrush="#33443D" BorderThickness="0,0,0,1">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="Справочники" Foreground="White" FontSize="21" FontWeight="SemiBold" />
+                    <TextBlock Text="Единое окно управления справочными данными информационной системы"
+                               Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,4,0,0" />
+                </StackPanel>
+                <Button Content="Закрыть" Width="110" Style="{StaticResource SecondaryButton}"
+                        HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Click="BtnClose_Click" ToolTip="Закрыть окно справочников" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="290" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource SidebarDeep}" BorderBrush="#33443D"
+                    BorderThickness="0,0,1,0">
+                <ListBox x:Name="SectionsList" SelectionChanged="SectionsList_SelectionChanged"
+                         Background="Transparent" BorderThickness="0" Padding="8,10">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="12,10">
+                                <TextBlock Text="{Binding Title}" Foreground="White" FontSize="13"
+                                           FontWeight="SemiBold" />
+                                <TextBlock Text="{Binding Description}" Foreground="{StaticResource TextMuted}"
+                                           FontSize="10" TextWrapping="Wrap" Margin="0,3,0,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+
+            <Border Grid.Column="1" Background="{StaticResource MainBg}" Padding="22">
+                <Border Background="{StaticResource CardBg}" CornerRadius="8" Padding="18">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock x:Name="SectionTitle" Text="Справочник"
+                                           Style="{StaticResource CardTitle}" Margin="0" />
+                                <TextBlock x:Name="SectionDescription" Style="{StaticResource MutedText}"
+                                           TextWrapping="Wrap" Margin="0,4,0,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <Button Content="+ Добавить" Width="100" Style="{StaticResource PrimaryButton}"
+                                        Margin="0,0,7,0" Click="BtnAdd_Click"
+                                        ToolTip="Добавить запись в текущий справочник" />
+                                <Button x:Name="BtnEdit" Content="Изменить" Width="90"
+                                        Style="{StaticResource SecondaryButton}" Margin="0,0,7,0"
+                                        Click="BtnEdit_Click"
+                                        ToolTip="Открыть окно редактирования выбранной записи" />
+                                <Button x:Name="BtnDelete" Content="Удалить" Width="85"
+                                        Style="{StaticResource DangerButton}" Margin="0,0,7,0"
+                                        Click="BtnDelete_Click"
+                                        ToolTip="Удалить выбранную запись с проверкой целостности" />
+                                <Button Content="Отчёт" Width="85" Style="{StaticResource SecondaryButton}"
+                                        Click="BtnReport_Click"
+                                        ToolTip="Сформировать HTML-отчёт по текущему справочнику" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0,0,0,8">
+                            <TextBlock Text="Двойной щелчок по строке открывает форму редактирования."
+                                       Style="{StaticResource MutedText}" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock x:Name="CountText" Text="0 записей" Style="{StaticResource MutedText}"
+                                           Margin="0,0,12,0" />
+                                <Button Content="Обновить" Style="{StaticResource SmallButton}"
+                                        Click="BtnRefresh_Click"
+                                        ToolTip="Перечитать справочник из базы данных" />
+                            </StackPanel>
+                        </Grid>
+
+                        <DataGrid Grid.Row="2" x:Name="ReferencesGrid"
+                                  AutoGenerateColumns="True"
+                                  SelectionChanged="ReferencesGrid_SelectionChanged"
+                                  MouseDoubleClick="ReferencesGrid_MouseDoubleClick"
+                                  AutoGeneratingColumn="ReferencesGrid_AutoGeneratingColumn">
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Добавить запись" Click="BtnAdd_Click" />
+                                    <MenuItem Header="Редактировать запись" Click="BtnEdit_Click" />
+                                    <Separator />
+                                    <MenuItem Header="Удалить запись" Click="BtnDelete_Click" />
+                                    <MenuItem Header="Сформировать отчёт" Click="BtnReport_Click" />
+                                    <MenuItem Header="Обновить" Click="BtnRefresh_Click" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                        </DataGrid>
+
+                        <Border Grid.Row="3" Background="#1B2D26" CornerRadius="6" Padding="12" Margin="0,12,0,0">
+                            <TextBlock Text="Удаление записей, связанных с другими таблицами, блокируется. Изменения сохраняются только после проверки обязательных полей."
+                                       Foreground="{StaticResource TextSoft}" FontSize="11" TextWrapping="Wrap" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

@@ -669,12 +669,12 @@
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">
                                             <TextBlock Text="Возраст" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="EquipmentAgeText" Height="38" Text="6 лет"
+                                            <TextBox x:Name="EquipmentAgeText" Height="38" Text=""
                                                      ToolTip="Текущий возраст оборудования, лет" />
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="Горизонт" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="EquipmentHorizonText" Height="38" Text="3 года"
+                                            <TextBox x:Name="EquipmentHorizonText" Height="38" Text=""
                                                      ToolTip="Период планирования замены оборудования, лет" />
                                         </StackPanel>
                                     </UniformGrid>
@@ -808,12 +808,12 @@
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">
                                             <TextBlock Text="Ожидание, не более" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="CashWaitLimitText" Height="38" Text="4"
+                                            <TextBox x:Name="CashWaitLimitText" Height="38" Text=""
                                                      ToolTip="Максимальное допустимое время ожидания покупателя в очереди, минут" />
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="Загрузка, не более, %" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="CashLoadLimitText" Height="38" Text="80"
+                                            <TextBox x:Name="CashLoadLimitText" Height="38" Text=""
                                                      ToolTip="Максимальная допустимая загрузка кассира, процентов" />
                                         </StackPanel>
                                     </UniformGrid>
@@ -880,7 +880,7 @@
                                 <StackPanel>
                                     <TextBlock Text="Инвестиционный бюджет" Style="{StaticResource CardTitle}" />
                                     <TextBlock Text="Доступный бюджет" Style="{StaticResource FieldLabel}" />
-                                    <TextBox x:Name="InvestBudgetText" Height="38" Text="10 000 000" Margin="0,0,0,15"
+                                    <TextBox x:Name="InvestBudgetText" Height="38" Text="" Margin="0,0,0,15"
                                              ToolTip="Сумма, доступная для распределения между проектами, рублей" />
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">

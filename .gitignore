@@ -1,7 +1,9 @@
-.vs/ 
-Layouts/ 
-"Pracrice - ª®¯¨ï/" 
-**/bin/ 
-**/obj/ 
-*.crdownload 
-/Pracrice/.vs/Pracrice/v17/.suo
+.vs/
+Layouts/
+"Practice - копия/"
+**/bin/
+**/obj/
+*/bin/
+*/obj/
+*.crdownload
+*.suo

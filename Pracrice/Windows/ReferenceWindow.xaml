@@ -17,8 +17,7 @@
             <Grid>
                 <StackPanel>
                     <TextBlock Text="Справочники" Foreground="White" FontSize="21" FontWeight="SemiBold" />
-                    <TextBlock Text="Единое окно управления справочными данными информационной системы"
-                               Foreground="{StaticResource TextMuted}" FontSize="12" Margin="0,4,0,0" />
+
                 </StackPanel>
                 <Button Content="Закрыть" Width="110" Style="{StaticResource SecondaryButton}"
                         HorizontalAlignment="Right" VerticalAlignment="Center"
@@ -114,7 +113,7 @@
                         </DataGrid>
 
                         <Border Grid.Row="3" Background="#1B2D26" CornerRadius="6" Padding="12" Margin="0,12,0,0">
-                            <TextBlock Text="Удаление записей, связанных с другими таблицами, блокируется. Изменения сохраняются только после проверки обязательных полей."
+                            <TextBlock Text=" Изменения сохраняются только после проверки обязательных полей."
                                        Foreground="{StaticResource TextSoft}" FontSize="11" TextWrapping="Wrap" />
                         </Border>
                     </Grid>

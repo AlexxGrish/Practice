@@ -47,8 +47,7 @@
                         <Button Content="Удалить изображение" Style="{StaticResource DangerButton}"
                                 Margin="0,8,0,0" Click="BtnRemoveImage_Click"
                                 ToolTip="Убрать изображение из карточки товара" />
-                        <TextBlock Text="Файл копируется в папку images рядом с исполняемым файлом. В базе данных сохраняется относительная ссылка."
-                                   Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,12,0,0" />
+                       
                     </StackPanel>
                 </Border>
 
@@ -61,7 +60,7 @@
                         <TextBox x:Name="NameBox" Height="40" Margin="0,0,0,14"
                                  ToolTip="Наименование выпускаемой продукции, не более 150 символов" />
 
-                        <TextBlock Text="Артикул (SKU) *" Style="{StaticResource FieldLabel}" />
+                        <TextBlock Text="Артикул (Уникальный) *" Style="{StaticResource FieldLabel}" />
                         <TextBox x:Name="SkuBox" Height="40" Margin="0,0,0,14"
                                  ToolTip="Уникальный артикул товара, не более 50 символов" />
 

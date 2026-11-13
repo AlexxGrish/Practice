@@ -11,54 +11,6 @@
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\services\\dialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:services\\dialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\configuration\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:configuration\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\data\\appdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:data\\appdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\productrecipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\productrecipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\rows.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\rows.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\services\\validationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:services\\validationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\services\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:services\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:services\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|d:\\ip2023\\practice\\pracrice\\windows\\usereditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:windows\\usereditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -90,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 507,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -99,6 +51,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Document",
@@ -110,83 +66,7 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAIEAAAAAAAAAAAAowJQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:41:16.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ImageService.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Services\\ImageService.cs",
-              "RelativeDocumentMoniker": "Services\\ImageService.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Services\\ImageService.cs",
-              "RelativeToolTip": "Services\\ImageService.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAmwH4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:37:48.193Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DialogService.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Services\\DialogService.cs",
-              "RelativeDocumentMoniker": "Services\\DialogService.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Services\\DialogService.cs",
-              "RelativeToolTip": "Services\\DialogService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAA0wCEAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:37:35.376Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AppConfig.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Configuration\\AppConfig.cs",
-              "RelativeDocumentMoniker": "Configuration\\AppConfig.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Configuration\\AppConfig.cs",
-              "RelativeToolTip": "Configuration\\AppConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:13:34.951Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProductRecipe.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\ProductRecipe.cs",
-              "RelativeDocumentMoniker": "Models\\ProductRecipe.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\ProductRecipe.cs",
-              "RelativeToolTip": "Models\\ProductRecipe.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:12:58.414Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Rows.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\Rows.cs",
-              "RelativeDocumentMoniker": "Models\\Rows.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\Rows.cs",
-              "RelativeToolTip": "Models\\Rows.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:12:57.134Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:12:55.265Z"
+              "WhenOpened": "2026-11-12T07:41:16.664Z"
             },
             {
               "$type": "Document",
@@ -202,79 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AppDatabase.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Data\\AppDatabase.cs",
-              "RelativeDocumentMoniker": "Data\\AppDatabase.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Data\\AppDatabase.cs",
-              "RelativeToolTip": "Data\\AppDatabase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:13:29.992Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ValidationException.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Services\\ValidationException.cs",
-              "RelativeDocumentMoniker": "Services\\ValidationException.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Services\\ValidationException.cs",
-              "RelativeToolTip": "Services\\ValidationException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:12:46.446Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAkwJMAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:11:43.4Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Session.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Services\\Session.cs",
-              "RelativeDocumentMoniker": "Services\\Session.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Services\\Session.cs",
-              "RelativeToolTip": "Services\\Session.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAiwCYAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:11:19.975Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DatabaseInitializer.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Data\\DatabaseInitializer.cs",
-              "RelativeDocumentMoniker": "Data\\DatabaseInitializer.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Data\\DatabaseInitializer.cs",
-              "RelativeToolTip": "Data\\DatabaseInitializer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:13:32.031Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ReportService.cs",
-              "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Services\\ReportService.cs",
-              "RelativeDocumentMoniker": "Services\\ReportService.cs",
-              "ToolTip": "D:\\IP2023\\Practice\\Pracrice\\Services\\ReportService.cs",
-              "RelativeToolTip": "Services\\ReportService.cs",
-              "ViewState": "AgIAAI8BAAAAAAAAAAAkwJUBAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-12T07:10:20.047Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 2,
               "Title": "UserEditWindow.xaml",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Windows\\UserEditWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\UserEditWindow.xaml",
@@ -285,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 3,
               "Title": "ReferenceWindow.xaml",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Windows\\ReferenceWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\ReferenceWindow.xaml",
@@ -296,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 4,
               "Title": "ReferenceEditWindow.xaml",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Windows\\ReferenceEditWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\ReferenceEditWindow.xaml",
@@ -307,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 5,
               "Title": "ProductEditWindow.xaml",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Windows\\ProductEditWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\ProductEditWindow.xaml",
@@ -318,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 6,
               "Title": "MessageDialogWindow.xaml",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Windows\\MessageDialogWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\MessageDialogWindow.xaml",
@@ -329,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 7,
               "Title": "AboutWindow.xaml",
               "DocumentMoniker": "D:\\IP2023\\Practice\\Pracrice\\Windows\\AboutWindow.xaml",
               "RelativeDocumentMoniker": "Windows\\AboutWindow.xaml",

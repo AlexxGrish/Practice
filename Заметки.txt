@@ -1,0 +1,6 @@
+https://github.com/DevExpress-Examples/wpf-dashboard-how-to-manage-dashboard-parameters-in-code
+https://github.com/LingMi-sama/Wallet-Payment-Dashboard
+https://github.com/kkazimierczak/Car-Dashboard-WPF/tree/master/Car-Dashboard-WPF
+https://github.com/Dhirajdh/IntuneWin32BulkManagement
+https://github.com/bad-antics/n01d-overwatch
+https://github.com/Jamesling1/netmongen

@@ -611,124 +611,152 @@ public static class CalculationService
     public static EquipmentCalculationResult CalculateEquipment(
         int age,
         int horizon,
-        bool includeCurrent,
-        bool includeNew)
+        decimal replacementPrice,
+        decimal annualRevenue,
+        decimal currentOperatingCost,
+        decimal newOperatingCost,
+        decimal costGrowthPercent,
+        int serviceLife)
     {
-        horizon = Math.Clamp(horizon, 1, 5);
         age = Math.Clamp(age, 0, 30);
+        horizon = Math.Clamp(horizon, 1, 10);
+        serviceLife = Math.Clamp(serviceLife, 1, 30);
+        replacementPrice = Math.Max(0m, replacementPrice);
+        annualRevenue = Math.Max(0m, annualRevenue);
+        currentOperatingCost = Math.Max(0m, currentOperatingCost);
+        newOperatingCost = Math.Max(0m, newOperatingCost);
 
-        decimal oldYear1 = 1.20m + age * 0.05m;
-        decimal oldYear2 = 1.60m + age * 0.07m;
-        decimal oldYear3 = 2.10m + age * 0.09m;
-        decimal oldResidual = 1.00m;
-        decimal newPrice = 2.80m;
-        decimal newYear = 0.70m;
-        decimal newResidual = 2.00m;
+        decimal factor = 1m + Math.Max(0m, costGrowthPercent) / 100m;
 
-        var costs = new List<EquipmentCostRow>
+        decimal Compound(decimal value, int years)
         {
-            new()
+            decimal result = value;
+            for (int index = 0; index < years; index++)
             {
-                Equipment = "Текущее оборудование",
-                Year1 = oldYear1,
-                Year2 = oldYear2,
-                Year3 = oldYear3,
-                Residual = oldResidual,
-                IsIncluded = includeCurrent
-            },
-            new()
-            {
-                Equipment = "Новое оборудование",
-                Year1 = newYear,
-                Year2 = newYear,
-                Year3 = newYear,
-                Residual = newResidual,
-                IsIncluded = includeNew
+                result *= factor;
             }
-        };
 
-        var strategies = new List<EquipmentStrategyRow>();
-        decimal bestCost = decimal.MaxValue;
-        string bestDecision = includeCurrent ? "Не заменять" : "Нет данных";
+            return result;
+        }
 
-        if (includeNew)
+        decimal currentCostAtZero = currentOperatingCost / Compound(1m, age);
+
+        decimal OldOperatingCost(int equipmentAge) =>
+            Compound(currentCostAtZero, equipmentAge);
+
+        decimal NewEquipmentCost(int equipmentAge) =>
+            Compound(newOperatingCost, equipmentAge);
+
+        decimal Salvage(int equipmentAge) =>
+            Math.Max(0m, replacementPrice * (1m - (decimal)equipmentAge / serviceLife));
+
+        int maxAge = age + horizon + 2;
+        var oldDp = new decimal[horizon + 1, maxAge + 2];
+        var newDp = new decimal[horizon + 1, maxAge + 2];
+        var replaceOld = new bool[horizon + 1, maxAge + 2];
+        var replaceNew = new bool[horizon + 1, maxAge + 2];
+
+        for (int equipmentAge = 0; equipmentAge <= maxAge; equipmentAge++)
         {
-            for (int replacementYear = 0; replacementYear < horizon; replacementYear++)
+            oldDp[horizon, equipmentAge] = Salvage(equipmentAge);
+            newDp[horizon, equipmentAge] = Salvage(equipmentAge);
+        }
+
+        for (int year = horizon - 1; year >= 0; year--)
+        {
+            for (int equipmentAge = 0; equipmentAge <= maxAge; equipmentAge++)
             {
-                decimal cost = 0;
-                decimal[] oldYears = { oldYear1, oldYear2, oldYear3 };
-                for (int year = 0; year < replacementYear; year++)
-                {
-                    cost += oldYears[Math.Min(year, 2)];
-                }
+                decimal keepOld =
+                    annualRevenue - OldOperatingCost(equipmentAge) +
+                    oldDp[year + 1, equipmentAge + 1];
+                decimal replaceOldCost =
+                    annualRevenue - NewEquipmentCost(0) - replacementPrice +
+                    Salvage(equipmentAge) + newDp[year + 1, 1];
+                replaceOld[year, equipmentAge] = replaceOldCost >= keepOld;
+                oldDp[year, equipmentAge] = Math.Max(keepOld, replaceOldCost);
 
-                int newYears = horizon - replacementYear;
-                cost += newPrice + newYear * newYears;
-                cost -= newResidual;
-
-                string strategy = replacementYear == 0
-                    ? "Замена сейчас"
-                    : $"Замена через {replacementYear} г.";
-                strategies.Add(new EquipmentStrategyRow
-                {
-                    Strategy = strategy,
-                    TotalCosts = decimal.Round(cost, 2),
-                    Decision = string.Empty
-                });
-
-                if (cost < bestCost)
-                {
-                    bestCost = cost;
-                    bestDecision = strategy;
-                }
+                decimal keepNew =
+                    annualRevenue - NewEquipmentCost(equipmentAge) +
+                    newDp[year + 1, equipmentAge + 1];
+                decimal replaceNewCost =
+                    annualRevenue - NewEquipmentCost(0) - replacementPrice +
+                    Salvage(equipmentAge) + newDp[year + 1, 1];
+                bool canReplaceNew = equipmentAge >= 2;
+                replaceNew[year, equipmentAge] = canReplaceNew && replaceNewCost >= keepNew;
+                newDp[year, equipmentAge] = canReplaceNew
+                    ? Math.Max(keepNew, replaceNewCost)
+                    : keepNew;
             }
         }
 
-        decimal oldTotal = 0;
-        decimal[] allOldYears = { oldYear1, oldYear2, oldYear3 };
+        int stateAge = age;
+        bool isNew = false;
+        var schedule = new List<EquipmentScheduleRow>(horizon);
+
         for (int year = 0; year < horizon; year++)
         {
-            oldTotal += allOldYears[Math.Min(year, 2)];
-        }
+            bool replace = isNew
+                ? stateAge >= 2 && replaceNew[year, stateAge]
+                : replaceOld[year, stateAge];
 
-        decimal noReplaceCost = oldTotal - oldResidual;
+            int ageAtStart = stateAge;
+            decimal operating = replace
+                ? NewEquipmentCost(0)
+                : isNew
+                    ? NewEquipmentCost(stateAge)
+                    : OldOperatingCost(stateAge);
+            decimal replacement = replace ? replacementPrice : 0m;
+            decimal salvage = replace ? Salvage(stateAge) : 0m;
+            decimal profit = annualRevenue - operating - replacement + salvage;
 
-        if (includeCurrent)
-        {
-            strategies.Add(new EquipmentStrategyRow
+            stateAge = replace ? 1 : stateAge + 1;
+            isNew |= replace;
+
+            schedule.Add(new EquipmentScheduleRow
             {
-                Strategy = "Не заменять",
-                TotalCosts = decimal.Round(noReplaceCost, 2),
-                Decision = string.Empty
+                Year = year + 1,
+                Age = ageAtStart,
+                Decision = replace ? "��������" : "���������������",
+                OperatingCost = decimal.Round(operating, 2),
+                ReplacementCost = decimal.Round(replacement, 2),
+                Revenue = decimal.Round(annualRevenue, 2),
+                Profit = decimal.Round(profit, 2),
+                Residual = decimal.Round(Salvage(stateAge), 2)
             });
-
-            if (noReplaceCost < bestCost)
-            {
-                bestCost = noReplaceCost;
-                bestDecision = "Не заменять";
-            }
         }
 
-        var finalStrategies = strategies
-            .Select(row => new EquipmentStrategyRow
+        var ageCosts = new List<EquipmentAgeCostRow>(serviceLife + 1);
+        for (int equipmentAge = 0; equipmentAge <= serviceLife; equipmentAge++)
+        {
+            ageCosts.Add(new EquipmentAgeCostRow
             {
-                Strategy = row.Strategy,
-                TotalCosts = row.TotalCosts,
-                Decision = row.Strategy == bestDecision ? "Рекомендуется" : "—"
-            })
+                Age = equipmentAge,
+                OperatingCost = decimal.Round(OldOperatingCost(equipmentAge), 2),
+                Residual = decimal.Round(Salvage(equipmentAge), 2)
+            });
+        }
+
+        var replacementYears = schedule
+            .Where(row => row.Decision == "��������")
+            .Select(row => row.Year)
             .ToList();
+        string replacementPlan = replacementYears.Count == 0
+            ? "������ �� ���������"
+            : "������: " + string.Join(", ", replacementYears.Select(year => $"��� {year}"));
+
+        decimal totalProfit = oldDp[0, age];
+        decimal totalCosts = annualRevenue * horizon - totalProfit;
 
         return new EquipmentCalculationResult
         {
-            Costs = costs,
-            Strategies = finalStrategies,
-            Saving = includeCurrent && bestCost < decimal.MaxValue
-                ? Math.Max(0, noReplaceCost - bestCost)
-                : 0,
-            Decision = bestDecision
+            AgeCosts = ageCosts,
+            Schedule = schedule,
+            TotalProfit = decimal.Round(totalProfit, 2),
+            TotalCosts = decimal.Round(totalCosts, 2),
+            FinalResidual = decimal.Round(Salvage(stateAge), 2),
+            ReplacementPlan = replacementPlan
         };
     }
-
     public static async Task<IReadOnlyList<CashFlowRow>> LoadCashFlowAsync()
     {
         await using var context = AppDatabase.CreateContext();
@@ -742,9 +770,9 @@ public static class CalculationService
             rows.Add(new CashFlowRow
             {
                 Market = stores[index].Name,
-                Flow = 100 + index * 20,
-                ServiceRate = 25,
-                Limit = 6
+                Flow = stores[index].CustomerFlow > 0 ? stores[index].CustomerFlow : 100 + index * 20,
+                ServiceRate = stores[index].ServiceRate > 0 ? stores[index].ServiceRate : 25,
+                Limit = stores[index].RegisterLimit > 0 ? stores[index].RegisterLimit : 6
             });
         }
 
@@ -809,57 +837,33 @@ public static class CalculationService
         };
     }
 
-    public static IReadOnlyList<InvestmentProjectRow> GetInvestmentProjects() => new[]
+    public static async Task<IReadOnlyList<InvestmentProjectRow>> LoadInvestmentProjectsAsync()
     {
-        new InvestmentProjectRow
+        await using var context = AppDatabase.CreateContext();
+        var projects = await context.InvestmentProjects.AsNoTracking()
+            .Include(project => project.Company)
+            .OrderBy(project => project.Company.Name)
+            .ThenBy(project => project.Name)
+            .ToListAsync();
+
+        return projects.Select(project =>
         {
-            ProjectName = "Новая линия розлива",
-            Invests = 4.00m,
-            Income = 1.10m,
-            ProfitPercent = "27,5 %",
-            InvestmentValue = 4_000_000m
-        },
-        new InvestmentProjectRow
-        {
-            ProjectName = "Холодильное оборудование",
-            Invests = 2.50m,
-            Income = 0.60m,
-            ProfitPercent = "24,0 %",
-            InvestmentValue = 2_500_000m
-        },
-        new InvestmentProjectRow
-        {
-            ProjectName = "Автоматизация склада",
-            Invests = 3.00m,
-            Income = 0.80m,
-            ProfitPercent = "26,7 %",
-            InvestmentValue = 3_000_000m
-        },
-        new InvestmentProjectRow
-        {
-            ProjectName = "Расширение ассортимента",
-            Invests = 1.50m,
-            Income = 0.45m,
-            ProfitPercent = "30,0 %",
-            InvestmentValue = 1_500_000m
-        },
-        new InvestmentProjectRow
-        {
-            ProjectName = "Рекламная кампания",
-            Invests = 1.00m,
-            Income = 0.30m,
-            ProfitPercent = "30,0 %",
-            InvestmentValue = 1_000_000m
-        },
-        new InvestmentProjectRow
-        {
-            ProjectName = "Модернизация лаборатории",
-            Invests = 2.00m,
-            Income = 0.50m,
-            ProfitPercent = "25,0 %",
-            InvestmentValue = 2_000_000m
-        }
-    };
+            decimal profitability = project.Investment == 0
+                ? 0
+                : project.AnnualIncome * 100m / project.Investment;
+
+            return new InvestmentProjectRow
+            {
+                ProjectId = project.Id,
+                ProjectName = project.Name,
+                Company = project.Company.Name,
+                Invests = project.Investment / 1_000_000m,
+                Income = project.AnnualIncome / 1_000_000m,
+                ProfitPercent = profitability.ToString("N1", CultureInfo.CurrentCulture) + " %",
+                InvestmentValue = project.Investment
+            };
+        }).ToList();
+    }
 
     public static InvestmentCalculationResult CalculateInvestments(
         IReadOnlyList<InvestmentProjectRow> projects,
@@ -906,6 +910,7 @@ public static class CalculationService
             portfolio.Add(new InvestmentPortfolioRow
             {
                 SelectedProject = project.ProjectName,
+                Company = project.Company,
                 Allocated = project.Invests.ToString("N2", CultureInfo.CurrentCulture) + " млн ₽",
                 Share = bestInvestment == 0
                     ? "0 %"

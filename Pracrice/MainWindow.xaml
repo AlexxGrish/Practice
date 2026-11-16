@@ -17,6 +17,9 @@
 
     <Window.Resources>
 
+      
+
+
         <Style x:Key="NavigationTextStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource TextMain}" />
             <Setter Property="FontSize" Value="13" />
@@ -159,6 +162,7 @@
                     <MenuItem Header="Складские остатки" Tag="Stocks" Click="OpenReferenceSection_Click" />
                     <MenuItem Header="Инвестиционные компании" Tag="InvestmentCompanies" Click="OpenReferenceSection_Click" />
                     <MenuItem Header="Инвестиционные ставки" Tag="InvestmentRates" Click="OpenReferenceSection_Click" />
+                    <MenuItem Header="Инвестиционные проекты" Tag="InvestmentProjects" Click="OpenReferenceSection_Click" />
                 </MenuItem>
 
                 <MenuItem x:Name="ReportsMenu" Header="Генерация отчетов" IsEnabled="False">
@@ -380,6 +384,9 @@
                                            Style="{StaticResource PageSubtitle}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button Content="Рецептуры" Width="110" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnPlanRecipes_Click"
+                                        ToolTip="Открыть справочник рецептур пива" />
                                 <Button x:Name="BtnPlanExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
                                         Margin="0,0,10,0" Click="BtnPlanExport_Click"
                                         ToolTip="Сформировать HTML-отчёт по плану выпуска" />
@@ -407,7 +414,7 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Нормы расхода и прибыль (на 1 шт.)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="ProductsPlanGrid" IsReadOnly="False">
+                                    <DataGrid Grid.Row="1" Name="ProductsPlanGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -435,18 +442,18 @@
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">
                                             <TextBlock Text="Сырьё, кг" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="RawLimitText" Height="38" Text="" 
+                                            <TextBox x:Name="RawLimitText" Height="38" Text="6400" 
                                                      ToolTip="Максимальный запас сырья на планируемый период, кг" />
 
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="Вода, л" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="FillLimitText" Height="38" Text="" 
+                                            <TextBox x:Name="FillLimitText" Height="38" Text="4800" 
                                                      ToolTip="Максимальный расход воды на планируемый период, литров" />
                                         </StackPanel>
                                         <StackPanel Margin="0,10,5,0">
                                             <TextBlock Text="Упаковка, шт." Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="PackLimitText" Height="38" Text="" 
+                                            <TextBox x:Name="PackLimitText" Height="38" Text="3600" 
                                                      ToolTip="Максимальное количество упаковочных комплектов на период, штук" />
                                         </StackPanel>
                                     </UniformGrid>
@@ -477,7 +484,7 @@
                                         <TextBlock Grid.Row="0" Text="Оптимальный выпуск"
                                                    Foreground="{StaticResource AccentGreen}" FontSize="14"
                                                    FontWeight="SemiBold" Margin="0,0,0,8" />
-                                        <DataGrid Grid.Row="1" Name="PlanResultGrid">
+                                        <DataGrid Grid.Row="1" Name="PlanResultGrid" GridLinesVisibility="Horizontal">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Продукция" Width="*" Binding="{Binding Product}" />
                                                 <DataGridTextColumn Header="Выпуск, шт." Width="110" Binding="{Binding Volume}" />
@@ -503,6 +510,9 @@
                                            Style="{StaticResource PageSubtitle}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button Content="Склады и магазины" Width="150" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnRouteReferences_Click"
+                                        ToolTip="Открыть справочник магазинов и настроек" />
                                 <Button x:Name="BtnRouteExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
                                         Margin="0,0,10,0" Click="BtnRouteExport_Click"
                                         ToolTip="Сформировать HTML-отчёт по плану перевозок" />
@@ -531,7 +541,7 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Тарифы и запасы (₽ / ед.)" Style="{StaticResource CardTitle}"
                                                Margin="0,0,0,6" />
-                                    <DataGrid Grid.Row="1" Name="TariffsDataGrid" IsReadOnly="False">
+                                    <DataGrid Grid.Row="1" Name="TariffsDataGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -552,7 +562,7 @@
                                     <TextBlock Grid.Row="2" Text="Магазины для расчёта" Style="{StaticResource FieldLabel}"
                                                Margin="0,6,0,4" />
                                     <DataGrid Grid.Row="3" x:Name="TransportStoresGrid" Height="75"
-                                              RowHeight="25" HeadersVisibility="None" IsReadOnly="False">
+                                              RowHeight="25" HeadersVisibility="None" IsReadOnly="False" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="40">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -613,7 +623,7 @@
                                         <TextBlock Grid.Row="0" Text="Отгрузка, ед."
                                                    Foreground="{StaticResource AccentGreen}" FontSize="14"
                                                    FontWeight="SemiBold" Margin="0,0,0,8" />
-                                        <DataGrid Grid.Row="1" Name="ResultRouteGrid">
+                                        <DataGrid Grid.Row="1" Name="ResultRouteGrid" GridLinesVisibility="Horizontal">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Warehouse}" />
                                                 <DataGridTextColumn Header="Магазин 1" Width="110" Binding="{Binding Shop1}" />
@@ -658,27 +668,60 @@
                             </Grid.RowDefinitions>
 
                             <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource CardBg}"
-                                    Margin="0,0,10,10" CornerRadius="8" Padding="18">
-                                <StackPanel>
-                                    <TextBlock Text="Оборудование и горизонт" Style="{StaticResource CardTitle}" />
-                                    <TextBlock Text="Производственный объект" Style="{StaticResource FieldLabel}" />
-                                    <ComboBox x:Name="EquipmentCombo" Height="38" SelectedIndex="0" Margin="0,0,0,15"
-                                              ToolTip="Производственная линия или единица оборудования">
-                                        <ComboBoxItem Content="Линия розлива · ЛР-01" />
-                                    </ComboBox>
-                                    <UniformGrid Columns="2">
-                                        <StackPanel Margin="0,0,5,0">
-                                            <TextBlock Text="Возраст" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="EquipmentAgeText" Height="38" Text=""
-                                                     ToolTip="Текущий возраст оборудования, лет" />
-                                        </StackPanel>
-                                        <StackPanel Margin="5,0,0,0">
-                                            <TextBlock Text="Горизонт" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="EquipmentHorizonText" Height="38" Text=""
-                                                     ToolTip="Период планирования замены оборудования, лет" />
-                                        </StackPanel>
-                                    </UniformGrid>
-                                </StackPanel>
+                                    Margin="0,0,10,10" CornerRadius="8" Padding="14">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <TextBlock Text="Модель замены оборудования" Style="{StaticResource CardTitle}" />
+                                        <TextBlock Text="Наименование" Style="{StaticResource FieldLabel}" />
+                                        <TextBox x:Name="EquipmentNameText" Height="32" Text="Линия розлива ЛР-01"
+                                                 Margin="0,0,0,8"
+                                                 ToolTip="Название оборудования для отчёта" />
+                                        <UniformGrid Columns="2">
+                                            <StackPanel Margin="0,0,5,8">
+                                                <TextBlock Text="Возраст, лет" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentAgeText" Height="32" Text="6"
+                                                         ToolTip="Текущий возраст оборудования" />
+                                            </StackPanel>
+                                            <StackPanel Margin="5,0,0,8">
+                                                <TextBlock Text="Горизонт, лет" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentHorizonText" Height="32" Text="3"
+                                                         ToolTip="Период планирования замены" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,0,5,8">
+                                                <TextBlock Text="Стоимость замены, млн ₽" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentReplacementPriceText" Height="32" Text="2.80"
+                                                         ToolTip="Цена нового оборудования" />
+                                            </StackPanel>
+                                            <StackPanel Margin="5,0,0,8">
+                                                <TextBlock Text="Доход, млн ₽/год" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentRevenueText" Height="32" Text="2.00"
+                                                         ToolTip="Доход от эксплуатации оборудования за год" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,0,5,8">
+                                                <TextBlock Text="Затраты текущие, млн ₽/год" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentCurrentCostText" Height="32" Text="1.20"
+                                                         ToolTip="Эксплуатационные затраты текущего оборудования" />
+                                            </StackPanel>
+                                            <StackPanel Margin="5,0,0,8">
+                                                <TextBlock Text="Затраты нового, млн ₽/год" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentNewCostText" Height="32" Text="0.70"
+                                                         ToolTip="Эксплуатационные затраты нового оборудования" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,0,5,8">
+                                                <TextBlock Text="Рост затрат, %/год" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentGrowthText" Height="32" Text="10"
+                                                         ToolTip="Ежегодный рост эксплуатационных затрат" />
+                                            </StackPanel>
+                                            <StackPanel Margin="5,0,0,8">
+                                                <TextBlock Text="Срок службы, лет" Style="{StaticResource FieldLabel}" />
+                                                <TextBox x:Name="EquipmentLifeText" Height="32" Text="8"
+                                                         ToolTip="Нормативный срок службы оборудования" />
+                                            </StackPanel>
+                                        </UniformGrid>
+                                        <TextBlock Text="Остаточная стоимость рассчитывается по формуле: стоимость замены × (1 − возраст / срок службы). Новое оборудование можно заменить не раньше чем через 2 года."
+                                                   Style="{StaticResource MutedText}" TextWrapping="Wrap" FontSize="10" />
+                                    </StackPanel>
+                                </ScrollViewer>
                             </Border>
 
                             <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource CardBg}"
@@ -688,24 +731,13 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Text="Эксплуатация и остаточная стоимость (млн ₽)"
+                                    <TextBlock Grid.Row="0" Text="Затраты и остаточная стоимость по возрасту (млн ₽)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="EqCostsGrid" IsReadOnly="False">
+                                    <DataGrid Grid.Row="1" Name="EqCostsGrid" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
-                                            <DataGridTemplateColumn Header="Вкл." Width="42">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                  HorizontalAlignment="Center"
-                                                                  ToolTip="Учитывать оборудование в расчёте" />
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                            <DataGridTextColumn Header="Оборудование" Width="*" Binding="{Binding Equipment}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="Год 1" Width="80" Binding="{Binding Year1}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="Год 2" Width="80" Binding="{Binding Year2}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="Год 3" Width="80" Binding="{Binding Year3}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="Остаток*" Width="80" Binding="{Binding Residual}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Возраст, лет" Width="*" Binding="{Binding Age}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Эксплуатация" Width="130" Binding="{Binding OperatingCost, StringFormat=N2}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Остаточная стоимость" Width="170" Binding="{Binding Residual, StringFormat=N2}" IsReadOnly="True" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
@@ -720,17 +752,22 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel VerticalAlignment="Center">
-                                        <TextBlock x:Name="EquipmentSavingLabel" Text="Экономия за 3 года" Style="{StaticResource MutedText}" />
+                                        <TextBlock x:Name="EquipmentSavingLabel" Text="Максимальная прибыль" Style="{StaticResource MutedText}" />
                                         <TextBlock x:Name="EquipmentSavingText" Text="—" Foreground="{StaticResource AccentGreen}"
                                                    FontSize="30" FontWeight="Bold" />
                                         <TextBlock x:Name="EquipmentDecisionText" Text="Расчёт не выполнен" Foreground="White"
                                                    FontWeight="SemiBold" FontSize="12" Margin="0,6,0,0" TextWrapping="Wrap" />
                                     </StackPanel>
-                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="StrategyGrid">
+                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="StrategyGrid" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Стратегия" Width="*" Binding="{Binding Strategy}" />
-                                            <DataGridTextColumn Header="Общие затраты" Width="150" Binding="{Binding TotalCosts}" />
-                                            <DataGridTextColumn Header="Решение" Width="150" Binding="{Binding Decision}" />
+                                            <DataGridTextColumn Header="Год" Width="55" Binding="{Binding Year}" />
+                                            <DataGridTextColumn Header="Возраст" Width="60" Binding="{Binding Age}" />
+                                            <DataGridTextColumn Header="Решение" Width="115" Binding="{Binding Decision}" />
+                                            <DataGridTextColumn Header="Эксплуатация" Width="95" Binding="{Binding OperatingCost, StringFormat=N2}" />
+                                            <DataGridTextColumn Header="Замена" Width="85" Binding="{Binding ReplacementCost, StringFormat=N2}" />
+                                            <DataGridTextColumn Header="Доход" Width="85" Binding="{Binding Revenue, StringFormat=N2}" />
+                                            <DataGridTextColumn Header="Прибыль" Width="90" Binding="{Binding Profit, StringFormat=N2}" />
+                                            <DataGridTextColumn Header="Остаток" Width="*" Binding="{Binding Residual, StringFormat=N2}" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
@@ -750,6 +787,9 @@
                                            Style="{StaticResource PageSubtitle}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button Content="Магазины и кассы" Width="150" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnCashStores_Click"
+                                        ToolTip="Открыть справочник магазинов и настроек касс" />
                                 <Button x:Name="BtnCashExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
                                         Margin="0,0,10,0" Click="BtnCashExport_Click"
                                         ToolTip="Сформировать HTML-отчёт по расчёту касс" />
@@ -776,7 +816,7 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Поток покупателей (в час пик)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="CashflowGrid" IsReadOnly="False">
+                                    <DataGrid Grid.Row="1" Name="CashflowGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -808,12 +848,12 @@
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">
                                             <TextBlock Text="Ожидание, не более" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="CashWaitLimitText" Height="38" Text=""
+                                            <TextBox x:Name="CashWaitLimitText" Height="38" Text="4"
                                                      ToolTip="Максимальное допустимое время ожидания покупателя в очереди, минут" />
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="Загрузка, не более, %" Style="{StaticResource FieldLabel}" />
-                                            <TextBox x:Name="CashLoadLimitText" Height="38" Text=""
+                                            <TextBox x:Name="CashLoadLimitText" Height="38" Text="80"
                                                      ToolTip="Максимальная допустимая загрузка кассира, процентов" />
                                         </StackPanel>
                                     </UniformGrid>
@@ -833,7 +873,7 @@
                                         <TextBlock x:Name="CashTotalText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
                                         <TextBlock x:Name="CashSummaryText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap" />
                                     </StackPanel>
-                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="CashResultGrid">
+                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="CashResultGrid" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Магазин" Width="*" Binding="{Binding Market}" />
                                             <DataGridTextColumn Header="Касс" Width="100" Binding="{Binding Count}" />
@@ -858,6 +898,15 @@
                                            Style="{StaticResource PageSubtitle}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button Content="+ Проект" Width="90" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,6,0" Click="BtnAddInvestmentProject_Click"
+                                        ToolTip="Добавить инвестиционный проект" />
+                                <Button Content="Изменить" Width="90" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,6,0" Click="BtnEditInvestmentProject_Click"
+                                        ToolTip="Изменить выбранный инвестиционный проект" />
+                                <Button Content="Компании" Width="95" Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,10,0" Click="BtnInvestCompanies_Click"
+                                        ToolTip="Открыть справочник инвестиционных компаний" />
                                 <Button x:Name="BtnInvestExport" Content="Экспорт" Width="100" Style="{StaticResource SecondaryButton}"
                                         Margin="0,0,10,0" Click="BtnInvestExport_Click"
                                         ToolTip="Сформировать HTML-отчёт по инвестиционному портфелю" />
@@ -880,15 +929,13 @@
                                 <StackPanel>
                                     <TextBlock Text="Инвестиционный бюджет" Style="{StaticResource CardTitle}" />
                                     <TextBlock Text="Доступный бюджет" Style="{StaticResource FieldLabel}" />
-                                    <TextBox x:Name="InvestBudgetText" Height="38" Text="" Margin="0,0,0,15"
+                                    <TextBox x:Name="InvestBudgetText" Height="38" Text="10000000" Margin="0,0,0,15"
                                              ToolTip="Сумма, доступная для распределения между проектами, рублей" />
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">
-                                            <TextBlock Text="Горизонт" Style="{StaticResource FieldLabel}" />
-                                            <ComboBox Height="38" SelectedIndex="0"
-                                                      ToolTip="Период инвестиционного планирования">
-                                                <ComboBoxItem Content="1 год" />
-                                            </ComboBox>
+                                            <TextBlock Text="Горизонт, лет" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="InvestHorizonText" Height="38" Text="1"
+                                                     ToolTip="Период инвестиционного планирования в годах" />
                                         </StackPanel>
                                         <StackPanel Margin="5,0,0,0">
                                             <TextBlock Text="Финансирование" Style="{StaticResource FieldLabel}" />
@@ -910,7 +957,7 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Проекты для оценки (млн ₽)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="InvestProjectsGrid" IsReadOnly="False">
+                                    <DataGrid Grid.Row="1" Name="InvestProjectsGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -922,9 +969,10 @@
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
                                             <DataGridTextColumn Header="Проект" Width="*" Binding="{Binding ProjectName}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="Вложения" Width="95" Binding="{Binding Invests}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="Доход / год" Width="95" Binding="{Binding Income}" IsReadOnly="True" />
-                                            <DataGridTextColumn Header="Доходность" Width="95" Binding="{Binding ProfitPercent}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Компания" Width="90" Binding="{Binding Company}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Вложения" Width="75" Binding="{Binding Invests}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Доход / год" Width="80" Binding="{Binding Income}" IsReadOnly="True" />
+                                            <DataGridTextColumn Header="Доходность" Width="85" Binding="{Binding ProfitPercent}" IsReadOnly="True" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Grid>
@@ -939,7 +987,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="Ожидаемый доход / год" Style="{StaticResource MutedText}" />
+                                        <TextBlock x:Name="InvestIncomeLabel" Text="Ожидаемый доход / год" Style="{StaticResource MutedText}" />
                                         <TextBlock x:Name="InvestIncomeText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
                                         <TextBlock x:Name="InvestAllocatedText" Text="Распределение не выполнено" Foreground="{StaticResource AccentGreen}"
                                                    FontSize="13" FontWeight="SemiBold" Margin="0,4,0,0" TextWrapping="Wrap" />
@@ -952,9 +1000,10 @@
                                         <TextBlock Grid.Row="0" Text="Рекомендуемый портфель"
                                                    Foreground="{StaticResource AccentGreen}" FontSize="14"
                                                    FontWeight="SemiBold" Margin="0,0,0,8" />
-                                        <DataGrid Grid.Row="1" Name="InvestPortfolioGrid">
+                                        <DataGrid Grid.Row="1" Name="InvestPortfolioGrid" GridLinesVisibility="Horizontal">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Включенный проект" Width="*" Binding="{Binding SelectedProject}" />
+                                                <DataGridTextColumn Header="Компания" Width="120" Binding="{Binding Company}" />
                                                 <DataGridTextColumn Header="Выделено" Width="150" Binding="{Binding Allocated}" />
                                                 <DataGridTextColumn Header="Доля" Width="100" Binding="{Binding Share}" />
                                             </DataGrid.Columns>
@@ -1017,7 +1066,7 @@
                                     </Grid>
                                     <DataGrid Grid.Row="1" x:Name="ProductsGrid"
                                               SelectionChanged="ProductsGrid_SelectionChanged"
-                                              MouseDoubleClick="ProductsGrid_MouseDoubleClick">
+                                              MouseDoubleClick="ProductsGrid_MouseDoubleClick" GridLinesVisibility="Horizontal">
                                         <DataGrid.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Добавить товар" Click="BtnAddProduct_Click" />
@@ -1248,7 +1297,7 @@
                                     </Grid>
                                     <DataGrid Grid.Row="1" x:Name="UsersGrid"
                                               SelectionChanged="UsersGrid_SelectionChanged"
-                                              MouseDoubleClick="UsersGrid_MouseDoubleClick">
+                                              MouseDoubleClick="UsersGrid_MouseDoubleClick" GridLinesVisibility="Horizontal">
                                         <DataGrid.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Добавить пользователя" Click="BtnAddUser_Click" />
@@ -1276,7 +1325,7 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Роли и права доступа к разделам"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" x:Name="RightsGrid">
+                                    <DataGrid Grid.Row="1" x:Name="RightsGrid" GridLinesVisibility="All">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Раздел системы" Width="*" Binding="{Binding SectionName}" />
                                             <DataGridTextColumn Header="Администратор" Width="170" Binding="{Binding AdminRight}" />

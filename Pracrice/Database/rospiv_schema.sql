@@ -18,6 +18,16 @@ CREATE TABLE `Investment_rates` (
   KEY `IX_Investment_rates_company_id` (`company_id`),
   CONSTRAINT `fk_rates_company` FOREIGN KEY (`company_id`) REFERENCES `Investment_companies` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `Investment_projects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `investment` decimal(15,2) NOT NULL,
+  `annual_income` decimal(15,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IX_Investment_projects_company_id` (`company_id`),
+  CONSTRAINT `fk_projects_company` FOREIGN KEY (`company_id`) REFERENCES `Investment_companies` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE `Product_recipes` (
   `product_id` int(11) NOT NULL,
   `resource_id` int(11) NOT NULL,
@@ -57,6 +67,9 @@ CREATE TABLE `Stores` (
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `demand` int(11) NOT NULL DEFAULT 0,
+  `customer_flow` int(11) NOT NULL DEFAULT 0,
+  `service_rate` int(11) NOT NULL DEFAULT 0,
+  `register_limit` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 CREATE TABLE `Users` (

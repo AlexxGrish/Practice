@@ -93,39 +93,47 @@ public sealed class TransportCalculationResult
     public bool IsOpen { get; init; }
 }
 
-public sealed class EquipmentCostRow
+public sealed class EquipmentAgeCostRow
 {
-    public bool IsIncluded { get; set; } = true;
+    public int Age { get; init; }
 
-    public required string Equipment { get; init; }
-
-    public decimal Year1 { get; init; }
-
-    public decimal Year2 { get; init; }
-
-    public decimal Year3 { get; init; }
+    public decimal OperatingCost { get; init; }
 
     public decimal Residual { get; init; }
 }
 
-public sealed class EquipmentStrategyRow
+public sealed class EquipmentScheduleRow
 {
-    public required string Strategy { get; init; }
+    public int Year { get; init; }
 
-    public decimal TotalCosts { get; init; }
+    public int Age { get; init; }
 
     public required string Decision { get; init; }
+
+    public decimal OperatingCost { get; init; }
+
+    public decimal ReplacementCost { get; init; }
+
+    public decimal Revenue { get; init; }
+
+    public decimal Profit { get; init; }
+
+    public decimal Residual { get; init; }
 }
 
 public sealed class EquipmentCalculationResult
 {
-    public required IReadOnlyList<EquipmentCostRow> Costs { get; init; }
+    public required IReadOnlyList<EquipmentAgeCostRow> AgeCosts { get; init; }
 
-    public required IReadOnlyList<EquipmentStrategyRow> Strategies { get; init; }
+    public required IReadOnlyList<EquipmentScheduleRow> Schedule { get; init; }
 
-    public decimal Saving { get; init; }
+    public decimal TotalProfit { get; init; }
 
-    public required string Decision { get; init; }
+    public decimal TotalCosts { get; init; }
+
+    public decimal FinalResidual { get; init; }
+
+    public required string ReplacementPlan { get; init; }
 }
 
 public sealed class CashFlowRow
@@ -165,7 +173,11 @@ public sealed class InvestmentProjectRow
 {
     public bool IsIncluded { get; set; } = true;
 
+    public int ProjectId { get; init; }
+
     public required string ProjectName { get; init; }
+
+    public required string Company { get; init; }
 
     public decimal Invests { get; init; }
 
@@ -179,6 +191,8 @@ public sealed class InvestmentProjectRow
 public sealed class InvestmentPortfolioRow
 {
     public required string SelectedProject { get; init; }
+
+    public required string Company { get; init; }
 
     public string Allocated { get; init; } = string.Empty;
 

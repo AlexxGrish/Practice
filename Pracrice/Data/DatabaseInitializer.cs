@@ -52,6 +52,10 @@ public static partial class DatabaseInitializer
 
             EnsureColumn(context, "Products", "image_path", "VARCHAR(255) NULL");
             EnsureColumn(context, "Stores", "demand", "INT NOT NULL DEFAULT 0");
+            EnsureColumn(context, "Stores", "customer_flow", "INT NOT NULL DEFAULT 0");
+            EnsureColumn(context, "Stores", "service_rate", "INT NOT NULL DEFAULT 0");
+            EnsureColumn(context, "Stores", "register_limit", "INT NOT NULL DEFAULT 0");
+            EnsureInvestmentProjectsTable(context);
 
             bool administratorCreated = SeedAdministrator(context);
 
@@ -88,7 +92,7 @@ public static partial class DatabaseInitializer
         context.Users.Add(new User
         {
             Login = "admin",
-            PasswordHash = PasswordService.Hash("admin123"),
+            PasswordHash = PasswordService.Hash("123456"),
             Role = UserRole.Administrator,
             FullName = "Администратор системы"
         });
@@ -138,6 +142,46 @@ public static partial class DatabaseInitializer
             alterCommand.CommandText =
                 $"ALTER TABLE `{table}` ADD COLUMN `{column}` {definition};";
             alterCommand.ExecuteNonQuery();
+        }
+        finally
+        {
+            if (connection.State == System.Data.ConnectionState.Open)
+            {
+                connection.Close();
+            }
+        }
+    }
+
+    private static void EnsureInvestmentProjectsTable(AppDbContext context)
+    {
+        ExecuteNonQuery(context,
+            "CREATE TABLE IF NOT EXISTS `Investment_projects` (" +
+            "`id` INT NOT NULL AUTO_INCREMENT, " +
+            "`name` VARCHAR(150) NOT NULL, " +
+            "`company_id` INT NOT NULL, " +
+            "`investment` DECIMAL(15,2) NOT NULL, " +
+            "`annual_income` DECIMAL(15,2) NOT NULL, " +
+            "PRIMARY KEY (`id`), " +
+            "KEY `IX_Investment_projects_company_id` (`company_id`), " +
+            "CONSTRAINT `fk_projects_company` FOREIGN KEY (`company_id`) " +
+            "REFERENCES `Investment_companies` (`id`) ON DELETE RESTRICT" +
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+    }
+
+    private static void ExecuteNonQuery(AppDbContext context, string sql)
+    {
+        var connection = context.Database.GetDbConnection();
+
+        try
+        {
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
+                connection.Open();
+            }
+
+            using var command = connection.CreateCommand();
+            command.CommandText = sql;
+            command.ExecuteNonQuery();
         }
         finally
         {

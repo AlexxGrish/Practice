@@ -9,15 +9,16 @@ DELETE FROM Resources;
 DELETE FROM Warehouses;
 DELETE FROM Stores;
 DELETE FROM Investment_rates;
+DELETE FROM Investment_projects;
 DELETE FROM Investment_companies;
 DELETE FROM Users WHERE login <> 'admin';
 UPDATE Users SET role = 'administrator', full_name = 'Иванов Иван Иванович' WHERE login = 'admin';
 INSERT INTO Users (id, login, password_hash, role, full_name) VALUES
-(2, 'director', '$2a$11$82SopweySumTeW8WORAxreapSsdHCJyjb81yHidJFgrxTxaWhGVUu', 'director', 'Смирнов Алексей Владимирович'),
-(3, 'manager', '$2a$11$LUTXRwCNsrDL.7CGw9pTKuxyifxFzjD2GaP5xHzV3nG90YWFgD4Hy', 'manager', 'Петрова Анна Сергеевна'),
-(4, 'manager2', '$2a$11$8/Bkm1or/l7hoPxzen4bCu0a32QurJflqiHKmczB1ia.vC8JrHuGO', 'manager', 'Соколов Дмитрий Андреевич'),
-(5, 'manager3', '$2a$11$DzQNPMfCGllKESKSXCrCb.8RimTYRYR7teJGsQgYuDz2wTPGiGSom', 'manager', 'Кузнецова Мария Викторовна'),
-(6, 'storekeeper', '$2a$11$SNyT7UbyvMVyHMrvsFX2wOfWIha1IDEjwNeVMHFy3sGIXVkZ6ZqM2', 'manager', 'Волков Павел Дмитриевич');
+(2, 'director', '$2b$11$X.H92esikCAM47iiUYq32OmIv.3O69mXoNT/ODqigKu3oOFFBOUvK', 'director', 'Смирнов Алексей Владимирович'),
+(3, 'manager', '$2b$11$X.H92esikCAM47iiUYq32OmIv.3O69mXoNT/ODqigKu3oOFFBOUvK', 'manager', 'Петрова Анна Сергеевна'),
+(4, 'manager2', '$2b$11$X.H92esikCAM47iiUYq32OmIv.3O69mXoNT/ODqigKu3oOFFBOUvK', 'manager', 'Соколов Дмитрий Андреевич'),
+(5, 'manager3', '$2b$11$X.H92esikCAM47iiUYq32OmIv.3O69mXoNT/ODqigKu3oOFFBOUvK', 'manager', 'Кузнецова Мария Викторовна'),
+(6, 'storekeeper', '$2b$11$X.H92esikCAM47iiUYq32OmIv.3O69mXoNT/ODqigKu3oOFFBOUvK', 'manager', 'Волков Павел Дмитриевич');
 INSERT INTO Products (id, name, sku, price, image_path) VALUES
 (1, 'Пиво светлое «Роспив Классическое»', 'BEER-001', 450.00, 'images/beer-classic.png'),
 (2, 'Пиво тёмное «Роспив Бархатное»', 'BEER-002', 520.00, 'images/beer-dark.png'),
@@ -46,10 +47,10 @@ INSERT INTO Warehouses (id, name, address) VALUES
 INSERT INTO Warehouse_stocks (warehouse_id, product_id, quantity) VALUES
 (1, 1, 120), (1, 2, 80), (1, 3, 60), (1, 4, 45), (1, 5, 90),
 (2, 1, 70), (2, 2, 50), (2, 3, 40), (2, 4, 30), (2, 5, 65);
-INSERT INTO Stores (id, name, address, phone, demand) VALUES
-(1, 'Магазин «Центральный»', 'г. Москва, ул. Тверская, 15', '+7 (495) 111-22-33', 250),
-(2, 'Магазин «Южный»', 'г. Москва, ул. Южная, 7', '+7 (495) 222-33-44', 220),
-(3, 'Магазин «Западный»', 'г. Москва, пр-т Западный, 21', '+7 (495) 333-44-55', 180);
+INSERT INTO Stores (id, name, address, phone, demand, customer_flow, service_rate, register_limit) VALUES
+(1, 'Магазин «Центральный»', 'г. Москва, ул. Тверская, 15', '+7 (495) 111-22-33', 250, 100, 25, 6),
+(2, 'Магазин «Южный»', 'г. Москва, ул. Южная, 7', '+7 (495) 222-33-44', 220, 120, 25, 6),
+(3, 'Магазин «Западный»', 'г. Москва, пр-т Западный, 21', '+7 (495) 333-44-55', 180, 140, 25, 6);
 INSERT INTO Store_warehouse_distances (store_id, warehouse_id, distance_km) VALUES
 (1, 1, 12.50), (1, 2, 18.00),
 (2, 1, 24.00), (2, 2, 9.50),
@@ -64,6 +65,13 @@ INSERT INTO Investment_rates (id, company_id, min_amount, max_amount) VALUES
 (3, 2, 200000.00, 800000.00),
 (4, 2, 800000.00, 2500000.00),
 (5, 3, 300000.00, 1200000.00);
+INSERT INTO Investment_projects (id, name, company_id, investment, annual_income) VALUES
+(1, 'Новая линия розлива', 1, 4000000.00, 1100000.00),
+(2, 'Холодильное оборудование', 1, 2500000.00, 600000.00),
+(3, 'Автоматизация склада', 2, 3000000.00, 800000.00),
+(4, 'Расширение ассортимента', 2, 1500000.00, 450000.00),
+(5, 'Рекламная кампания', 3, 1000000.00, 300000.00),
+(6, 'Модернизация лаборатории', 3, 2000000.00, 500000.00);
 ALTER TABLE Users AUTO_INCREMENT = 7;
 ALTER TABLE Products AUTO_INCREMENT = 6;
 ALTER TABLE Resources AUTO_INCREMENT = 10;
@@ -71,4 +79,5 @@ ALTER TABLE Warehouses AUTO_INCREMENT = 3;
 ALTER TABLE Stores AUTO_INCREMENT = 4;
 ALTER TABLE Investment_companies AUTO_INCREMENT = 4;
 ALTER TABLE Investment_rates AUTO_INCREMENT = 6;
+ALTER TABLE Investment_projects AUTO_INCREMENT = 7;
 SET FOREIGN_KEY_CHECKS = 1;

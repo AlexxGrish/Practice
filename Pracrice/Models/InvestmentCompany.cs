@@ -7,4 +7,6 @@ public partial class InvestmentCompany
     public string Name { get; set; } = null!;
 
     public virtual ICollection<InvestmentRate> InvestmentRates { get; set; } = new List<InvestmentRate>();
+
+    public virtual ICollection<InvestmentProject> InvestmentProjects { get; set; } = new List<InvestmentProject>();
 }

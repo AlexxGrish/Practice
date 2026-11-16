@@ -12,5 +12,11 @@ public partial class Store
 
     public int Demand { get; set; }
 
+    public int CustomerFlow { get; set; }
+
+    public int ServiceRate { get; set; }
+
+    public int RegisterLimit { get; set; }
+
     public virtual ICollection<StoreWarehouseDistance> StoreWarehouseDistances { get; set; } = new List<StoreWarehouseDistance>();
 }

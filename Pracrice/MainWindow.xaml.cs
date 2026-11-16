@@ -229,7 +229,7 @@ public partial class MainWindow : Window
             }
             else if (radioButton == OptimalEq && Session.IsAuthenticated)
             {
-                CalculateEquipmentView(6, 3);
+                CalculateEquipmentView();
             }
             else if (radioButton == OptTick && Session.IsAuthenticated)
             {
@@ -237,7 +237,7 @@ public partial class MainWindow : Window
             }
             else if (radioButton == Invest && Session.IsAuthenticated)
             {
-                LoadInvestments();
+                await LoadInvestmentsAsync();
             }
             else if (radioButton == ProductsNav && Session.IsAuthenticated)
             {

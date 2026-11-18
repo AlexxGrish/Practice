@@ -34,6 +34,8 @@ public sealed class AppDbContext : DbContext
 
     public DbSet<InvestmentRate> InvestmentRates => Set<InvestmentRate>();
 
+    public DbSet<InvestmentProject> InvestmentProjects => Set<InvestmentProject>();
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (optionsBuilder.IsConfigured)
@@ -137,6 +139,9 @@ public sealed class AppDbContext : DbContext
             entity.Property(store => store.Address).HasColumnName("address").HasMaxLength(255);
             entity.Property(store => store.Phone).HasColumnName("phone").HasMaxLength(20);
             entity.Property(store => store.Demand).HasColumnName("demand").HasDefaultValue(0);
+            entity.Property(store => store.CustomerFlow).HasColumnName("customer_flow").HasDefaultValue(0);
+            entity.Property(store => store.ServiceRate).HasColumnName("service_rate").HasDefaultValue(0);
+            entity.Property(store => store.RegisterLimit).HasColumnName("register_limit").HasDefaultValue(0);
         });
 
         modelBuilder.Entity<StoreWarehouseDistance>(entity =>
@@ -207,6 +212,24 @@ public sealed class AppDbContext : DbContext
                 .HasForeignKey(rate => rate.CompanyId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_rates_company");
+        });
+
+        modelBuilder.Entity<InvestmentProject>(entity =>
+        {
+            entity.ToTable("Investment_projects");
+            entity.HasKey(project => project.Id);
+
+            entity.Property(project => project.Id).HasColumnName("id");
+            entity.Property(project => project.Name).HasColumnName("name").HasMaxLength(150);
+            entity.Property(project => project.CompanyId).HasColumnName("company_id");
+            entity.Property(project => project.Investment).HasColumnName("investment").HasPrecision(15, 2);
+            entity.Property(project => project.AnnualIncome).HasColumnName("annual_income").HasPrecision(15, 2);
+
+            entity.HasOne(project => project.Company)
+                .WithMany(company => company.InvestmentProjects)
+                .HasForeignKey(project => project.CompanyId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("fk_projects_company");
         });
     }
 }

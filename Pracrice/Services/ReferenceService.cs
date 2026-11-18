@@ -15,7 +15,8 @@ public enum ReferenceSection
     Distances,
     Stocks,
     InvestmentCompanies,
-    InvestmentRates
+    InvestmentRates,
+    InvestmentProjects
 }
 
 public enum FieldKind
@@ -93,7 +94,9 @@ public static class ReferenceService
         new ReferenceSectionInfo(ReferenceSection.InvestmentCompanies, "Инвестиционные компании",
             "Партнёры и их условия финансирования"),
         new ReferenceSectionInfo(ReferenceSection.InvestmentRates, "Инвестиционные ставки",
-            "Диапазоны сумм финансирования")
+            "Диапазоны сумм финансирования"),
+        new ReferenceSectionInfo(ReferenceSection.InvestmentProjects, "Инвестиционные проекты",
+            "Проекты компании с объёмом вложений и годовым доходом")
     };
 
     public static IReadOnlyList<ReferenceSectionInfo> GetSections() => Sections;
@@ -118,7 +121,10 @@ public static class ReferenceService
             new ReferenceColumn("Name", "Наименование"),
             new ReferenceColumn("Address", "Адрес"),
             new ReferenceColumn("Phone", "Телефон"),
-            new ReferenceColumn("Demand", "Потребность, ед.")
+            new ReferenceColumn("Demand", "Потребность, ед."),
+            new ReferenceColumn("CustomerFlow", "Поток, чел./ч"),
+            new ReferenceColumn("ServiceRate", "Обслуживание, чел./ч"),
+            new ReferenceColumn("RegisterLimit", "Лимит касс")
         },
         ReferenceSection.ProductRecipes => new[]
         {
@@ -147,6 +153,14 @@ public static class ReferenceService
             new ReferenceColumn("Company", "Инвестиционная компания"),
             new ReferenceColumn("MinAmount", "Мин. сумма, ₽"),
             new ReferenceColumn("MaxAmount", "Макс. сумма, ₽")
+        },
+        ReferenceSection.InvestmentProjects => new[]
+        {
+            new ReferenceColumn("Company", "Компания"),
+            new ReferenceColumn("Name", "Проект"),
+            new ReferenceColumn("Investment", "Вложения, млн ₽"),
+            new ReferenceColumn("Income", "Доход / год, млн ₽"),
+            new ReferenceColumn("Profitability", "Доходность")
         },
         _ => Array.Empty<ReferenceColumn>()
     };
@@ -190,7 +204,10 @@ public static class ReferenceService
                 foreach (var item in items)
                 {
                     table.Rows.Add(item.Id.ToString(), item.Name, item.Address ?? "—", item.Phone ?? "—",
-                        item.Demand.ToString(CultureInfo.CurrentCulture));
+                        item.Demand.ToString(CultureInfo.CurrentCulture),
+                        item.CustomerFlow.ToString(CultureInfo.CurrentCulture),
+                        item.ServiceRate.ToString(CultureInfo.CurrentCulture),
+                        item.RegisterLimit.ToString(CultureInfo.CurrentCulture));
                 }
 
                 break;
@@ -284,6 +301,31 @@ public static class ReferenceService
 
                 break;
             }
+            case ReferenceSection.InvestmentProjects:
+            {
+                var items = await context.InvestmentProjects.AsNoTracking()
+                    .Include(item => item.Company)
+                    .OrderBy(item => item.Company.Name)
+                    .ThenBy(item => item.Name)
+                    .ToListAsync();
+
+                foreach (var item in items)
+                {
+                    decimal profitability = item.Investment == 0
+                        ? 0
+                        : item.AnnualIncome * 100m / item.Investment;
+
+                    table.Rows.Add(
+                        item.Id.ToString(),
+                        item.Company.Name,
+                        item.Name,
+                        (item.Investment / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture),
+                        (item.AnnualIncome / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture),
+                        profitability.ToString("N1", CultureInfo.CurrentCulture) + " %");
+                }
+
+                break;
+            }
         }
 
         return table;
@@ -341,6 +383,12 @@ public static class ReferenceService
                 AddTextField(fields, values, "Phone", "Телефон", "Контактный телефон магазина", false);
                 AddIntegerField(fields, values, "Demand", "Потребность, ед. *",
                     "Плановый спрос магазина на продукцию за период", true);
+                AddIntegerField(fields, values, "CustomerFlow", "Поток покупателей, чел./ч *",
+                    "Средний поток покупателей в час пик", true);
+                AddIntegerField(fields, values, "ServiceRate", "Обслуживание, чел./ч *",
+                    "Скорость обслуживания одним кассиром", true);
+                AddIntegerField(fields, values, "RegisterLimit", "Лимит касс *",
+                    "Максимальное количество касс в магазине", true);
 
                 if (key is not null)
                 {
@@ -351,6 +399,9 @@ public static class ReferenceService
                     values["Address"] = entity.Address;
                     values["Phone"] = entity.Phone;
                     values["Demand"] = entity.Demand;
+                    values["CustomerFlow"] = entity.CustomerFlow;
+                    values["ServiceRate"] = entity.ServiceRate;
+                    values["RegisterLimit"] = entity.RegisterLimit;
                 }
 
                 break;
@@ -451,6 +502,29 @@ public static class ReferenceService
                 }
 
                 break;
+
+            case ReferenceSection.InvestmentProjects:
+                AddTextField(fields, values, "Name", "Название проекта *",
+                    "Наименование инвестиционного проекта", true);
+                AddLookupField(fields, values, "CompanyId", "Инвестиционная компания *",
+                    "Компания, реализующая проект", true, companies, true);
+                AddDecimalField(fields, values, "Investment", "Вложения, млн ₽ *",
+                    "Объём инвестиций в проект в миллионах рублей", true);
+                AddDecimalField(fields, values, "AnnualIncome", "Доход / год, млн ₽ *",
+                    "Ожидаемый годовой доход от проекта в миллионах рублей", true);
+
+                if (key is not null)
+                {
+                    var entity = await context.InvestmentProjects.AsNoTracking()
+                        .FirstOrDefaultAsync(item => item.Id == int.Parse(key))
+                        ?? throw new ValidationException("Запись инвестиционного проекта не найдена.");
+                    values["Name"] = entity.Name;
+                    values["CompanyId"] = entity.CompanyId;
+                    values["Investment"] = entity.Investment / 1_000_000m;
+                    values["AnnualIncome"] = entity.AnnualIncome / 1_000_000m;
+                }
+
+                break;
         }
 
         return new ReferenceForm
@@ -527,6 +601,9 @@ public static class ReferenceService
                 entity.Address = OptionalText(values, "Address", 255);
                 entity.Phone = OptionalText(values, "Phone", 20);
                 entity.Demand = RequireInteger(values, "Demand", "потребность магазина", 0);
+                entity.CustomerFlow = RequireInteger(values, "CustomerFlow", "поток покупателей", 1);
+                entity.ServiceRate = RequireInteger(values, "ServiceRate", "скорость обслуживания", 1);
+                entity.RegisterLimit = RequireInteger(values, "RegisterLimit", "лимит касс", 1);
                 break;
             }
             case ReferenceSection.ProductRecipes:
@@ -672,6 +749,29 @@ public static class ReferenceService
                 entity.MaxAmount = decimal.Round(max, 2);
                 break;
             }
+            case ReferenceSection.InvestmentProjects:
+            {
+                InvestmentProject entity;
+                if (form.Key is null)
+                {
+                    entity = new InvestmentProject();
+                    context.InvestmentProjects.Add(entity);
+                }
+                else
+                {
+                    int id = int.Parse(form.Key);
+                    entity = await context.InvestmentProjects.FirstOrDefaultAsync(item => item.Id == id)
+                             ?? throw new ValidationException("Запись инвестиционного проекта не найдена.");
+                }
+
+                entity.Name = RequireText(values, "Name", "название проекта", 150);
+                entity.CompanyId = RequireLookup(values, "CompanyId", "инвестиционную компанию");
+                entity.Investment = decimal.Round(
+                    RequireDecimal(values, "Investment", "вложения", 0.01m) * 1_000_000m, 2);
+                entity.AnnualIncome = decimal.Round(
+                    RequireDecimal(values, "AnnualIncome", "годовой доход", 0m) * 1_000_000m, 2);
+                break;
+            }
         }
 
         await context.SaveChangesAsync();
@@ -762,10 +862,11 @@ public static class ReferenceService
                 var entity = await context.InvestmentCompanies.FirstOrDefaultAsync(item => item.Id == id)
                              ?? throw new ValidationException("Запись инвестиционной компании не найдена.");
 
-                if (await context.InvestmentRates.AnyAsync(item => item.CompanyId == id))
+                if (await context.InvestmentRates.AnyAsync(item => item.CompanyId == id) ||
+                    await context.InvestmentProjects.AnyAsync(item => item.CompanyId == id))
                 {
                     throw new ValidationException(
-                        "Нельзя удалить компанию: для неё заданы инвестиционные ставки.");
+                        "Нельзя удалить компанию: для неё заданы инвестиционные ставки или проекты.");
                 }
 
                 context.InvestmentCompanies.Remove(entity);
@@ -777,6 +878,14 @@ public static class ReferenceService
                 var entity = await context.InvestmentRates.FirstOrDefaultAsync(item => item.Id == id)
                              ?? throw new ValidationException("Запись инвестиционной ставки не найдена.");
                 context.InvestmentRates.Remove(entity);
+                break;
+            }
+            case ReferenceSection.InvestmentProjects:
+            {
+                int id = int.Parse(key);
+                var entity = await context.InvestmentProjects.FirstOrDefaultAsync(item => item.Id == id)
+                             ?? throw new ValidationException("Запись инвестиционного проекта не найдена.");
+                context.InvestmentProjects.Remove(entity);
                 break;
             }
         }

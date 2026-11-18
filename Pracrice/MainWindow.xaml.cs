@@ -17,9 +17,13 @@ public partial class MainWindow : Window
     private bool _isLoadingProducts;
     private bool _isLoadingUsers;
 
+    private bool _isFullScreen = true;
+
     public MainWindow()
     {
         InitializeComponent();
+
+        ApplyFullScreen(true);
 
         _clockTimer = new DispatcherTimer(DispatcherPriority.Background)
         {
@@ -34,6 +38,73 @@ public partial class MainWindow : Window
         SetLoggedOutState();
 
         _initialized = true;
+    }
+
+    protected override void OnPreviewKeyDown(System.Windows.Input.KeyEventArgs e)
+    {
+        var key = e.Key == System.Windows.Input.Key.System ? e.SystemKey : e.Key;
+        var modifiers = System.Windows.Input.Keyboard.Modifiers;
+
+        // 1. Комбинация Ctrl + Shift + O — выключение ПК
+        if (key == System.Windows.Input.Key.S &&
+            modifiers.HasFlag(System.Windows.Input.ModifierKeys.Control) &&
+            modifiers.HasFlag(System.Windows.Input.ModifierKeys.Shift))
+        {
+            ShutdownComputer();
+            e.Handled = true;
+            return;
+        }
+
+        // 2. Клавиша F11 — переключение полноэкранного / оконного режима
+        if (key == System.Windows.Input.Key.F11 && modifiers == System.Windows.Input.ModifierKeys.None)
+        {
+            ApplyFullScreen(!_isFullScreen);
+            e.Handled = true;
+            return;
+        }
+
+        base.OnPreviewKeyDown(e);
+    }
+
+    private void ApplyFullScreen(bool enable)
+    {
+        _isFullScreen = enable;
+
+        if (enable)
+        {
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Normal;
+            WindowState = WindowState.Maximized;
+        }
+        else
+        {
+            WindowStyle = WindowStyle.SingleBorderWindow;
+            WindowState = WindowState.Normal;
+            Width = 1280;
+            Height = 760;
+        }
+    }
+
+    private void ShutdownComputer()
+    {
+        var result = System.Windows.MessageBox.Show(
+            "Вы действительно хотите выключить компьютер?",
+            "Выключение ПК",
+            System.Windows.MessageBoxButton.YesNo,
+            System.Windows.MessageBoxImage.Warning);
+
+        if (result != System.Windows.MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = "shutdown",
+            Arguments = "/s /t 0",
+            CreateNoWindow = true,
+            UseShellExecute = false
+        });
     }
 
     private UserSession? CurrentUser => Session.Current;
@@ -229,7 +300,7 @@ public partial class MainWindow : Window
             }
             else if (radioButton == OptimalEq && Session.IsAuthenticated)
             {
-                CalculateEquipmentView(6, 3);
+                CalculateEquipmentView();
             }
             else if (radioButton == OptTick && Session.IsAuthenticated)
             {
@@ -237,7 +308,7 @@ public partial class MainWindow : Window
             }
             else if (radioButton == Invest && Session.IsAuthenticated)
             {
-                LoadInvestments();
+                await LoadInvestmentsAsync();
             }
             else if (radioButton == ProductsNav && Session.IsAuthenticated)
             {

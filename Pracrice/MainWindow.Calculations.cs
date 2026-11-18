@@ -1,9 +1,11 @@
+using Pracrice.Models;
+using Pracrice.Services;
+using Pracrice.Windows;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using Pracrice.Models;
-using Pracrice.Services;
+using System.Windows.Data;
 
 namespace Pracrice;
 
@@ -20,9 +22,11 @@ public partial class MainWindow
     private CashCalculationResult? _cashResult;
     private IReadOnlyList<InvestmentProjectRow> _investmentProjects = Array.Empty<InvestmentProjectRow>();
     private InvestmentCalculationResult? _investmentResult;
+    private int _investmentHorizon = 1;
     private bool _isLoadingPlan;
     private bool _isLoadingTransport;
     private bool _isLoadingCash;
+    private bool _isLoadingInvestments;
 
     private async Task LoadPlanAsync()
     {
@@ -152,25 +156,31 @@ public partial class MainWindow
             return;
         }
 
-        for (int index = 0; index < 3; index++)
+        // Перестраиваем колонки таблицы результатов ResultRouteGrid
+        ResultRouteGrid.Columns.Clear();
+        ResultRouteGrid.Columns.Add(new DataGridTextColumn
         {
-            string fullName = index < _transportData.Stores.Count
-                ? _transportData.Stores[index].Name
-                : "—";
-            string shortName = ShortStoreName(fullName);
-            var header = new TextBlock
-            {
-                Text = shortName,
-                ToolTip = fullName
-            };
+            Header = "Склад",
+            Binding = new Binding(nameof(TransportResultRow.Warehouse)),
+            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+        });
 
-            TariffsDataGrid.Columns[index + 2].Header = header;
-            ResultRouteGrid.Columns[index + 1].Header = new TextBlock
+        for (int i = 0; i < _transportData.Stores.Count; i++)
+        {
+            ResultRouteGrid.Columns.Add(new DataGridTextColumn
             {
-                Text = shortName,
-                ToolTip = fullName
-            };
+                Header = _transportData.Stores[i].Name,
+                Binding = new Binding($"Shops[{i}]"),
+                Width = new DataGridLength(95)
+            });
         }
+
+        ResultRouteGrid.Columns.Add(new DataGridTextColumn
+        {
+            Header = "Резерв",
+            Binding = new Binding(nameof(TransportResultRow.Reserve)),
+            Width = new DataGridLength(80)
+        });
     }
 
     private static string ShortStoreName(string name) =>
@@ -267,34 +277,44 @@ public partial class MainWindow
 
     private void BtnEquipmentCalc_Click(object sender, RoutedEventArgs e)
     {
-        int age = ExtractFirstInteger(EquipmentAgeText.Text, 6);
-        int horizon = ExtractFirstInteger(EquipmentHorizonText.Text, 3);
-        CalculateEquipmentView(age, horizon);
+        CalculateEquipmentView();
     }
 
-    private void CalculateEquipmentView(int age, int horizon)
+    private void CalculateEquipmentView()
     {
-        bool includeCurrent = _equipmentResult?.Costs
-            .FirstOrDefault(row => row.Equipment.StartsWith("Текущее", StringComparison.Ordinal))?.IsIncluded ?? true;
-        bool includeNew = _equipmentResult?.Costs
-            .FirstOrDefault(row => row.Equipment.StartsWith("Новое", StringComparison.Ordinal))?.IsIncluded ?? true;
+        int age = ExtractFirstInteger(EquipmentAgeText.Text, 6);
+        int horizon = ExtractFirstInteger(EquipmentHorizonText.Text, 3);
+        int serviceLife = ExtractFirstInteger(EquipmentLifeText.Text, 8);
 
-        if (!includeCurrent && !includeNew)
+        if (age < 0 || age > 30 || horizon < 1 || horizon > 10 || serviceLife < 1 || serviceLife > 30)
         {
-            DialogService.ShowWarning("Выберите хотя бы один вариант оборудования для расчёта.");
+            DialogService.ShowWarning("Проверьте возраст, горизонт и срок службы оборудования.");
+            return;
+        }
+
+        if (!TryParseDecimal(EquipmentReplacementPriceText.Text, out decimal replacementPrice) ||
+            !TryParseDecimal(EquipmentRevenueText.Text, out decimal revenue) ||
+            !TryParseDecimal(EquipmentCurrentCostText.Text, out decimal currentCost) ||
+            !TryParseDecimal(EquipmentNewCostText.Text, out decimal newCost) ||
+            !TryParseDecimal(EquipmentGrowthText.Text, out decimal growth) ||
+            replacementPrice < 0 || revenue < 0 || currentCost < 0 || newCost < 0 || growth < 0)
+        {
+            DialogService.ShowWarning("Укажите корректные параметры модели замены оборудования.");
             return;
         }
 
         try
         {
             EquipmentCalculationResult result = CalculationService.CalculateEquipment(
-                age, horizon, includeCurrent, includeNew);
+                age, horizon, replacementPrice, revenue, currentCost, newCost, growth, serviceLife);
             _equipmentResult = result;
-            EqCostsGrid.ItemsSource = result.Costs;
-            StrategyGrid.ItemsSource = result.Strategies;
-            EquipmentSavingLabel.Text = $"Экономия за {horizon} г.";
-            EquipmentSavingText.Text = result.Saving.ToString("N1", CultureInfo.CurrentCulture) + " млн ₽";
-            EquipmentDecisionText.Text = result.Decision;
+            BellmanGrid.ItemsSource = result.BellmanRows;
+            StrategyGrid.ItemsSource = result.Schedule;
+            EquipmentSavingLabel.Text = "Максимальная прибыль";
+            EquipmentSavingText.Text = result.TotalProfit.ToString("N2", CultureInfo.CurrentCulture) + " млн ₽";
+            EquipmentDecisionText.Text =
+                $"{result.ReplacementPlan}. Затраты: {result.TotalCosts.ToString("N2", CultureInfo.CurrentCulture)} млн ₽. " +
+                $"Остаток на конец: {result.FinalResidual.ToString("N2", CultureInfo.CurrentCulture)} млн ₽.";
         }
         catch (Exception exception)
         {
@@ -302,7 +322,6 @@ public partial class MainWindow
             DialogService.ShowError("Не удалось рассчитать стратегию замены.\n\n" + exception.Message);
         }
     }
-
     private async Task LoadCashAsync()
     {
         if (_isLoadingCash)
@@ -377,22 +396,53 @@ public partial class MainWindow
         }
     }
 
-    private void LoadInvestments()
+    private async Task LoadInvestmentsAsync()
     {
-        _investmentProjects = CalculationService.GetInvestmentProjects();
-        InvestProjectsGrid.ItemsSource = _investmentProjects;
+        if (_isLoadingInvestments)
+        {
+            return;
+        }
+
+        _isLoadingInvestments = true;
+        try
+        {
+            _investmentProjects = await CalculationService.LoadInvestmentProjectsAsync();
+            _investmentResult = null;
+            InvestProjectsGrid.ItemsSource = _investmentProjects;
+
+            if (_investmentProjects.Count == 0)
+            {
+                DialogService.ShowWarning("Добавьте инвестиционные проекты в справочнике.");
+            }
+        }
+        catch (Exception exception)
+        {
+            App.LogException(exception);
+            DialogService.ShowError("Не удалось загрузить инвестиционные проекты.\n\n" + exception.Message);
+        }
+        finally
+        {
+            _isLoadingInvestments = false;
+        }
     }
 
-    private void BtnInvestCalc_Click(object sender, RoutedEventArgs e)
+    private async void BtnInvestCalc_Click(object sender, RoutedEventArgs e)
     {
         if (_investmentProjects.Count == 0)
         {
-            LoadInvestments();
+            await LoadInvestmentsAsync();
         }
 
         if (!TryParseDecimal(InvestBudgetText.Text, out decimal budget) || budget <= 0)
         {
             DialogService.ShowWarning("Укажите положительный инвестиционный бюджет.");
+            return;
+        }
+
+        int horizon = ExtractFirstInteger(InvestHorizonText.Text, 1);
+        if (horizon < 1)
+        {
+            DialogService.ShowWarning("Горизонт инвестирования должен быть не менее одного года.");
             return;
         }
 
@@ -406,12 +456,14 @@ public partial class MainWindow
             }
 
             InvestmentCalculationResult result = CalculationService.CalculateInvestments(
-                includedProjects, budget);
+                includedProjects, budget * 1000000);
             _investmentResult = result;
+            _investmentHorizon = horizon;
 
             InvestPortfolioGrid.ItemsSource = result.Portfolio;
+            InvestIncomeLabel.Text = $"Ожидаемый доход за {horizon} г.";
             InvestIncomeText.Text =
-                (result.TotalIncome / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture) + " млн ₽";
+                (result.TotalIncome * horizon / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture) + " млн ₽";
             InvestAllocatedText.Text =
                 "Распределено: " +
                 (result.TotalAllocated / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture) + " млн ₽";
@@ -420,6 +472,86 @@ public partial class MainWindow
         {
             App.LogException(exception);
             DialogService.ShowError("Не удалось распределить инвестиции.\n\n" + exception.Message);
+        }
+    }
+
+    private async void BtnAddInvestmentProject_Click(object sender, RoutedEventArgs e)
+    {
+        await OpenInvestmentProjectEditorAsync(null);
+    }
+
+    private async void BtnEditInvestmentProject_Click(object sender, RoutedEventArgs e)
+    {
+        if (InvestProjectsGrid.SelectedItem is not InvestmentProjectRow project)
+        {
+            DialogService.ShowWarning("Выберите проект в таблице.");
+            return;
+        }
+
+        await OpenInvestmentProjectEditorAsync(project.ProjectId);
+    }
+
+    private async Task OpenInvestmentProjectEditorAsync(int? projectId)
+    {
+        try
+        {
+            ReferenceForm form = await ReferenceService.BuildFormAsync(
+                ReferenceSection.InvestmentProjects,
+                projectId?.ToString(CultureInfo.InvariantCulture));
+            var window = new ReferenceEditWindow(form) { Owner = this };
+            if (window.ShowDialog() == true)
+            {
+                await LoadInvestmentsAsync();
+            }
+        }
+        catch (ValidationException exception)
+        {
+            DialogService.ShowWarning(exception.Message, "Инвестиционные проекты");
+        }
+        catch (Exception exception)
+        {
+            App.LogException(exception);
+            DialogService.ShowError("Не удалось открыть проект.\n\n" + exception.Message);
+        }
+    }
+
+    private async void BtnInvestCompanies_Click(object sender, RoutedEventArgs e)
+    {
+        await OpenReferenceAndReloadAsync(ReferenceSection.InvestmentCompanies, LoadInvestmentsAsync);
+    }
+
+    private async void BtnCashStores_Click(object sender, RoutedEventArgs e)
+    {
+        await OpenReferenceAndReloadAsync(ReferenceSection.Stores, LoadCashAsync);
+    }
+
+    private async void BtnPlanRecipes_Click(object sender, RoutedEventArgs e)
+    {
+        await OpenReferenceAndReloadAsync(ReferenceSection.ProductRecipes, LoadPlanAsync);
+    }
+
+    private async void BtnRouteReferences_Click(object sender, RoutedEventArgs e)
+    {
+        await OpenReferenceAndReloadAsync(ReferenceSection.Stores, LoadTransportAsync);
+    }
+
+    private async Task OpenReferenceAndReloadAsync(ReferenceSection section, Func<Task> reload)
+    {
+        if (CurrentUser is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var window = new ReferenceWindow(section, CurrentUser) { Owner = this };
+            window.ShowDialog();
+            await reload();
+        }
+        catch (Exception exception)
+        {
+            App.LogException(exception);
+            DialogService.ShowError("Не удалось открыть справочник.\n\n" + exception.Message);
         }
     }
 
@@ -458,23 +590,24 @@ public partial class MainWindow
         }
 
         var headers = new List<string> { "Склад" };
-        for (int index = 0; index < 3; index++)
-        {
-            headers.Add(index < _transportResult.Stores.Count
-                ? ShortStoreName(_transportResult.Stores[index].Name)
-                : "—");
-        }
-
+        headers.AddRange(_transportResult.Stores.Select(store => ShortStoreName(store.Name)));
         headers.Add("Резерв");
 
         var rows = _transportResult.Rows
-            .Select(row => (IReadOnlyList<string>)new[]
+            .Select(row =>
             {
-                row.Warehouse,
-                row.Shop1.ToString(CultureInfo.CurrentCulture),
-                row.Shop2.ToString(CultureInfo.CurrentCulture),
-                row.Shop3.ToString(CultureInfo.CurrentCulture),
-                row.Reserve.ToString(CultureInfo.CurrentCulture)
+                var cells = new List<string>(row.Shops.Length + 2)
+                {
+                System.Net.WebUtility.HtmlEncode(row.Warehouse)
+                };
+
+                foreach (int flow in row.Shops)
+                {
+                    cells.Add(flow.ToString(CultureInfo.CurrentCulture));
+                }
+
+                cells.Add(row.Reserve.ToString(CultureInfo.CurrentCulture));
+                return (IReadOnlyList<string>)cells;
             })
             .ToList();
 
@@ -488,26 +621,43 @@ public partial class MainWindow
 
     private async void BtnEquipmentExport_Click(object sender, RoutedEventArgs e)
     {
-        if (_equipmentResult is null || _equipmentResult.Strategies.Count == 0)
+        if (_equipmentResult is null || _equipmentResult.Schedule.Count == 0)
         {
             DialogService.ShowWarning("Сначала выполните расчёт стратегии замены.");
             return;
         }
 
-        var headers = new[] { "Стратегия", "Общие затраты, млн ₽", "Решение" };
-        var rows = _equipmentResult.Strategies
+        var headers = new[]
+        {
+            "Год",
+            "Возраст",
+            "Решение",
+            "Эксплуатация, млн ₽",
+            "Замена, млн ₽",
+            "Доход, млн ₽",
+            "Прибыль, млн ₽",
+            "Остаточная стоимость, млн ₽"
+        };
+        var rows = _equipmentResult.Schedule
             .Select(row => (IReadOnlyList<string>)new[]
             {
-                row.Strategy,
-                row.TotalCosts.ToString("N2", CultureInfo.CurrentCulture),
-                row.Decision
+                row.Year.ToString(CultureInfo.CurrentCulture),
+                row.Age.ToString(CultureInfo.CurrentCulture),
+                row.Decision,
+                row.OperatingCost.ToString("N2", CultureInfo.CurrentCulture),
+                row.ReplacementCost.ToString("N2", CultureInfo.CurrentCulture),
+                row.Revenue.ToString("N2", CultureInfo.CurrentCulture),
+                row.Profit.ToString("N2", CultureInfo.CurrentCulture),
+                row.Residual.ToString("N2", CultureInfo.CurrentCulture)
             })
             .ToList();
 
         string subtitle =
-            $"Возраст оборудования: {EquipmentAgeText.Text}. Горизонт: {EquipmentHorizonText.Text}. " +
-            $"Рекомендация: {_equipmentResult.Decision}. " +
-            $"Экономия: {_equipmentResult.Saving.ToString("N1", CultureInfo.CurrentCulture)} млн ₽.";
+            $"Оборудование: {EquipmentNameText.Text}. Возраст: {EquipmentAgeText.Text}. Горизонт: {EquipmentHorizonText.Text}. " +
+            $"График: {_equipmentResult.ReplacementPlan}. " +
+            $"Максимальная прибыль: {_equipmentResult.TotalProfit.ToString("N2", CultureInfo.CurrentCulture)} млн ₽. " +
+            $"Затраты: {_equipmentResult.TotalCosts.ToString("N2", CultureInfo.CurrentCulture)} млн ₽. " +
+            $"Остаток на конец: {_equipmentResult.FinalResidual.ToString("N2", CultureInfo.CurrentCulture)} млн ₽.";
 
         await ExportAsync("Обновление оборудования", subtitle, headers, rows);
     }
@@ -546,11 +696,12 @@ public partial class MainWindow
             return;
         }
 
-        var headers = new[] { "Проект", "Выделено", "Доля" };
+        var headers = new[] { "Проект", "Компания", "Выделено", "Доля" };
         var rows = _investmentResult.Portfolio
             .Select(row => (IReadOnlyList<string>)new[]
             {
                 row.SelectedProject,
+                row.Company,
                 row.Allocated,
                 row.Share
             })
@@ -558,6 +709,7 @@ public partial class MainWindow
 
         string subtitle =
             $"Доход в год: {(_investmentResult.TotalIncome / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture)} млн ₽. " +
+            $"Доход за {_investmentHorizon} г.: {(_investmentResult.TotalIncome * _investmentHorizon / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture)} млн ₽. " +
             $"Распределено: {(_investmentResult.TotalAllocated / 1_000_000m).ToString("N2", CultureInfo.CurrentCulture)} млн ₽.";
 
         await ExportAsync("Распределение инвестиций", subtitle, headers, rows);
@@ -603,21 +755,17 @@ public partial class MainWindow
         }
     }
 
-    private static void AddRoute(
-        ICollection<string> routes,
-        string warehouse,
-        IReadOnlyList<Store> stores,
-        TransportResultRow row)
+    private static void AddRoute(List<string> routes, string warehouseName, IReadOnlyList<Store> stores, TransportResultRow row)
     {
-        int[] quantities = { row.Shop1, row.Shop2, row.Shop3 };
-        for (int index = 0; index < stores.Count && index < quantities.Length; index++)
+        for (int i = 0; i < stores.Count && i < row.Shops.Length; i++)
         {
-            if (quantities[index] > 0)
+            if (row.Shops[i] > 0)
             {
-                routes.Add($"{warehouse} → {ShortStoreName(stores[index].Name)}: {quantities[index]} ед.");
+                routes.Add($"{warehouseName} → {stores[i].Name}: {row.Shops[i]} ед.");
             }
         }
     }
+
 
     private static bool TryParseDecimal(string text, out decimal value)
     {

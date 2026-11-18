@@ -55,7 +55,6 @@ public partial class MainWindow : Window
             return;
         }
 
-        // 2. Клавиша F11 — переключение полноэкранного / оконного режима
         if (key == System.Windows.Input.Key.F11 && modifiers == System.Windows.Input.ModifierKeys.None)
         {
             ApplyFullScreen(!_isFullScreen);

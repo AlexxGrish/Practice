@@ -680,41 +680,41 @@
 		(object State "NewState"
 		    quid       	"6AE44D3A0278"
 		    type       	"Normal")
-		(object ActivityState "Получить запрос  на расчет"
+		(object ActivityState "Открыть модуль «План перевозок»"
 		    quid       	"6AE44D40020A")
-		(object ActivityState "Загрузить данные из БД"
+		(object ActivityState "Загрузить склады, магазины и расстояния"
 		    quid       	"6AE44D54038D")
-		(object Decision "Сумма заказов=Сумма потребностей?"
+		(object Decision "Запасы достаточны?"
 		    quid       	"6AE44D600236")
-		(object ActivityState "Сформировать ошибку баланса"
+		(object ActivityState "Открыть задачу с резервом или дефицитом"
 		    quid       	"6AE44D890220")
-		(object ActivityState "NewActivity"
+		(object ActivityState "Выбрать склады и магазины"
 		    quid       	"6AE44D9A02D8")
-		(object Decision "Есть отрицательные значения?"
+		(object Decision "Данные корректны?"
 		    quid       	"6AE44DA2018D")
-		(object ActivityState "Сформировать ошибку данных"
+		(object ActivityState "Показать сообщение об ошибке"
 		    quid       	"6AE44DC5014D")
-		(object ActivityState "Расчитать потенциалы и оценки"
+		(object ActivityState "Решить транспортную задачу"
 		    quid       	"6AE44E0102BB")
-		(object Decision "План оптимален?"
+		(object Decision "План допустим?"
 		    quid       	"6AE44E1B000D")
-		(object ActivityState "Улучшить план посредствам перестановки"
+		(object ActivityState "Пересчитать распределение"
 		    quid       	"6AE44E310084")
-		(object ActivityState "Сохранить план в БД"
+		(object ActivityState "Сформировать маршруты"
 		    quid       	"6AE44E45038D")
-		(object ActivityState "Сформировать отчеты"
+		(object ActivityState "Показать результат и экспорт"
 		    quid       	"6AE44E5300C2")
 		(object State "$UNNAMED$23"
 		    quid       	"6AE44EB900F3"
 		    type       	"EndState")
-		(object ActivityState "Построить начальный опорный план"
+		(object ActivityState "Построить начальный план"
 		    quid       	"6AE44DDA018A"))
 	    partitions 	(list Partitions)
 	    objects    	(list Objects)
 	    transitions 	(list transition_list
 		(object State_Transition
 		    quid       	"6AE44E68024D"
-		    supplier   	"Use Case View::State/Activity Model::Получить запрос  на расчет"
+		    supplier   	"Use Case View::State/Activity Model::Открыть модуль «План перевозок»"
 		    supplier_quidu 	"6AE44D40020A"
 		    client     	"$UNNAMED$22"
 		    client_quidu 	"6AE44D37034F"
@@ -722,26 +722,26 @@
 			quid       	"6AE44E680250"))
 		(object State_Transition
 		    quid       	"6AE44E6B01BC"
-		    supplier   	"Use Case View::State/Activity Model::Загрузить данные из БД"
+		    supplier   	"Use Case View::State/Activity Model::Загрузить склады, магазины и расстояния"
 		    supplier_quidu 	"6AE44D54038D"
-		    client     	"Use Case View::State/Activity Model::Получить запрос  на расчет"
+		    client     	"Use Case View::State/Activity Model::Открыть модуль «План перевозок»"
 		    client_quidu 	"6AE44D40020A"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44E6B01BF"))
 		(object State_Transition
 		    quid       	"6AE44E7502B4"
-		    supplier   	"Use Case View::State/Activity Model::Сумма заказов=Сумма потребностей?"
+		    supplier   	"Use Case View::State/Activity Model::Запасы достаточны?"
 		    supplier_quidu 	"6AE44D600236"
-		    client     	"Use Case View::State/Activity Model::Загрузить данные из БД"
+		    client     	"Use Case View::State/Activity Model::Загрузить склады, магазины и расстояния"
 		    client_quidu 	"6AE44D54038D"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44E7502B7"))
 		(object State_Transition
 		    quid       	"6AE44E8B013F"
 		    label      	""
-		    supplier   	"Use Case View::State/Activity Model::Сформировать ошибку баланса"
+		    supplier   	"Use Case View::State/Activity Model::Открыть задачу с резервом или дефицитом"
 		    supplier_quidu 	"6AE44D890220"
-		    client     	"Use Case View::State/Activity Model::Сумма заказов=Сумма потребностей?"
+		    client     	"Use Case View::State/Activity Model::Запасы достаточны?"
 		    client_quidu 	"6AE44D600236"
 		    Event      	(object Event "нет"
 			quid       	"6AE44E8B0140")
@@ -751,16 +751,16 @@
 		    quid       	"6AE44EC00204"
 		    supplier   	"$UNNAMED$23"
 		    supplier_quidu 	"6AE44EB900F3"
-		    client     	"Use Case View::State/Activity Model::Сформировать ошибку баланса"
+		    client     	"Use Case View::State/Activity Model::Открыть задачу с резервом или дефицитом"
 		    client_quidu 	"6AE44D890220"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44EC00207"))
 		(object State_Transition
 		    quid       	"6AE44ED303A6"
 		    label      	""
-		    supplier   	"Use Case View::State/Activity Model::Есть отрицательные значения?"
+		    supplier   	"Use Case View::State/Activity Model::Данные корректны?"
 		    supplier_quidu 	"6AE44DA2018D"
-		    client     	"Use Case View::State/Activity Model::Сумма заказов=Сумма потребностей?"
+		    client     	"Use Case View::State/Activity Model::Запасы достаточны?"
 		    client_quidu 	"6AE44D600236"
 		    Event      	(object Event "ДА"
 			quid       	"6AE44ED303A7")
@@ -769,9 +769,9 @@
 		(object State_Transition
 		    quid       	"6AE44EDB0314"
 		    label      	""
-		    supplier   	"Use Case View::State/Activity Model::Сформировать ошибку данных"
+		    supplier   	"Use Case View::State/Activity Model::Показать сообщение об ошибке"
 		    supplier_quidu 	"6AE44DC5014D"
-		    client     	"Use Case View::State/Activity Model::Есть отрицательные значения?"
+		    client     	"Use Case View::State/Activity Model::Данные корректны?"
 		    client_quidu 	"6AE44DA2018D"
 		    Event      	(object Event "ДА"
 			quid       	"6AE44EDB0315")
@@ -781,16 +781,16 @@
 		    quid       	"6AE44EE20092"
 		    supplier   	"$UNNAMED$23"
 		    supplier_quidu 	"6AE44EB900F3"
-		    client     	"Use Case View::State/Activity Model::Сформировать ошибку данных"
+		    client     	"Use Case View::State/Activity Model::Показать сообщение об ошибке"
 		    client_quidu 	"6AE44DC5014D"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44EE20095"))
 		(object State_Transition
 		    quid       	"6AE44EE90391"
 		    label      	""
-		    supplier   	"Use Case View::State/Activity Model::Построить начальный опорный план"
+		    supplier   	"Use Case View::State/Activity Model::Построить начальный план"
 		    supplier_quidu 	"6AE44DDA018A"
-		    client     	"Use Case View::State/Activity Model::Есть отрицательные значения?"
+		    client     	"Use Case View::State/Activity Model::Данные корректны?"
 		    client_quidu 	"6AE44DA2018D"
 		    Event      	(object Event "НЕТ"
 			quid       	"6AE44EE90392")
@@ -798,26 +798,26 @@
 			quid       	"6AE44EE90394"))
 		(object State_Transition
 		    quid       	"6AE44EF2022C"
-		    supplier   	"Use Case View::State/Activity Model::Расчитать потенциалы и оценки"
+		    supplier   	"Use Case View::State/Activity Model::Решить транспортную задачу"
 		    supplier_quidu 	"6AE44E0102BB"
-		    client     	"Use Case View::State/Activity Model::Построить начальный опорный план"
+		    client     	"Use Case View::State/Activity Model::Построить начальный план"
 		    client_quidu 	"6AE44DDA018A"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44EF2022F"))
 		(object State_Transition
 		    quid       	"6AE44EFA008C"
-		    supplier   	"Use Case View::State/Activity Model::План оптимален?"
+		    supplier   	"Use Case View::State/Activity Model::План допустим?"
 		    supplier_quidu 	"6AE44E1B000D"
-		    client     	"Use Case View::State/Activity Model::Расчитать потенциалы и оценки"
+		    client     	"Use Case View::State/Activity Model::Решить транспортную задачу"
 		    client_quidu 	"6AE44E0102BB"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44EFA008F"))
 		(object State_Transition
 		    quid       	"6AE44EFD0394"
 		    label      	""
-		    supplier   	"Use Case View::State/Activity Model::Улучшить план посредствам перестановки"
+		    supplier   	"Use Case View::State/Activity Model::Пересчитать распределение"
 		    supplier_quidu 	"6AE44E310084"
-		    client     	"Use Case View::State/Activity Model::План оптимален?"
+		    client     	"Use Case View::State/Activity Model::План допустим?"
 		    client_quidu 	"6AE44E1B000D"
 		    Event      	(object Event "НЕТ"
 			quid       	"6AE44EFD0395")
@@ -826,9 +826,9 @@
 		(object State_Transition
 		    quid       	"6AE44F0102D1"
 		    label      	""
-		    supplier   	"Use Case View::State/Activity Model::Сохранить план в БД"
+		    supplier   	"Use Case View::State/Activity Model::Сформировать маршруты"
 		    supplier_quidu 	"6AE44E45038D"
-		    client     	"Use Case View::State/Activity Model::План оптимален?"
+		    client     	"Use Case View::State/Activity Model::План допустим?"
 		    client_quidu 	"6AE44E1B000D"
 		    Event      	(object Event "ДА"
 			quid       	"6AE44F0102D2")
@@ -836,9 +836,9 @@
 			quid       	"6AE44F0102D4"))
 		(object State_Transition
 		    quid       	"6AE44F07009C"
-		    supplier   	"Use Case View::State/Activity Model::Сформировать отчеты"
+		    supplier   	"Use Case View::State/Activity Model::Показать результат и экспорт"
 		    supplier_quidu 	"6AE44E5300C2"
-		    client     	"Use Case View::State/Activity Model::Сохранить план в БД"
+		    client     	"Use Case View::State/Activity Model::Сформировать маршруты"
 		    client_quidu 	"6AE44E45038D"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44F07009F"))
@@ -846,15 +846,15 @@
 		    quid       	"6AE44F0A02BA"
 		    supplier   	"$UNNAMED$23"
 		    supplier_quidu 	"6AE44EB900F3"
-		    client     	"Use Case View::State/Activity Model::Сформировать отчеты"
+		    client     	"Use Case View::State/Activity Model::Показать результат и экспорт"
 		    client_quidu 	"6AE44E5300C2"
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44F0A02BD")))
 	    objectflows 	(list objectflow_list)
 	    statediagrams 	(list StateDiagrams
-		(object ActivityDiagram "План доставки"
+		(object ActivityDiagram "План перевозок"
 		    quid       	"6AE44D210149"
-		    title      	"План доставки"
+		    title      	"План перевозок"
 		    zoom       	95
 		    max_height 	28350
 		    max_width  	21600
@@ -871,7 +871,7 @@
 			    line_color 	3342489
 			    quidu      	"6AE44D37034F"
 			    autoResize 	TRUE)
-			(object ActivityStateView "Получить запрос  на расчет" @4
+			(object ActivityStateView "Открыть модуль «План перевозок»" @4
 			    Parent_View 	@2
 			    location   	(403, 395)
 			    font       	(object Font
@@ -892,7 +892,7 @@
 				nlines     	2
 				max_width  	322
 				justify    	0
-				label      	"Получить запрос  на расчет")
+				label      	"Открыть модуль «План перевозок»")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -912,7 +912,7 @@
 				(422, 342))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Загрузить данные из БД" @6
+			(object ActivityStateView "Загрузить склады, магазины и расстояния" @6
 			    Parent_View 	@2
 			    location   	(403, 845)
 			    font       	(object Font
@@ -933,7 +933,7 @@
 				nlines     	2
 				max_width  	269
 				justify    	0
-				label      	"Загрузить данные из БД")
+				label      	"Загрузить склады, магазины и расстояния")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -952,7 +952,7 @@
 				(403, 792))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "Сумма заказов=Сумма потребностей?" @8
+			(object DecisionView "Запасы достаточны?" @8
 			    Parent_View 	@2
 			    location   	(922, 1282)
 			    font       	(object Font
@@ -982,7 +982,7 @@
 				nlines     	1
 				max_width  	824
 				justify    	1
-				label      	"Сумма заказов=Сумма потребностей?"
+				label      	"Запасы достаточны?"
 				pctDist    	-0.411852
 				height     	276
 				orientation 	1)
@@ -1004,7 +1004,7 @@
 				(922, 1166))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Сформировать ошибку баланса" @11
+			(object ActivityStateView "Открыть задачу с резервом или дефицитом" @11
 			    Parent_View 	@2
 			    location   	(284, 1654)
 			    font       	(object Font
@@ -1025,7 +1025,7 @@
 				nlines     	2
 				max_width  	332
 				justify    	0
-				label      	"Сформировать ошибку баланса")
+				label      	"Открыть задачу с резервом или дефицитом")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -1076,7 +1076,7 @@
 				(326, 1601))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object DecisionView "Есть отрицательные значения?" @14
+			(object DecisionView "Данные корректны?" @14
 			    Parent_View 	@2
 			    location   	(2606, 1153)
 			    font       	(object Font
@@ -1106,7 +1106,7 @@
 				nlines     	1
 				max_width  	662
 				justify    	1
-				label      	"Есть отрицательные значения?"
+				label      	"Данные корректны?"
 				pctDist    	-0.046209
 				height     	307
 				orientation 	1)
@@ -1161,7 +1161,7 @@
 				(2606, 1007))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Сформировать ошибку данных" @18
+			(object ActivityStateView "Показать сообщение об ошибке" @18
 			    Parent_View 	@2
 			    location   	(1913, 1428)
 			    font       	(object Font
@@ -1182,7 +1182,7 @@
 				nlines     	2
 				max_width  	330
 				justify    	0
-				label      	"Сформировать ошибку данных")
+				label      	"Показать сообщение об ошибке")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -1233,7 +1233,7 @@
 				(1979, 1375))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Расчитать потенциалы и оценки" @21
+			(object ActivityStateView "Решить транспортную задачу" @21
 			    Parent_View 	@2
 			    location   	(3500, 1868)
 			    font       	(object Font
@@ -1254,7 +1254,7 @@
 				nlines     	2
 				max_width  	448
 				justify    	0
-				label      	"Расчитать потенциалы и оценки")
+				label      	"Решить транспортную задачу")
 			    icon_style 	"Label"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -1263,7 +1263,7 @@
 			    height     	201
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object DecisionView "План оптимален?" @22
+			(object DecisionView "План допустим?" @22
 			    Parent_View 	@2
 			    location   	(3510, 2178)
 			    font       	(object Font
@@ -1293,7 +1293,7 @@
 				nlines     	2
 				max_width  	300
 				justify    	1
-				label      	"План оптимален?"
+				label      	"План допустим?"
 				pctDist    	0.468712
 				height     	231
 				orientation 	1)
@@ -1304,7 +1304,7 @@
 			    width      	662
 			    height     	319
 			    autoResize 	TRUE)
-			(object ActivityStateView "Улучшить план посредствам перестановки" @24
+			(object ActivityStateView "Пересчитать распределение" @24
 			    Parent_View 	@2
 			    location   	(4254, 2139)
 			    font       	(object Font
@@ -1325,7 +1325,7 @@
 				nlines     	2
 				max_width  	576
 				justify    	0
-				label      	"Улучшить план посредствам перестановки")
+				label      	"Пересчитать распределение")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -1334,7 +1334,7 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object ActivityStateView "Сохранить план в БД" @25
+			(object ActivityStateView "Сформировать маршруты" @25
 			    Parent_View 	@2
 			    location   	(2438, 2047)
 			    font       	(object Font
@@ -1355,7 +1355,7 @@
 				nlines     	2
 				max_width  	269
 				justify    	0
-				label      	"Сохранить план в БД")
+				label      	"Сформировать маршруты")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -1363,7 +1363,7 @@
 			    height     	106
 			    annotation 	1
 			    autoResize 	TRUE)
-			(object ActivityStateView "Сформировать отчеты" @26
+			(object ActivityStateView "Показать результат и экспорт" @26
 			    Parent_View 	@2
 			    location   	(2440, 2493)
 			    font       	(object Font
@@ -1384,7 +1384,7 @@
 				nlines     	2
 				max_width  	269
 				justify    	0
-				label      	"Сформировать отчеты")
+				label      	"Показать результат и экспорт")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -1421,7 +1421,7 @@
 				(889, 2269))
 			    line_style 	0
 			    x_offset   	FALSE)
-			(object ActivityStateView "Построить начальный опорный план" @30
+			(object ActivityStateView "Построить начальный план" @30
 			    Parent_View 	@2
 			    location   	(3472, 1576)
 			    font       	(object Font
@@ -1442,7 +1442,7 @@
 				nlines     	2
 				max_width  	412
 				justify    	0
-				label      	"Построить начальный опорный план")
+				label      	"Построить начальный план")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879

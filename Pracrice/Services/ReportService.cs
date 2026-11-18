@@ -77,10 +77,10 @@ public static class ReportService
                     string? dataUri = ImageService.ReadAsDataUri(product.ImagePath);
                     if (dataUri is not null)
                     {
-                        imageCell = $"<img class=\"photo\" src=\"{dataUri}\" alt=\"{Escape(product.Name)}\">";
-                    }
+                            imageCell = $"<img class=\"photo\" style=\"object-fit: contain;\" src=\"{dataUri}\" alt=\"{Escape(product.Name)}\">";
+                        }
 
-                    rows.Add(new[]
+                        rows.Add(new[]
                     {
                         imageCell,
                         Escape(product.Name),
@@ -293,46 +293,94 @@ public static class ReportService
         builder.AppendLine($"<title>{Escape(title)} — ООО «РОСПИВ»</title>");
         builder.AppendLine("<style>");
         builder.AppendLine("""
-            :root { --green:#2b5748; --green-dark:#18231d; --gold:#d8b56a; --gold-light:#f0d698; --ink:#22302b; --muted:#6c7a74; }
-            * { box-sizing: border-box; }
-            body { margin:0; padding:24px; background:#eef2ee; color:var(--ink); font-family:"Segoe UI", Arial, sans-serif; font-size:13px; }
-            .sheet { max-width:1100px; margin:0 auto; background:#fff; border:1px solid #d8ded8; box-shadow:0 8px 30px rgba(24,35,29,.12); }
-            .head { display:flex; align-items:center; gap:18px; padding:20px 26px; background:linear-gradient(120deg,#1d332a,#2b5748); color:#f4f1e6; }
-            .head img { height:74px; width:auto; }
-            .company { flex:1; }
-            .company h2 { margin:0; font-family:Georgia, serif; font-size:22px; letter-spacing:2px; color:var(--gold-light); font-weight:normal; }
-            .company p { margin:4px 0 0; color:#c9d6c7; font-size:11px; letter-spacing:1.4px; text-transform:uppercase; }
-            .meta { text-align:right; font-size:11px; line-height:1.7; color:#d7e1d5; }
-            .body { padding:26px; }
-            h1 { margin:0; font-family:Georgia, serif; font-size:24px; color:var(--green-dark); font-weight:normal; }
-            .subtitle { color:var(--muted); margin:6px 0 20px; font-size:12px; }
-            .rule { height:3px; background:linear-gradient(90deg,var(--gold),var(--green)); margin:0 0 20px; }
-            table { width:100%; border-collapse:collapse; }
-            thead th { background:var(--green); color:#f2efe2; text-align:left; padding:9px 10px; font-size:11px; text-transform:uppercase; letter-spacing:.6px; border:1px solid #24483c; }
-            tbody td { padding:8px 10px; border:1px solid #dfe5df; vertical-align:middle; }
-            tbody tr:nth-child(even) { background:#f6f8f4; }
-            tbody tr:hover { background:#eef3e9; }
-            .photo { width:62px; height:48px; object-fit:cover; border-radius:4px; border:1px solid #cbd5cb; }
-            .no-photo { color:#a6b0a8; }
-            .footer { display:flex; justify-content:space-between; gap:16px; padding:14px 26px 22px; color:var(--muted); font-size:11px; border-top:1px solid #e4e9e4; }
-            .footer b { color:var(--green); }
-            .empty { padding:26px; text-align:center; color:var(--muted); border:1px dashed #c9d2c8; margin-top:14px; }
-            @media print {
-              body { background:#fff; padding:0; }
-              .sheet { max-width:none; border:0; box-shadow:none; }
-              thead { display:table-header-group; }
-              tr { page-break-inside:avoid; }
-              .head { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-            }
-            @page { size:A4; margin:10mm; }
-            """);
+:root { --green:#2b5748; --green-dark:#18231d; --gold:#d8b56a; --gold-light:#f0d698; --ink:#22302b; --muted:#6c7a74; }
+* { box-sizing: border-box; }
+body { margin:0; padding:24px; background:#eef2ee; color:var(--ink); font-family:"Segoe UI", Arial, sans-serif; font-size:13px; }
+.sheet { max-width:95%; margin:0 auto; background:#fff; border:1px solid #d8ded8; box-shadow:0 8px 30px rgba(24,35,29,.12); overflow:hidden; }
+.head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; padding:20px 26px; background:linear-gradient(120deg,#1d332a,#2b5748); color:#f4f1e6; }
+.head-brand { display:flex; align-items:center; gap:18px; flex:1; min-width:240px; }
+.head img { height:74px; width:auto; flex-shrink:0; }
+.company h2 { margin:0; font-family:Georgia, serif; font-size:22px; letter-spacing:2px; color:var(--gold-light); font-weight:normal; }
+.company p { margin:4px 0 0; color:#c9d6c7; font-size:11px; letter-spacing:1.4px; text-transform:uppercase; }
+.meta { text-align:right; font-size:11px; line-height:1.7; color:#d7e1d5; }
+.body { padding:26px; }
+h1 { margin:0; font-family:Georgia, serif; font-size:24px; color:var(--green-dark); font-weight:normal; }
+.subtitle { color:var(--muted); margin:6px 0 20px; font-size:12px; line-height:1.5; }
+.rule { height:3px; background:linear-gradient(90deg,var(--gold),var(--green)); margin:0 0 20px; }
+
+/* Контейнер для адаптивной прокрутки широких таблиц */
+.table-wrap { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid #dfe5df; }
+table { width:100%; border-collapse:collapse; min-width:680px; }
+thead th {
+    background:var(--green);
+    color:#f2efe2;
+    text-align:center;
+    padding:9px 22px 9px 8px;
+    font-size:11px;
+    line-height:1.35;
+    letter-spacing:.3px;
+    border:1px solid #24483c;
+    cursor:pointer;
+    user-select:none;
+    position:relative;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+}
+thead th:first-child { text-align:left; min-width:170px; padding-left:10px; }
+thead th:hover { background:#23473b; }
+thead th::after { content:"⇅"; position:absolute; right:6px; top:50%; transform:translateY(-50%); opacity:.45; font-size:11px; }
+thead th.sort-asc::after { content:"▲"; opacity:1; color:var(--gold-light); }
+thead th.sort-desc::after { content:"▼"; opacity:1; color:var(--gold-light); }
+
+tbody td { padding:8px 8px; border:1px solid #dfe5df; vertical-align:middle; text-align:center; font-size:12.5px; }
+tbody td:first-child { text-align:left; padding-left:10px; font-weight:600; color:var(--green-dark); }
+tbody tr:nth-child(even) { background:#f6f8f4; }
+tbody tr:hover { background:#eef3e9; }
+
+.photo { width:62px; height:48px; object-fit:cover; border-radius:4px; border:1px solid #cbd5cb; }
+.no-photo { color:#a6b0a8; }
+.footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; padding:14px 26px 22px; color:var(--muted); font-size:11px; border-top:1px solid #e4e9e4; }
+.footer b { color:var(--green); }
+.empty { padding:26px; text-align:center; color:var(--muted); border:1px dashed #c9d2c8; margin-top:14px; }
+
+/* Адаптив для планшетов и смартфонов */
+@media (max-width: 768px) {
+  body { padding:10px; font-size:12px; }
+  .head { padding:16px; }
+  .head img { height:56px; }
+  .company h2 { font-size:19px; }
+  .meta { text-align:left; width:100%; border-top:1px solid rgba(255,255,255,.12); padding-top:10px; }
+  .body { padding:16px; }
+  h1 { font-size:20px; }
+  thead th { font-size:10px; padding:7px 18px 7px 6px; }
+  tbody td { font-size:11.5px; padding:6px; }
+  .footer { padding:12px 16px 16px; flex-direction:column; align-items:flex-start; }
+}
+
+/* Настройки печати и экспорта в PDF */
+@media print {
+  body { background:#fff; padding:0; }
+  .sheet { max-width:none; border:0; box-shadow:none; }
+  .table-wrap { overflow:visible; border:none; }
+  table { min-width:0; width:100%; }
+  thead { display:table-header-group; }
+  thead th { padding:6px 5px; font-size:9.5px; }
+  thead th::after { display:none; }
+  tbody td { padding:5px; font-size:10.5px; }
+  tr { page-break-inside:avoid; }
+  .head { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+@page { size:A4 landscape; margin:10mm; }
+""");
         builder.AppendLine("</style>");
         builder.AppendLine("</head>");
         builder.AppendLine("<body>");
         builder.AppendLine("<div class=\"sheet\">");
         builder.AppendLine("<div class=\"head\">");
+        builder.AppendLine("<div class=\"head-brand\">");
         builder.AppendLine($"<img src=\"{logo}\" alt=\"РОСПИВ\">");
         builder.AppendLine("<div class=\"company\"><h2>РОСПИВ</h2><p>Пивоваренная компания</p></div>");
+        builder.AppendLine("</div>");
         builder.AppendLine("<div class=\"meta\">");
         builder.AppendLine($"ООО «РОСПИВ»<br>Дата отчёта: <b>{reportDate:dd.MM.yyyy}</b><br>Сформировал: {Escape(user.FullName)}");
         builder.AppendLine("</div>");
@@ -348,6 +396,7 @@ public static class ReportService
         }
         else
         {
+            builder.AppendLine("<div class=\"table-wrap\">");
             builder.AppendLine("<table>");
             builder.AppendLine("<thead><tr>");
             foreach (string header in headers)
@@ -370,6 +419,7 @@ public static class ReportService
 
             builder.AppendLine("</tbody>");
             builder.AppendLine("</table>");
+            builder.AppendLine("</div>");
         }
 
         builder.AppendLine("</div>");
@@ -379,10 +429,62 @@ public static class ReportService
         builder.AppendLine("</div>");
         builder.AppendLine("</div>");
 
+        builder.AppendLine("<script>");
+        builder.AppendLine("""
+document.querySelectorAll('table').forEach(table => {
+    const headers = table.querySelectorAll('thead th');
+    const tbody = table.querySelector('tbody');
+    if (!tbody) return;
+
+    const parseValue = (text) => {
+        const clean = text.trim();
+        const dateMatch = clean.match(/^(\d{2})\.(\d{2})\.(\d{4})(?:\s+(\d{2}):(\d{2}))?$/);
+        if (dateMatch) {
+            const [, d, m, y, hh = '00', mm = '00'] = dateMatch;
+            return { type: 'num', val: new Date(`${y}-${m}-${d}T${hh}:${mm}:00`).getTime() };
+        }
+        const numStr = clean.replace(/\s+/g, '').replace(',', '.').replace(/[^\d.-]/g, '');
+        if (numStr !== '' && !isNaN(numStr) && /^[-+]?\d*\.?\d+$/.test(numStr)) {
+            return { type: 'num', val: parseFloat(numStr) };
+        }
+        return { type: 'str', val: clean.toLowerCase() };
+    };
+
+    headers.forEach((th, colIndex) => {
+        th.addEventListener('click', () => {
+            const isAsc = !th.classList.contains('sort-asc');
+            headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+            th.classList.add(isAsc ? 'sort-asc' : 'sort-desc');
+
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.children[colIndex]?.textContent || '';
+                const cellB = rowB.children[colIndex]?.textContent || '';
+                const a = parseValue(cellA);
+                const b = parseValue(cellB);
+
+                let cmp = 0;
+                if (a.type === 'num' && b.type === 'num') {
+                    cmp = a.val - b.val;
+                } else {
+                    cmp = String(a.val).localeCompare(String(b.val), 'ru', { numeric: true });
+                }
+                return isAsc ? cmp : -cmp;
+            });
+
+            rows.forEach(row => tbody.appendChild(row));
+        });
+    });
+});
+""");
+        builder.AppendLine("</script>");
+
         builder.AppendLine("</body>");
         builder.AppendLine("</html>");
         return builder.ToString();
+
     }
+
 
     private static string GetLogoDataUri()
     {

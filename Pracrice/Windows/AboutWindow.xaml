@@ -40,14 +40,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Background="{StaticResource CardBg}" CornerRadius="8" Padding="18" Margin="0,14,0,0">
-                    <StackPanel>
-                        <TextBlock Text="Доступ" Style="{StaticResource CardTitle}" />
-                        <TextBlock Text=" вход по логину и паролю &#10; настройки подключения в config.ini."
-                                   Foreground="{StaticResource TextSoft}" FontSize="12"
-                                   TextWrapping="Wrap" LineHeight="20" />
-                    </StackPanel>
-                </Border>
+                
 
                 <TextBlock Text="© 2026 ООО «РОСПИВ»."
                            Foreground="{StaticResource TextMuted}" FontSize="11"

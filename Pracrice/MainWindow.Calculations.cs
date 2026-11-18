@@ -1,10 +1,11 @@
+using Pracrice.Models;
+using Pracrice.Services;
+using Pracrice.Windows;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using Pracrice.Models;
-using Pracrice.Services;
-using Pracrice.Windows;
+using System.Windows.Data;
 
 namespace Pracrice;
 
@@ -155,25 +156,31 @@ public partial class MainWindow
             return;
         }
 
-        for (int index = 0; index < 3; index++)
+        // Перестраиваем колонки таблицы результатов ResultRouteGrid
+        ResultRouteGrid.Columns.Clear();
+        ResultRouteGrid.Columns.Add(new DataGridTextColumn
         {
-            string fullName = index < _transportData.Stores.Count
-                ? _transportData.Stores[index].Name
-                : "—";
-            string shortName = ShortStoreName(fullName);
-            var header = new TextBlock
-            {
-                Text = shortName,
-                ToolTip = fullName
-            };
+            Header = "Склад",
+            Binding = new Binding(nameof(TransportResultRow.Warehouse)),
+            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+        });
 
-            TariffsDataGrid.Columns[index + 2].Header = header;
-            ResultRouteGrid.Columns[index + 1].Header = new TextBlock
+        for (int i = 0; i < _transportData.Stores.Count; i++)
+        {
+            ResultRouteGrid.Columns.Add(new DataGridTextColumn
             {
-                Text = shortName,
-                ToolTip = fullName
-            };
+                Header = _transportData.Stores[i].Name,
+                Binding = new Binding($"Shops[{i}]"),
+                Width = new DataGridLength(95)
+            });
         }
+
+        ResultRouteGrid.Columns.Add(new DataGridTextColumn
+        {
+            Header = "Резерв",
+            Binding = new Binding(nameof(TransportResultRow.Reserve)),
+            Width = new DataGridLength(80)
+        });
     }
 
     private static string ShortStoreName(string name) =>
@@ -449,7 +456,7 @@ public partial class MainWindow
             }
 
             InvestmentCalculationResult result = CalculationService.CalculateInvestments(
-                includedProjects, budget);
+                includedProjects, budget * 1000000);
             _investmentResult = result;
             _investmentHorizon = horizon;
 
@@ -583,23 +590,24 @@ public partial class MainWindow
         }
 
         var headers = new List<string> { "Склад" };
-        for (int index = 0; index < 3; index++)
-        {
-            headers.Add(index < _transportResult.Stores.Count
-                ? ShortStoreName(_transportResult.Stores[index].Name)
-                : "—");
-        }
-
+        headers.AddRange(_transportResult.Stores.Select(store => ShortStoreName(store.Name)));
         headers.Add("Резерв");
 
         var rows = _transportResult.Rows
-            .Select(row => (IReadOnlyList<string>)new[]
+            .Select(row =>
             {
-                row.Warehouse,
-                row.Shop1.ToString(CultureInfo.CurrentCulture),
-                row.Shop2.ToString(CultureInfo.CurrentCulture),
-                row.Shop3.ToString(CultureInfo.CurrentCulture),
-                row.Reserve.ToString(CultureInfo.CurrentCulture)
+                var cells = new List<string>(row.Shops.Length + 2)
+                {
+                System.Net.WebUtility.HtmlEncode(row.Warehouse)
+                };
+
+                foreach (int flow in row.Shops)
+                {
+                    cells.Add(flow.ToString(CultureInfo.CurrentCulture));
+                }
+
+                cells.Add(row.Reserve.ToString(CultureInfo.CurrentCulture));
+                return (IReadOnlyList<string>)cells;
             })
             .ToList();
 
@@ -747,21 +755,17 @@ public partial class MainWindow
         }
     }
 
-    private static void AddRoute(
-        ICollection<string> routes,
-        string warehouse,
-        IReadOnlyList<Store> stores,
-        TransportResultRow row)
+    private static void AddRoute(List<string> routes, string warehouseName, IReadOnlyList<Store> stores, TransportResultRow row)
     {
-        int[] quantities = { row.Shop1, row.Shop2, row.Shop3 };
-        for (int index = 0; index < stores.Count && index < quantities.Length; index++)
+        for (int i = 0; i < stores.Count && i < row.Shops.Length; i++)
         {
-            if (quantities[index] > 0)
+            if (row.Shops[i] > 0)
             {
-                routes.Add($"{warehouse} → {ShortStoreName(stores[index].Name)}: {quantities[index]} ед.");
+                routes.Add($"{warehouseName} → {stores[i].Name}: {row.Shops[i]} ед.");
             }
         }
     }
+
 
     private static bool TryParseDecimal(string text, out decimal value)
     {

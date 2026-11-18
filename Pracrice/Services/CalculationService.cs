@@ -1,7 +1,7 @@
-using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using Pracrice.Data;
 using Pracrice.Models;
+using System.Globalization;
 
 namespace Pracrice.Services;
 
@@ -56,9 +56,9 @@ public static class CalculationService
                 return new PlanProductRow
                 {
                     Product = product.Name,
-                    Raw = raw,
-                    Fill = fill,
-                    Pack = pack,
+                    Raw = decimal.Round(raw, 4),
+                    Fill = decimal.Round(fill, 4),
+                    Pack = decimal.Round(pack, 4),
                     Profit = product.Price
                 };
             })
@@ -73,6 +73,7 @@ public static class CalculationService
     {
         var usable = products
             .Where(product => product.IsIncluded &&
+                              product.Profit > 0 &&
                               (product.Raw > 0 || product.Fill > 0 || product.Pack > 0))
             .ToList();
 
@@ -88,42 +89,141 @@ public static class CalculationService
             };
         }
 
-        double[][] a =
-        {
-            usable.Select(product => (double)product.Raw).ToArray(),
-            usable.Select(product => (double)product.Fill).ToArray(),
-            usable.Select(product => (double)product.Pack).ToArray()
-        };
-        double[] b = { (double)rawLimit, (double)fillLimit, (double)packLimit };
-        double[] c = usable.Select(product => (double)product.Profit).ToArray();
+        int n = usable.Count;
+        int m = 3;
+        int totalCols = n + m + 1;
+        int rhsCol = n + m;
+        double[,] tableau = new double[m + 1, totalCols];
 
-        double[] continuous = SolveLinearProgram(a, b, c);
-        int[] units = continuous.Select(value => Math.Max(0, (int)Math.Floor(value + 1e-6))).ToArray();
-
-        double[] remaining =
+        for (int j = 0; j < n; j++)
         {
-            (double)rawLimit - usable.Select((product, index) => (double)product.Raw * units[index]).Sum(),
-            (double)fillLimit - usable.Select((product, index) => (double)product.Fill * units[index]).Sum(),
-            (double)packLimit - usable.Select((product, index) => (double)product.Pack * units[index]).Sum()
-        };
+            tableau[0, j] = (double)usable[j].Raw;
+            tableau[1, j] = (double)usable[j].Fill;
+            tableau[2, j] = (double)usable[j].Pack;
+            tableau[m, j] = -(double)usable[j].Profit;
+        }
 
-        while (true)
+        tableau[0, n + 0] = 1.0;
+        tableau[0, rhsCol] = (double)rawLimit;
+
+        tableau[1, n + 1] = 1.0;
+        tableau[1, rhsCol] = (double)fillLimit;
+
+        tableau[2, n + 2] = 1.0;
+        tableau[2, rhsCol] = (double)packLimit;
+
+        int[] basis = { n, n + 1, n + 2 };
+        const double eps = 1e-9;
+
+        // Прямой симплекс-метод (правило Бланда)
+        for (int iter = 0; iter < 1000; iter++)
         {
-            int best = -1;
-            for (int index = 0; index < usable.Count; index++)
+            int pivotCol = -1;
+            for (int j = 0; j < rhsCol; j++)
             {
-                bool fits = usable[index].Raw * units[index] >= 0
-                            && (double)usable[index].Raw <= remaining[0] + 1e-6
-                            && (double)usable[index].Fill <= remaining[1] + 1e-6
-                            && (double)usable[index].Pack <= remaining[2] + 1e-6;
+                if (tableau[m, j] < -eps)
+                {
+                    pivotCol = j;
+                    break;
+                }
+            }
 
-                if (!fits)
+            if (pivotCol == -1)
+            {
+                break;
+            }
+
+            int pivotRow = -1;
+            double minRatio = double.PositiveInfinity;
+
+            for (int i = 0; i < m; i++)
+            {
+                double aij = tableau[i, pivotCol];
+                if (aij > eps)
+                {
+                    double ratio = tableau[i, rhsCol] / aij;
+                    if (ratio < minRatio - eps || (Math.Abs(ratio - minRatio) <= eps && pivotRow != -1 && basis[i] < basis[pivotRow]))
+                    {
+                        minRatio = ratio;
+                        pivotRow = i;
+                    }
+                }
+            }
+
+            if (pivotRow == -1)
+            {
+                break;
+            }
+
+            double pivotVal = tableau[pivotRow, pivotCol];
+            for (int j = 0; j <= rhsCol; j++)
+            {
+                tableau[pivotRow, j] /= pivotVal;
+            }
+
+            for (int i = 0; i <= m; i++)
+            {
+                if (i == pivotRow)
                 {
                     continue;
                 }
 
-                if (best < 0 || usable[index].Profit > usable[best].Profit)
+                double factor = tableau[i, pivotCol];
+                if (Math.Abs(factor) > eps)
                 {
+                    for (int j = 0; j <= rhsCol; j++)
+                    {
+                        tableau[i, j] -= factor * tableau[pivotRow, j];
+                    }
+                }
+            }
+
+            basis[pivotRow] = pivotCol;
+        }
+
+        double[] continuous = new double[n];
+        for (int i = 0; i < m; i++)
+        {
+            if (basis[i] < n)
+            {
+                continuous[basis[i]] = Math.Max(0.0, tableau[i, rhsCol]);
+            }
+        }
+
+        // Округляем непрерывное решение вниз до целых единиц продукции
+        int[] units = continuous
+            .Select(value => Math.Max(0, (int)Math.Floor(value + 1e-6)))
+            .ToArray();
+
+        decimal remRaw = rawLimit - usable.Select((p, i) => p.Raw * units[i]).Sum();
+        decimal remFill = fillLimit - usable.Select((p, i) => p.Fill * units[i]).Sum();
+        decimal remPack = packLimit - usable.Select((p, i) => p.Pack * units[i]).Sum();
+
+        // Адекватный целочисленный добор остатков ресурсов с учётом нормированной эффективности
+        while (true)
+        {
+            int best = -1;
+            decimal bestScore = -1m;
+
+            for (int index = 0; index < usable.Count; index++)
+            {
+                var p = usable[index];
+                if (p.Raw > remRaw || p.Fill > remFill || p.Pack > remPack)
+                {
+                    continue;
+                }
+
+                // Вычисляем долю потребляемых остатков ресурсов для взвешенной оценки эффективности
+                decimal resourceLoad =
+                    (remRaw > 0 ? p.Raw / remRaw : 0m) +
+                    (remFill > 0 ? p.Fill / remFill : 0m) +
+                    (remPack > 0 ? p.Pack / remPack : 0m);
+
+                decimal score = resourceLoad > 0 ? p.Profit / resourceLoad : p.Profit;
+
+                if (score > bestScore)
+                {
+                    bestScore = score;
                     best = index;
                 }
             }
@@ -134,9 +234,9 @@ public static class CalculationService
             }
 
             units[best]++;
-            remaining[0] -= (double)usable[best].Raw;
-            remaining[1] -= (double)usable[best].Fill;
-            remaining[2] -= (double)usable[best].Pack;
+            remRaw -= usable[best].Raw;
+            remFill -= usable[best].Fill;
+            remPack -= usable[best].Pack;
         }
 
         int totalUnits = units.Sum();
@@ -171,11 +271,12 @@ public static class CalculationService
         {
             Rows = resultRows,
             TotalProfit = totalProfit,
-            RawUsagePercent = rawLimit == 0 ? 0 : rawUsed * 100m / rawLimit,
-            FillUsagePercent = fillLimit == 0 ? 0 : fillUsed * 100m / fillLimit,
-            PackUsagePercent = packLimit == 0 ? 0 : packUsed * 100m / packLimit
+            RawUsagePercent = rawLimit == 0 ? 0 : Math.Min(100m, rawUsed * 100m / rawLimit),
+            FillUsagePercent = fillLimit == 0 ? 0 : Math.Min(100m, fillUsed * 100m / fillLimit),
+            PackUsagePercent = packLimit == 0 ? 0 : Math.Min(100m, packUsed * 100m / packLimit)
         };
     }
+
 
     private static double[] SolveLinearProgram(double[][] a, double[] b, double[] c)
     {
@@ -295,11 +396,6 @@ public static class CalculationService
         var distances = await context.StoreWarehouseDistances.AsNoTracking()
             .ToListAsync();
 
-        if (stores.Count > 3)
-        {
-            throw new ValidationException("В расчётном модуле поддерживается не более трёх магазинов.");
-        }
-
         var supplies = warehouses
             .Select(warehouse => warehouse.WarehouseStocks.Sum(stock => stock.Quantity))
             .ToArray();
@@ -320,6 +416,7 @@ public static class CalculationService
 
         return new TransportData(warehouses, stores, supplies, costs);
     }
+
 
     public static IReadOnlyList<TransportTariffRow> BuildTransportTariffs(TransportData data)
     {
@@ -426,29 +523,33 @@ public static class CalculationService
 
         for (int warehouseIndex = 0; warehouseIndex < warehouseCount; warehouseIndex++)
         {
+            var shopFlows = new int[storeCount];
+            for (int storeIndex = 0; storeIndex < storeCount; storeIndex++)
+            {
+                shopFlows[storeIndex] = flows[warehouseIndex, storeIndex];
+                totalCost += flows[warehouseIndex, storeIndex] * (decimal)costs[warehouseIndex, storeIndex];
+            }
+
             rows.Add(new TransportResultRow
             {
                 Warehouse = data.Warehouses[warehouseIndex].Name,
-                Shop1 = storeCount > 0 ? flows[warehouseIndex, 0] : 0,
-                Shop2 = storeCount > 1 ? flows[warehouseIndex, 1] : 0,
-                Shop3 = storeCount > 2 ? flows[warehouseIndex, 2] : 0,
+                Shops = shopFlows,
                 Reserve = hasDummyStore ? flows[warehouseIndex, demandCount - 1] : 0
             });
-
-            for (int storeIndex = 0; storeIndex < storeCount; storeIndex++)
-            {
-                totalCost += flows[warehouseIndex, storeIndex] * (decimal)costs[warehouseIndex, storeIndex];
-            }
         }
 
         if (hasDummyWarehouse)
         {
+            var deficitFlows = new int[storeCount];
+            for (int storeIndex = 0; storeIndex < storeCount; storeIndex++)
+            {
+                deficitFlows[storeIndex] = flows[supplyCount - 1, storeIndex];
+            }
+
             rows.Add(new TransportResultRow
             {
                 Warehouse = "Дефицит",
-                Shop1 = storeCount > 0 ? flows[supplyCount - 1, 0] : 0,
-                Shop2 = storeCount > 1 ? flows[supplyCount - 1, 1] : 0,
-                Shop3 = storeCount > 2 ? flows[supplyCount - 1, 2] : 0,
+                Shops = deficitFlows,
                 Reserve = 0
             });
         }
@@ -463,6 +564,7 @@ public static class CalculationService
             IsOpen = isOpen
         };
     }
+
 
     private static int[,] SolveTransport(int[] supplies, int[] demands, int[,] costs)
     {
@@ -716,13 +818,14 @@ public static class CalculationService
             {
                 Year = year + 1,
                 Age = ageAtStart,
-                Decision = replace ? "��������" : "���������������",
+                Decision = replace ? "Заменить" : "Эксплуатировать",
                 OperatingCost = decimal.Round(operating, 2),
                 ReplacementCost = decimal.Round(replacement, 2),
                 Revenue = decimal.Round(annualRevenue, 2),
                 Profit = decimal.Round(profit, 2),
                 Residual = decimal.Round(Salvage(stateAge), 2)
             });
+
         }
 
         var ageCosts = new List<EquipmentAgeCostRow>(serviceLife + 1);
@@ -737,12 +840,14 @@ public static class CalculationService
         }
 
         var replacementYears = schedule
-            .Where(row => row.Decision == "��������")
-            .Select(row => row.Year)
-            .ToList();
+      .Where(row => row.Decision == "Заменить")
+      .Select(row => row.Year)
+      .ToList();
+
         string replacementPlan = replacementYears.Count == 0
-            ? "������ �� ���������"
-            : "������: " + string.Join(", ", replacementYears.Select(year => $"��� {year}"));
+            ? "Замена не требуется"
+            : "Замена: " + string.Join(", ", replacementYears.Select(year => $"год {year}"));
+
 
         decimal totalProfit = oldDp[0, age];
         decimal totalCosts = annualRevenue * horizon - totalProfit;
@@ -846,11 +951,26 @@ public static class CalculationService
             .ThenBy(project => project.Name)
             .ToListAsync();
 
+        var rates = await context.InvestmentRates.AsNoTracking()
+            .ToListAsync();
+
+        var maxAmountByCompany = rates
+            .GroupBy(rate => rate.CompanyId)
+            .ToDictionary(group => group.Key, group => group.Max(rate => rate.MaxAmount));
+
         return projects.Select(project =>
         {
             decimal profitability = project.Investment == 0
                 ? 0
                 : project.AnnualIncome * 100m / project.Investment;
+
+            int maxCopies = 1;
+            if (project.Investment > 0m &&
+                maxAmountByCompany.TryGetValue(project.CompanyId, out decimal companyMaxAmount) &&
+                companyMaxAmount > 0m)
+            {
+                maxCopies = Math.Max(1, (int)Math.Floor(companyMaxAmount / project.Investment));
+            }
 
             return new InvestmentProjectRow
             {
@@ -860,61 +980,239 @@ public static class CalculationService
                 Invests = project.Investment / 1_000_000m,
                 Income = project.AnnualIncome / 1_000_000m,
                 ProfitPercent = profitability.ToString("N1", CultureInfo.CurrentCulture) + " %",
-                InvestmentValue = project.Investment
+                InvestmentValue = project.Investment,
+                MaxCopies = maxCopies
             };
         }).ToList();
     }
 
-    public static InvestmentCalculationResult CalculateInvestments(
-        IReadOnlyList<InvestmentProjectRow> projects,
-        decimal budget)
-    {
-        var selected = projects.Where(project => project.IsIncluded).ToList();
-        int count = selected.Count;
-        int bestMask = 0;
-        decimal bestIncome = 0;
-        decimal bestInvestment = 0;
 
-        for (int mask = 0; mask < 1 << count; mask++)
+    public static InvestmentCalculationResult CalculateInvestments(
+     IReadOnlyList<InvestmentProjectRow> projects,
+     decimal budget)
+    {
+        var selected = projects.Where(project => project.IsIncluded && project.MaxCopies > 0).ToList();
+        int count = selected.Count;
+        decimal bestIncome = 0m;
+        decimal bestInvestment = 0m;
+        decimal[] allocatedAmounts = new decimal[count]; // точная сумма вложений в каждый проект
+        int[] integerCounts = new int[count];          // количество целых вложений в каждый проект
+
+        if (count > 0 && budget > 0m)
         {
-            decimal investment = 0;
-            decimal income = 0;
-            for (int index = 0; index < count; index++)
+            // 1. Вычисляем шаг сетки для таблицы доходности Беллмана
+            decimal step = budget;
+            for (int i = 0; i < count; i++)
             {
-                if ((mask & (1 << index)) == 0)
+                if (selected[i].InvestmentValue > 0m)
+                {
+                    step = GcdDecimal(step, selected[i].InvestmentValue);
+                }
+            }
+
+            const int maxSteps = 100_000;
+            if (budget / step > maxSteps)
+            {
+                step = budget / maxSteps;
+            }
+
+            int maxBudget = (int)Math.Floor(budget / step);
+
+            // Таблица доходности Беллмана:
+            // dpIncome[i, x] — максимальный доход для первых i проектов при затратах x шагов
+            // takeCount[i, x] — сколько раз взят i-й проект на уровне x
+            decimal[,] dpIncome = new decimal[count + 1, maxBudget + 1];
+            int[,] takeCount = new int[count + 1, maxBudget + 1];
+            bool[,] reachable = new bool[count + 1, maxBudget + 1];
+            reachable[0, 0] = true;
+
+            // 2. Прямой ход: заполняем таблицу доходности с учётом ограничения MaxCopies из БД
+            for (int i = 1; i <= count; i++)
+            {
+                var proj = selected[i - 1];
+                decimal projectCost = proj.InvestmentValue;
+                decimal incomePerUnit = proj.Income * 1_000_000m;
+                int weight = projectCost > 0m ? (int)Math.Round(projectCost / step) : 0;
+
+                int maxAllowed = (projectCost > 0m && weight > 0)
+                    ? Math.Min(proj.MaxCopies, (int)Math.Floor(budget / projectCost))
+                    : 0;
+
+                for (int x = 0; x <= maxBudget; x++)
+                {
+                    if (reachable[i - 1, x])
+                    {
+                        dpIncome[i, x] = dpIncome[i - 1, x];
+                        reachable[i, x] = true;
+                        takeCount[i, x] = 0;
+                    }
+
+                    for (int k = 1; k <= maxAllowed; k++)
+                    {
+                        int totalWeight = k * weight;
+                        if (totalWeight > x)
+                        {
+                            break;
+                        }
+
+                        if (!reachable[i - 1, x - totalWeight])
+                        {
+                            continue;
+                        }
+
+                        decimal candidateIncome = dpIncome[i - 1, x - totalWeight] + k * incomePerUnit;
+                        if (!reachable[i, x] || candidateIncome > dpIncome[i, x])
+                        {
+                            dpIncome[i, x] = candidateIncome;
+                            reachable[i, x] = true;
+                            takeCount[i, x] = k;
+                        }
+                    }
+                }
+            }
+
+            // 3. Находим лучший достижимый уровень в таблице доходности,
+            // учитывая доход от добора остатка бюджета в проекты, где ещё остался лимит MaxCopies
+            int bestX = 0;
+            decimal maxTotalProjectedIncome = -1m;
+
+            for (int x = 0; x <= maxBudget; x++)
+            {
+                if (!reachable[count, x])
                 {
                     continue;
                 }
 
-                investment += selected[index].InvestmentValue;
-                income += selected[index].Income * 1_000_000m;
+                int[] tempCounts = new int[count];
+                decimal exactCostX = 0m;
+                decimal exactIncomeX = 0m;
+                int cursor = x;
+
+                for (int i = count; i >= 1; i--)
+                {
+                    int k = takeCount[i, cursor];
+                    if (k > 0)
+                    {
+                        tempCounts[i - 1] = k;
+                        exactCostX += selected[i - 1].InvestmentValue * k;
+                        exactIncomeX += selected[i - 1].Income * 1_000_000m * k;
+                        cursor -= k * (int)Math.Round(selected[i - 1].InvestmentValue / step);
+                    }
+                }
+
+                if (exactCostX > budget)
+                {
+                    continue;
+                }
+
+                // Остаток бюджета распределяем по рентабельным проектам в пределах их свободного лимита MaxCopies
+                decimal remainder = budget - exactCostX;
+                decimal remainderIncome = 0m;
+
+                var availableProjects = selected
+                    .Select((p, idx) => new
+                    {
+                        RemainingCapacity = Math.Max(0m, (p.MaxCopies - tempCounts[idx]) * p.InvestmentValue),
+                        Efficiency = p.InvestmentValue > 0m ? (p.Income * 1_000_000m) / p.InvestmentValue : 0m
+                    })
+                    .Where(item => item.RemainingCapacity > 0m)
+                    .OrderByDescending(item => item.Efficiency);
+
+                foreach (var item in availableProjects)
+                {
+                    if (remainder <= 0m)
+                    {
+                        break;
+                    }
+
+                    decimal addAmount = Math.Min(remainder, item.RemainingCapacity);
+                    remainderIncome += addAmount * item.Efficiency;
+                    remainder -= addAmount;
+                }
+
+                decimal totalIncomeWithRemainder = exactIncomeX + remainderIncome;
+                if (totalIncomeWithRemainder > maxTotalProjectedIncome)
+                {
+                    maxTotalProjectedIncome = totalIncomeWithRemainder;
+                    bestX = x;
+                }
             }
 
-            if (investment <= budget && income > bestIncome)
+            // 4. Фиксируем выбранные целые вложения из оптимальной ячейки таблицы доходности
+            int currentX = bestX;
+            for (int i = count; i >= 1; i--)
             {
-                bestIncome = income;
-                bestInvestment = investment;
-                bestMask = mask;
+                int k = takeCount[i, currentX];
+                if (k > 0)
+                {
+                    integerCounts[i - 1] = k;
+                    allocatedAmounts[i - 1] = selected[i - 1].InvestmentValue * k;
+                    bestInvestment += allocatedAmounts[i - 1];
+                    bestIncome += selected[i - 1].Income * 1_000_000m * k;
+
+                    currentX -= k * (int)Math.Round(selected[i - 1].InvestmentValue / step);
+                }
+            }
+
+            // 5. Если остался неразделённый нацело остаток — динамически докладываем его в доступные проекты
+            decimal unallocated = budget - bestInvestment;
+            if (unallocated > 0m)
+            {
+                var availableProjects = selected
+                    .Select((p, idx) => new
+                    {
+                        Index = idx,
+                        RemainingCapacity = Math.Max(0m, (p.MaxCopies * p.InvestmentValue) - allocatedAmounts[idx]),
+                        Efficiency = p.InvestmentValue > 0m ? (p.Income * 1_000_000m) / p.InvestmentValue : 0m
+                    })
+                    .Where(item => item.RemainingCapacity > 0m)
+                    .OrderByDescending(item => item.Efficiency);
+
+                foreach (var item in availableProjects)
+                {
+                    if (unallocated <= 0m)
+                    {
+                        break;
+                    }
+
+                    decimal addAmount = Math.Min(unallocated, item.RemainingCapacity);
+                    allocatedAmounts[item.Index] += addAmount;
+                    bestInvestment += addAmount;
+                    bestIncome += addAmount * item.Efficiency;
+                    unallocated -= addAmount;
+                }
             }
         }
 
+        // 6. Формируем итоговый портфель
         var portfolio = new List<InvestmentPortfolioRow>();
         for (int index = 0; index < count; index++)
         {
-            if ((bestMask & (1 << index)) == 0)
+            if (allocatedAmounts[index] <= 0m)
             {
                 continue;
             }
 
             var project = selected[index];
+            // Переводим вложенную сумму обратно в масштаб свойства Invests (если Invests в млн, а InvestmentValue в рублях)
+            decimal scaleFactor = project.InvestmentValue > 0m ? project.Invests / project.InvestmentValue : 1m;
+            decimal displayAllocated = allocatedAmounts[index] * scaleFactor;
+
+            string title = integerCounts[index] > 1
+                ? $"{project.ProjectName} (×{integerCounts[index]})"
+                : project.ProjectName;
+
+            // Если в проект пошёл дробный остаток, помечаем это в названии
+           
+
             portfolio.Add(new InvestmentPortfolioRow
             {
-                SelectedProject = project.ProjectName,
+                SelectedProject = title,
                 Company = project.Company,
-                Allocated = project.Invests.ToString("N2", CultureInfo.CurrentCulture) + " млн ₽",
-                Share = bestInvestment == 0
+                Allocated = displayAllocated.ToString("N2", CultureInfo.CurrentCulture) + " млн ₽",
+                Share = bestInvestment == 0m
                     ? "0 %"
-                    : (project.InvestmentValue * 100m / bestInvestment)
+                    : (allocatedAmounts[index] * 100m / bestInvestment)
                         .ToString("N1", CultureInfo.CurrentCulture) + " %"
             });
         }
@@ -922,8 +1220,28 @@ public static class CalculationService
         return new InvestmentCalculationResult
         {
             Portfolio = portfolio,
-            TotalIncome = bestIncome,
-            TotalAllocated = bestInvestment
+            TotalIncome = decimal.Round(bestIncome, 2),
+            TotalAllocated = decimal.Round(bestInvestment, 2)
         };
     }
+
+    private static decimal GcdDecimal(decimal a, decimal b)
+    {
+        a = Math.Abs(a);
+        b = Math.Abs(b);
+        while (b > 0.000001m)
+        {
+            decimal rem = a % b;
+            a = b;
+            b = rem;
+        }
+        return a;
+    }
+
+
+    
+
+
+
+
 }

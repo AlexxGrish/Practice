@@ -414,7 +414,8 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Нормы расхода и прибыль (на 1 шт.)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="ProductsPlanGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
+                                    <DataGrid Grid.Row="1" Name="ProductsPlanGrid" IsReadOnly="False" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -484,7 +485,8 @@
                                         <TextBlock Grid.Row="0" Text="Оптимальный выпуск"
                                                    Foreground="{StaticResource AccentGreen}" FontSize="14"
                                                    FontWeight="SemiBold" Margin="0,0,0,8" />
-                                        <DataGrid Grid.Row="1" Name="PlanResultGrid" GridLinesVisibility="Horizontal">
+                                        <DataGrid Grid.Row="1" Name="PlanResultGrid" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Продукция" Width="*" Binding="{Binding Product}" />
                                                 <DataGridTextColumn Header="Выпуск, шт." Width="110" Binding="{Binding Volume}" />
@@ -541,7 +543,8 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Тарифы и запасы (₽ / ед.)" Style="{StaticResource CardTitle}"
                                                Margin="0,0,0,6" />
-                                    <DataGrid Grid.Row="1" Name="TariffsDataGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
+                                    <DataGrid Grid.Row="1" Name="TariffsDataGrid" IsReadOnly="False" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -562,7 +565,8 @@
                                     <TextBlock Grid.Row="2" Text="Магазины для расчёта" Style="{StaticResource FieldLabel}"
                                                Margin="0,6,0,4" />
                                     <DataGrid Grid.Row="3" x:Name="TransportStoresGrid" Height="75"
-                                              RowHeight="25" HeadersVisibility="None" IsReadOnly="False" GridLinesVisibility="Horizontal">
+                                              RowHeight="25" HeadersVisibility="None" IsReadOnly="False" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="40">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -623,7 +627,8 @@
                                         <TextBlock Grid.Row="0" Text="Отгрузка, ед."
                                                    Foreground="{StaticResource AccentGreen}" FontSize="14"
                                                    FontWeight="SemiBold" Margin="0,0,0,8" />
-                                        <DataGrid Grid.Row="1" Name="ResultRouteGrid" GridLinesVisibility="Horizontal">
+                                        <DataGrid Grid.Row="1" Name="ResultRouteGrid" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Warehouse}" />
                                                 <DataGridTextColumn Header="Магазин 1" Width="110" Binding="{Binding Shop1}" />
@@ -733,7 +738,8 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Затраты и остаточная стоимость по возрасту (млн ₽)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="EqCostsGrid" GridLinesVisibility="Horizontal">
+                                    <DataGrid Grid.Row="1" Name="EqCostsGrid" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Возраст, лет" Width="*" Binding="{Binding Age}" IsReadOnly="True" />
                                             <DataGridTextColumn Header="Эксплуатация" Width="130" Binding="{Binding OperatingCost, StringFormat=N2}" IsReadOnly="True" />
@@ -758,7 +764,8 @@
                                         <TextBlock x:Name="EquipmentDecisionText" Text="Расчёт не выполнен" Foreground="White"
                                                    FontWeight="SemiBold" FontSize="12" Margin="0,6,0,0" TextWrapping="Wrap" />
                                     </StackPanel>
-                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="StrategyGrid" GridLinesVisibility="Horizontal">
+                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="StrategyGrid" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Год" Width="55" Binding="{Binding Year}" />
                                             <DataGridTextColumn Header="Возраст" Width="60" Binding="{Binding Age}" />
@@ -816,7 +823,8 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Поток покупателей (в час пик)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="CashflowGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
+                                    <DataGrid Grid.Row="1" Name="CashflowGrid" IsReadOnly="False" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -840,11 +848,6 @@
                                     Margin="10,0,0,10" CornerRadius="8" Padding="18">
                                 <StackPanel>
                                     <TextBlock Text="Целевой уровень сервиса" Style="{StaticResource CardTitle}" />
-                                    <TextBlock Text="Интервал наблюдения" Style="{StaticResource FieldLabel}" />
-                                    <ComboBox Height="38" SelectedIndex="0" Margin="0,0,0,15"
-                                              ToolTip="Интервал, для которого планируется количество касс">
-                                        <ComboBoxItem Content="Будни 18:00–19:00" />
-                                    </ComboBox>
                                     <UniformGrid Columns="2">
                                         <StackPanel Margin="0,0,5,0">
                                             <TextBlock Text="Ожидание, не более" Style="{StaticResource FieldLabel}" />
@@ -873,7 +876,8 @@
                                         <TextBlock x:Name="CashTotalText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
                                         <TextBlock x:Name="CashSummaryText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap" />
                                     </StackPanel>
-                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="CashResultGrid" GridLinesVisibility="Horizontal">
+                                    <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="CashResultGrid" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Магазин" Width="*" Binding="{Binding Market}" />
                                             <DataGridTextColumn Header="Касс" Width="100" Binding="{Binding Count}" />
@@ -928,7 +932,7 @@
                                     Margin="0,0,10,10" CornerRadius="8" Padding="18">
                                 <StackPanel>
                                     <TextBlock Text="Инвестиционный бюджет" Style="{StaticResource CardTitle}" />
-                                    <TextBlock Text="Доступный бюджет" Style="{StaticResource FieldLabel}" />
+                                    <TextBlock Text="Доступный бюджет  (млн ₽) " Style="{StaticResource FieldLabel}" />
                                     <TextBox x:Name="InvestBudgetText" Height="38" Text="10000000" Margin="0,0,0,15"
                                              ToolTip="Сумма, доступная для распределения между проектами, рублей" />
                                     <UniformGrid Columns="2">
@@ -957,7 +961,8 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Проекты для оценки (млн ₽)"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" Name="InvestProjectsGrid" IsReadOnly="False" GridLinesVisibility="Horizontal">
+                                    <DataGrid Grid.Row="1" Name="InvestProjectsGrid" IsReadOnly="False" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="42">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -1000,7 +1005,8 @@
                                         <TextBlock Grid.Row="0" Text="Рекомендуемый портфель"
                                                    Foreground="{StaticResource AccentGreen}" FontSize="14"
                                                    FontWeight="SemiBold" Margin="0,0,0,8" />
-                                        <DataGrid Grid.Row="1" Name="InvestPortfolioGrid" GridLinesVisibility="Horizontal">
+                                        <DataGrid Grid.Row="1" Name="InvestPortfolioGrid" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Включенный проект" Width="*" Binding="{Binding SelectedProject}" />
                                                 <DataGridTextColumn Header="Компания" Width="120" Binding="{Binding Company}" />
@@ -1066,7 +1072,8 @@
                                     </Grid>
                                     <DataGrid Grid.Row="1" x:Name="ProductsGrid"
                                               SelectionChanged="ProductsGrid_SelectionChanged"
-                                              MouseDoubleClick="ProductsGrid_MouseDoubleClick" GridLinesVisibility="Horizontal">
+                                              MouseDoubleClick="ProductsGrid_MouseDoubleClick" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Добавить товар" Click="BtnAddProduct_Click" />
@@ -1297,7 +1304,8 @@
                                     </Grid>
                                     <DataGrid Grid.Row="1" x:Name="UsersGrid"
                                               SelectionChanged="UsersGrid_SelectionChanged"
-                                              MouseDoubleClick="UsersGrid_MouseDoubleClick" GridLinesVisibility="Horizontal">
+                                              MouseDoubleClick="UsersGrid_MouseDoubleClick" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Добавить пользователя" Click="BtnAddUser_Click" />
@@ -1325,7 +1333,8 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Text="Роли и права доступа к разделам"
                                                Style="{StaticResource CardTitle}" />
-                                    <DataGrid Grid.Row="1" x:Name="RightsGrid" GridLinesVisibility="All">
+                                    <DataGrid Grid.Row="1" x:Name="RightsGrid" GridLinesVisibility="All"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Раздел системы" Width="*" Binding="{Binding SectionName}" />
                                             <DataGridTextColumn Header="Администратор" Width="170" Binding="{Binding AdminRight}" />

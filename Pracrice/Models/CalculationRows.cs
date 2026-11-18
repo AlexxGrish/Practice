@@ -69,14 +69,11 @@ public sealed class TransportResultRow
 {
     public required string Warehouse { get; init; }
 
-    public int Shop1 { get; init; }
-
-    public int Shop2 { get; init; }
-
-    public int Shop3 { get; init; }
+    public required int[] Shops { get; init; }
 
     public int Reserve { get; init; }
 }
+
 
 public sealed class TransportCalculationResult
 {
@@ -186,7 +183,10 @@ public sealed class InvestmentProjectRow
     public string ProfitPercent { get; init; } = string.Empty;
 
     public decimal InvestmentValue { get; init; }
+
+    public int MaxCopies { get; set; } = 1;
 }
+
 
 public sealed class InvestmentPortfolioRow
 {

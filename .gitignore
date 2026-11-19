@@ -1,2 +1,7 @@
-"промт.txt" 
-"промт.txt" 
+
+/Pracrice/.vs
+/Pracrice/bin/Debug/net9.0-windows
+
+.vs/
+bin/
+obj/

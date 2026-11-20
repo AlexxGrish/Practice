@@ -115,7 +115,7 @@ public static class CalculationService
         int[] basis = { n, n + 1, n + 2 };
         const double eps = 1e-9;
 
-        // Прямой симплекс-метод (правило Бланда)
+        // Прямой проход
         for (int iter = 0; iter < 1000; iter++)
         {
             int pivotCol = -1;
@@ -1029,7 +1029,7 @@ public static class CalculationService
 
         if (count > 0 && budget > 0m)
         {
-            // 1. Вычисляем шаг сетки для таблицы доходности Беллмана
+            // 1. Вычисляем шаг сетки для таблицы доходности
             decimal step = budget;
             for (int i = 0; i < count; i++)
             {
@@ -1047,7 +1047,7 @@ public static class CalculationService
 
             int maxBudget = (int)Math.Floor(budget / step);
 
-            // Таблица доходности Беллмана:
+            // Таблица доходности:
             // dpIncome[i, x] — максимальный доход для первых i проектов при затратах x шагов
             // takeCount[i, x] — сколько раз взят i-й проект на уровне x
             decimal[,] dpIncome = new decimal[count + 1, maxBudget + 1];

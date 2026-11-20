@@ -708,7 +708,135 @@
 		    quid       	"6AE44EB900F3"
 		    type       	"EndState")
 		(object ActivityState "Построить начальный план"
-		    quid       	"6AE44DDA018A"))
+		    quid       	"6AE44DDA018A")
+		(object State "$UNNAMED$100"
+		    quid       	"5841DCB97832"
+		    type       	"StartState")
+		(object ActivityState "Выпуск: открыть модуль «План выпуска»"
+		    quid       	"CFB22A62B290")
+		(object ActivityState "Выпуск: загрузить продукты и лимиты ресурсов"
+		    quid       	"6B772C6903BD")
+		(object Decision "Выпуск: лимиты ресурсов достаточны?"
+		    quid       	"11DAB39142E0")
+		(object ActivityState "Выпуск: показать предупреждение о лимитах"
+		    quid       	"C5C75C99E7F3")
+		(object ActivityState "Выпуск: выбрать продукты для расчёта"
+		    quid       	"A29E5ACD0623")
+		(object Decision "Выпуск: данные корректны?"
+		    quid       	"7FC76D328FF3")
+		(object ActivityState "Выпуск: показать сообщение об ошибке"
+		    quid       	"56A153D52BCA")
+		(object ActivityState "Выпуск: решить задачу симплекс-методом"
+		    quid       	"B3E5B72AEABB")
+		(object Decision "Выпуск: план допустим?"
+		    quid       	"FFD9793A3D5F")
+		(object ActivityState "Выпуск: пересчитать остатки ресурсов"
+		    quid       	"3E6FCE9F9705")
+		(object ActivityState "Выпуск: сформировать план выпуска"
+		    quid       	"FD0E21F630C2")
+		(object ActivityState "Выпуск: показать результат и экспорт"
+		    quid       	"3CA9B8B03BAA")
+		(object State "$UNNAMED$101"
+		    quid       	"681F68480729"
+		    type       	"EndState")
+		(object ActivityState "Выпуск: построить начальный опорный план"
+		    quid       	"F84DAE90C12C")
+		(object State "$UNNAMED$102"
+		    quid       	"4C61B23A6DC2"
+		    type       	"StartState")
+		(object ActivityState "Оборудование: открыть модуль"
+		    quid       	"59E16393BE94")
+		(object ActivityState "Оборудование: загрузить параметры оборудования"
+		    quid       	"2C5E3EA2A55E")
+		(object Decision "Оборудование: срок службы корректен?"
+		    quid       	"1EFE1D315A60")
+		(object ActivityState "Оборудование: показать сообщение о параметрах"
+		    quid       	"A54A4937CD6A")
+		(object ActivityState "Оборудование: выбрать горизонт планирования"
+		    quid       	"67D43F592B32")
+		(object Decision "Оборудование: данные корректны?"
+		    quid       	"E16FCF53C447")
+		(object ActivityState "Оборудование: показать сообщение об ошибке"
+		    quid       	"10E6C3EDE7CB")
+		(object ActivityState "Оборудование: рассчитать таблицу Беллмана"
+		    quid       	"DF31F82A6262")
+		(object Decision "Оборудование: замена выгодна?"
+		    quid       	"E628BDF3DA70")
+		(object ActivityState "Оборудование: пересчитать стратегию"
+		    quid       	"F0BC628877AB")
+		(object ActivityState "Оборудование: сформировать график замен"
+		    quid       	"75851540DEF5")
+		(object ActivityState "Оборудование: показать результат и экспорт"
+		    quid       	"DC61CC8FF726")
+		(object State "$UNNAMED$103"
+		    quid       	"1C34997BA59C"
+		    type       	"EndState")
+		(object ActivityState "Оборудование: построить начальное состояние"
+		    quid       	"B8C114FCAE1F")
+		(object State "$UNNAMED$104"
+		    quid       	"A58AD79BBA30"
+		    type       	"StartState")
+		(object ActivityState "Кассы: открыть модуль"
+		    quid       	"CF98662C759C")
+		(object ActivityState "Кассы: загрузить потоки магазинов"
+		    quid       	"FC27F5D18D71")
+		(object Decision "Кассы: потоки заданы?"
+		    quid       	"6C54731C865A")
+		(object ActivityState "Кассы: показать сообщение о потоках"
+		    quid       	"6B8F5A7E554C")
+		(object ActivityState "Кассы: выбрать целевые показатели"
+		    quid       	"70F77ACF3EF4")
+		(object Decision "Кассы: данные корректны?"
+		    quid       	"077495039571")
+		(object ActivityState "Кассы: показать сообщение об ошибке"
+		    quid       	"31FBC906749A")
+		(object ActivityState "Кассы: рассчитать число кассиров"
+		    quid       	"5AC2159173CB")
+		(object Decision "Кассы: очередь допустима?"
+		    quid       	"905EA0592D16")
+		(object ActivityState "Кассы: увеличить число кассиров"
+		    quid       	"3D9B6A4E88FE")
+		(object ActivityState "Кассы: сформировать план касс"
+		    quid       	"0DF4AA486615")
+		(object ActivityState "Кассы: показать результат и экспорт"
+		    quid       	"152D423CF454")
+		(object State "$UNNAMED$105"
+		    quid       	"3E0EA8E42A8C"
+		    type       	"EndState")
+		(object ActivityState "Кассы: построить начальную очередь"
+		    quid       	"05A4D5FCA55D")
+		(object State "$UNNAMED$106"
+		    quid       	"5D0DD65B48DE"
+		    type       	"StartState")
+		(object ActivityState "Инвестиции: открыть модуль"
+		    quid       	"A7FCF484C3F4")
+		(object ActivityState "Инвестиции: загрузить проекты и бюджет"
+		    quid       	"2B0BA31C7FC4")
+		(object Decision "Инвестиции: бюджет задан?"
+		    quid       	"51170A044456")
+		(object ActivityState "Инвестиции: показать сообщение о бюджете"
+		    quid       	"E0033E245603")
+		(object ActivityState "Инвестиции: выбрать проекты"
+		    quid       	"F321453F8CFF")
+		(object Decision "Инвестиции: данные корректны?"
+		    quid       	"1E6B360AE176")
+		(object ActivityState "Инвестиции: показать сообщение об ошибке"
+		    quid       	"E4E52E6C7638")
+		(object ActivityState "Инвестиции: решить задачу о ранце"
+		    quid       	"2A17468BB483")
+		(object Decision "Инвестиции: портфель допустим?"
+		    quid       	"1EE1ED27EA9D")
+		(object ActivityState "Инвестиции: пересчитать распределение"
+		    quid       	"941163DF98BD")
+		(object ActivityState "Инвестиции: сформировать портфель"
+		    quid       	"F26B203834C6")
+		(object ActivityState "Инвестиции: показать результат и экспорт"
+		    quid       	"5D267A170397")
+		(object State "$UNNAMED$107"
+		    quid       	"2251FEA180EE"
+		    type       	"EndState")
+		(object ActivityState "Инвестиции: построить начальный портфель"
+		    quid       	"A0DADC89AC05"))
 	    partitions 	(list Partitions)
 	    objects    	(list Objects)
 	    transitions 	(list transition_list
@@ -744,7 +872,7 @@
 		    client     	"Use Case View::State/Activity Model::Запасы достаточны?"
 		    client_quidu 	"6AE44D600236"
 		    Event      	(object Event "нет"
-			quid       	"6AE44E8B0140")
+			quid       	"C2B0E3143A5F")
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44E8B0142"))
 		(object State_Transition
@@ -763,7 +891,7 @@
 		    client     	"Use Case View::State/Activity Model::Запасы достаточны?"
 		    client_quidu 	"6AE44D600236"
 		    Event      	(object Event "ДА"
-			quid       	"6AE44ED303A7")
+			quid       	"6BE4786B1BB6")
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44ED303A9"))
 		(object State_Transition
@@ -774,7 +902,7 @@
 		    client     	"Use Case View::State/Activity Model::Данные корректны?"
 		    client_quidu 	"6AE44DA2018D"
 		    Event      	(object Event "ДА"
-			quid       	"6AE44EDB0315")
+			quid       	"33582179933E")
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44EDB0317"))
 		(object State_Transition
@@ -793,7 +921,7 @@
 		    client     	"Use Case View::State/Activity Model::Данные корректны?"
 		    client_quidu 	"6AE44DA2018D"
 		    Event      	(object Event "НЕТ"
-			quid       	"6AE44EE90392")
+			quid       	"E7A40D338419")
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44EE90394"))
 		(object State_Transition
@@ -820,7 +948,7 @@
 		    client     	"Use Case View::State/Activity Model::План допустим?"
 		    client_quidu 	"6AE44E1B000D"
 		    Event      	(object Event "НЕТ"
-			quid       	"6AE44EFD0395")
+			quid       	"C11D9DC834C5")
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44EFD0397"))
 		(object State_Transition
@@ -831,7 +959,7 @@
 		    client     	"Use Case View::State/Activity Model::План допустим?"
 		    client_quidu 	"6AE44E1B000D"
 		    Event      	(object Event "ДА"
-			quid       	"6AE44F0102D2")
+			quid       	"F8FFAC8A38CD")
 		    sendEvent  	(object sendEvent
 			quid       	"6AE44F0102D4"))
 		(object State_Transition
@@ -849,7 +977,559 @@
 		    client     	"Use Case View::State/Activity Model::Показать результат и экспорт"
 		    client_quidu 	"6AE44E5300C2"
 		    sendEvent  	(object sendEvent
-			quid       	"6AE44F0A02BD")))
+			quid       	"6AE44F0A02BD"))
+		(object State_Transition
+		    quid       	"3E135FA5BF35"
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: открыть модуль «План выпуска»"
+		    supplier_quidu 	"CFB22A62B290"
+		    client     	"$UNNAMED$100"
+		    client_quidu 	"5841DCB97832"
+		    sendEvent  	(object sendEvent
+			quid       	"31B7567F103C"))
+		(object State_Transition
+		    quid       	"25A00B196AFB"
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: загрузить продукты и лимиты ресурсов"
+		    supplier_quidu 	"6B772C6903BD"
+		    client     	"Use Case View::State/Activity Model::Выпуск: открыть модуль «План выпуска»"
+		    client_quidu 	"CFB22A62B290"
+		    sendEvent  	(object sendEvent
+			quid       	"3F0DCD5C5CD2"))
+		(object State_Transition
+		    quid       	"D8CD7C5EC1EE"
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: лимиты ресурсов достаточны?"
+		    supplier_quidu 	"11DAB39142E0"
+		    client     	"Use Case View::State/Activity Model::Выпуск: загрузить продукты и лимиты ресурсов"
+		    client_quidu 	"6B772C6903BD"
+		    sendEvent  	(object sendEvent
+			quid       	"B767662E1414"))
+		(object State_Transition
+		    quid       	"4713C3E55E5A"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: показать предупреждение о лимитах"
+		    supplier_quidu 	"C5C75C99E7F3"
+		    client     	"Use Case View::State/Activity Model::Выпуск: лимиты ресурсов достаточны?"
+		    client_quidu 	"11DAB39142E0"
+		    Event      	(object Event "нет"
+			quid       	"1D082BDD9C39")
+		    sendEvent  	(object sendEvent
+			quid       	"E6FE95330244"))
+		(object State_Transition
+		    quid       	"747EDA247652"
+		    supplier   	"$UNNAMED$101"
+		    supplier_quidu 	"681F68480729"
+		    client     	"Use Case View::State/Activity Model::Выпуск: показать предупреждение о лимитах"
+		    client_quidu 	"C5C75C99E7F3"
+		    sendEvent  	(object sendEvent
+			quid       	"20ECFB37701A"))
+		(object State_Transition
+		    quid       	"DE36CC0A9BDE"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: данные корректны?"
+		    supplier_quidu 	"7FC76D328FF3"
+		    client     	"Use Case View::State/Activity Model::Выпуск: лимиты ресурсов достаточны?"
+		    client_quidu 	"11DAB39142E0"
+		    Event      	(object Event "ДА"
+			quid       	"78773C411F18")
+		    sendEvent  	(object sendEvent
+			quid       	"15C48DE451FC"))
+		(object State_Transition
+		    quid       	"93E08AF8ED70"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: показать сообщение об ошибке"
+		    supplier_quidu 	"56A153D52BCA"
+		    client     	"Use Case View::State/Activity Model::Выпуск: данные корректны?"
+		    client_quidu 	"7FC76D328FF3"
+		    Event      	(object Event "ДА"
+			quid       	"4149E9434132")
+		    sendEvent  	(object sendEvent
+			quid       	"6EAC3E8E16A1"))
+		(object State_Transition
+		    quid       	"936DBEC4A1D0"
+		    supplier   	"$UNNAMED$101"
+		    supplier_quidu 	"681F68480729"
+		    client     	"Use Case View::State/Activity Model::Выпуск: показать сообщение об ошибке"
+		    client_quidu 	"56A153D52BCA"
+		    sendEvent  	(object sendEvent
+			quid       	"49B8A5D56895"))
+		(object State_Transition
+		    quid       	"C74FC9E01B9E"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: построить начальный опорный план"
+		    supplier_quidu 	"F84DAE90C12C"
+		    client     	"Use Case View::State/Activity Model::Выпуск: данные корректны?"
+		    client_quidu 	"7FC76D328FF3"
+		    Event      	(object Event "НЕТ"
+			quid       	"5D11956B5BDC")
+		    sendEvent  	(object sendEvent
+			quid       	"5B7154A4ED34"))
+		(object State_Transition
+		    quid       	"57A189D1F0FD"
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: решить задачу симплекс-методом"
+		    supplier_quidu 	"B3E5B72AEABB"
+		    client     	"Use Case View::State/Activity Model::Выпуск: построить начальный опорный план"
+		    client_quidu 	"F84DAE90C12C"
+		    sendEvent  	(object sendEvent
+			quid       	"3B3F93D61AB0"))
+		(object State_Transition
+		    quid       	"C4CBA015F0B2"
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: план допустим?"
+		    supplier_quidu 	"FFD9793A3D5F"
+		    client     	"Use Case View::State/Activity Model::Выпуск: решить задачу симплекс-методом"
+		    client_quidu 	"B3E5B72AEABB"
+		    sendEvent  	(object sendEvent
+			quid       	"5C89BB1D7A3B"))
+		(object State_Transition
+		    quid       	"7D8581929B1B"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: пересчитать остатки ресурсов"
+		    supplier_quidu 	"3E6FCE9F9705"
+		    client     	"Use Case View::State/Activity Model::Выпуск: план допустим?"
+		    client_quidu 	"FFD9793A3D5F"
+		    Event      	(object Event "НЕТ"
+			quid       	"8F258BC95586")
+		    sendEvent  	(object sendEvent
+			quid       	"7ACF22C60359"))
+		(object State_Transition
+		    quid       	"8CA6780DCD58"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: сформировать план выпуска"
+		    supplier_quidu 	"FD0E21F630C2"
+		    client     	"Use Case View::State/Activity Model::Выпуск: план допустим?"
+		    client_quidu 	"FFD9793A3D5F"
+		    Event      	(object Event "ДА"
+			quid       	"865F95ACE0A5")
+		    sendEvent  	(object sendEvent
+			quid       	"67CF9B238CD7"))
+		(object State_Transition
+		    quid       	"091D5F12C1D5"
+		    supplier   	"Use Case View::State/Activity Model::Выпуск: показать результат и экспорт"
+		    supplier_quidu 	"3CA9B8B03BAA"
+		    client     	"Use Case View::State/Activity Model::Выпуск: сформировать план выпуска"
+		    client_quidu 	"FD0E21F630C2"
+		    sendEvent  	(object sendEvent
+			quid       	"1932F851BBAF"))
+		(object State_Transition
+		    quid       	"08709A16B537"
+		    supplier   	"$UNNAMED$101"
+		    supplier_quidu 	"681F68480729"
+		    client     	"Use Case View::State/Activity Model::Выпуск: показать результат и экспорт"
+		    client_quidu 	"3CA9B8B03BAA"
+		    sendEvent  	(object sendEvent
+			quid       	"BFC1811C605A"))
+		(object State_Transition
+		    quid       	"A5F91A9E10B8"
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: открыть модуль"
+		    supplier_quidu 	"59E16393BE94"
+		    client     	"$UNNAMED$102"
+		    client_quidu 	"4C61B23A6DC2"
+		    sendEvent  	(object sendEvent
+			quid       	"4AD4C94F64C6"))
+		(object State_Transition
+		    quid       	"008904AFE7CC"
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: загрузить параметры оборудования"
+		    supplier_quidu 	"2C5E3EA2A55E"
+		    client     	"Use Case View::State/Activity Model::Оборудование: открыть модуль"
+		    client_quidu 	"59E16393BE94"
+		    sendEvent  	(object sendEvent
+			quid       	"440E1432F127"))
+		(object State_Transition
+		    quid       	"206D4D74EBA2"
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: срок службы корректен?"
+		    supplier_quidu 	"1EFE1D315A60"
+		    client     	"Use Case View::State/Activity Model::Оборудование: загрузить параметры оборудования"
+		    client_quidu 	"2C5E3EA2A55E"
+		    sendEvent  	(object sendEvent
+			quid       	"31738141F37C"))
+		(object State_Transition
+		    quid       	"2F5028F04EB4"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: показать сообщение о параметрах"
+		    supplier_quidu 	"A54A4937CD6A"
+		    client     	"Use Case View::State/Activity Model::Оборудование: срок службы корректен?"
+		    client_quidu 	"1EFE1D315A60"
+		    Event      	(object Event "нет"
+			quid       	"6A6ADD5ACFD9")
+		    sendEvent  	(object sendEvent
+			quid       	"CB36664D0EBC"))
+		(object State_Transition
+		    quid       	"B73A90305042"
+		    supplier   	"$UNNAMED$103"
+		    supplier_quidu 	"1C34997BA59C"
+		    client     	"Use Case View::State/Activity Model::Оборудование: показать сообщение о параметрах"
+		    client_quidu 	"A54A4937CD6A"
+		    sendEvent  	(object sendEvent
+			quid       	"0C45B4DCAD6E"))
+		(object State_Transition
+		    quid       	"A5134E671634"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: данные корректны?"
+		    supplier_quidu 	"E16FCF53C447"
+		    client     	"Use Case View::State/Activity Model::Оборудование: срок службы корректен?"
+		    client_quidu 	"1EFE1D315A60"
+		    Event      	(object Event "ДА"
+			quid       	"9EA066AE2C57")
+		    sendEvent  	(object sendEvent
+			quid       	"748184EDF2CD"))
+		(object State_Transition
+		    quid       	"2B4D001F34DF"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: показать сообщение об ошибке"
+		    supplier_quidu 	"10E6C3EDE7CB"
+		    client     	"Use Case View::State/Activity Model::Оборудование: данные корректны?"
+		    client_quidu 	"E16FCF53C447"
+		    Event      	(object Event "ДА"
+			quid       	"29F4A7113F1D")
+		    sendEvent  	(object sendEvent
+			quid       	"9D3858796D78"))
+		(object State_Transition
+		    quid       	"B448C0671591"
+		    supplier   	"$UNNAMED$103"
+		    supplier_quidu 	"1C34997BA59C"
+		    client     	"Use Case View::State/Activity Model::Оборудование: показать сообщение об ошибке"
+		    client_quidu 	"10E6C3EDE7CB"
+		    sendEvent  	(object sendEvent
+			quid       	"D091530F27B2"))
+		(object State_Transition
+		    quid       	"66BACEBEECB0"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: построить начальное состояние"
+		    supplier_quidu 	"B8C114FCAE1F"
+		    client     	"Use Case View::State/Activity Model::Оборудование: данные корректны?"
+		    client_quidu 	"E16FCF53C447"
+		    Event      	(object Event "НЕТ"
+			quid       	"BC59B640B047")
+		    sendEvent  	(object sendEvent
+			quid       	"DD82A4D14DCB"))
+		(object State_Transition
+		    quid       	"B54791109E9D"
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: рассчитать таблицу Беллмана"
+		    supplier_quidu 	"DF31F82A6262"
+		    client     	"Use Case View::State/Activity Model::Оборудование: построить начальное состояние"
+		    client_quidu 	"B8C114FCAE1F"
+		    sendEvent  	(object sendEvent
+			quid       	"5F0B8CAE59A2"))
+		(object State_Transition
+		    quid       	"3F1D67C38551"
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: замена выгодна?"
+		    supplier_quidu 	"E628BDF3DA70"
+		    client     	"Use Case View::State/Activity Model::Оборудование: рассчитать таблицу Беллмана"
+		    client_quidu 	"DF31F82A6262"
+		    sendEvent  	(object sendEvent
+			quid       	"734F33FD72EC"))
+		(object State_Transition
+		    quid       	"8496D0B4DA74"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: пересчитать стратегию"
+		    supplier_quidu 	"F0BC628877AB"
+		    client     	"Use Case View::State/Activity Model::Оборудование: замена выгодна?"
+		    client_quidu 	"E628BDF3DA70"
+		    Event      	(object Event "НЕТ"
+			quid       	"40EB5D96B663")
+		    sendEvent  	(object sendEvent
+			quid       	"26732B72A1A6"))
+		(object State_Transition
+		    quid       	"F7C8F66E1EBD"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: сформировать график замен"
+		    supplier_quidu 	"75851540DEF5"
+		    client     	"Use Case View::State/Activity Model::Оборудование: замена выгодна?"
+		    client_quidu 	"E628BDF3DA70"
+		    Event      	(object Event "ДА"
+			quid       	"F5F09772A1A4")
+		    sendEvent  	(object sendEvent
+			quid       	"E22BC9987C84"))
+		(object State_Transition
+		    quid       	"A3D975DC630F"
+		    supplier   	"Use Case View::State/Activity Model::Оборудование: показать результат и экспорт"
+		    supplier_quidu 	"DC61CC8FF726"
+		    client     	"Use Case View::State/Activity Model::Оборудование: сформировать график замен"
+		    client_quidu 	"75851540DEF5"
+		    sendEvent  	(object sendEvent
+			quid       	"E6C45A2296AD"))
+		(object State_Transition
+		    quid       	"14C3C8E8472A"
+		    supplier   	"$UNNAMED$103"
+		    supplier_quidu 	"1C34997BA59C"
+		    client     	"Use Case View::State/Activity Model::Оборудование: показать результат и экспорт"
+		    client_quidu 	"DC61CC8FF726"
+		    sendEvent  	(object sendEvent
+			quid       	"53C65643F69A"))
+		(object State_Transition
+		    quid       	"7C2E4BA2B8AF"
+		    supplier   	"Use Case View::State/Activity Model::Кассы: открыть модуль"
+		    supplier_quidu 	"CF98662C759C"
+		    client     	"$UNNAMED$104"
+		    client_quidu 	"A58AD79BBA30"
+		    sendEvent  	(object sendEvent
+			quid       	"F3CDCB64F632"))
+		(object State_Transition
+		    quid       	"A6AA7370E548"
+		    supplier   	"Use Case View::State/Activity Model::Кассы: загрузить потоки магазинов"
+		    supplier_quidu 	"FC27F5D18D71"
+		    client     	"Use Case View::State/Activity Model::Кассы: открыть модуль"
+		    client_quidu 	"CF98662C759C"
+		    sendEvent  	(object sendEvent
+			quid       	"98F07E6B5895"))
+		(object State_Transition
+		    quid       	"8C35E8D17918"
+		    supplier   	"Use Case View::State/Activity Model::Кассы: потоки заданы?"
+		    supplier_quidu 	"6C54731C865A"
+		    client     	"Use Case View::State/Activity Model::Кассы: загрузить потоки магазинов"
+		    client_quidu 	"FC27F5D18D71"
+		    sendEvent  	(object sendEvent
+			quid       	"1B637BA154A1"))
+		(object State_Transition
+		    quid       	"47034874B8CC"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Кассы: показать сообщение о потоках"
+		    supplier_quidu 	"6B8F5A7E554C"
+		    client     	"Use Case View::State/Activity Model::Кассы: потоки заданы?"
+		    client_quidu 	"6C54731C865A"
+		    Event      	(object Event "нет"
+			quid       	"056334382EF4")
+		    sendEvent  	(object sendEvent
+			quid       	"A0BFE6D34F2E"))
+		(object State_Transition
+		    quid       	"51940F97D318"
+		    supplier   	"$UNNAMED$105"
+		    supplier_quidu 	"3E0EA8E42A8C"
+		    client     	"Use Case View::State/Activity Model::Кассы: показать сообщение о потоках"
+		    client_quidu 	"6B8F5A7E554C"
+		    sendEvent  	(object sendEvent
+			quid       	"70B70EF2A272"))
+		(object State_Transition
+		    quid       	"011333F1B9F1"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Кассы: данные корректны?"
+		    supplier_quidu 	"077495039571"
+		    client     	"Use Case View::State/Activity Model::Кассы: потоки заданы?"
+		    client_quidu 	"6C54731C865A"
+		    Event      	(object Event "ДА"
+			quid       	"2DC37583EE89")
+		    sendEvent  	(object sendEvent
+			quid       	"D905FF539F2E"))
+		(object State_Transition
+		    quid       	"F2C97BB0B50F"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Кассы: показать сообщение об ошибке"
+		    supplier_quidu 	"31FBC906749A"
+		    client     	"Use Case View::State/Activity Model::Кассы: данные корректны?"
+		    client_quidu 	"077495039571"
+		    Event      	(object Event "ДА"
+			quid       	"ECFAD68AB296")
+		    sendEvent  	(object sendEvent
+			quid       	"4565865DB20D"))
+		(object State_Transition
+		    quid       	"90DDD221E5A5"
+		    supplier   	"$UNNAMED$105"
+		    supplier_quidu 	"3E0EA8E42A8C"
+		    client     	"Use Case View::State/Activity Model::Кассы: показать сообщение об ошибке"
+		    client_quidu 	"31FBC906749A"
+		    sendEvent  	(object sendEvent
+			quid       	"85C1DAB39915"))
+		(object State_Transition
+		    quid       	"821A4CE9CEB9"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Кассы: построить начальную очередь"
+		    supplier_quidu 	"05A4D5FCA55D"
+		    client     	"Use Case View::State/Activity Model::Кассы: данные корректны?"
+		    client_quidu 	"077495039571"
+		    Event      	(object Event "НЕТ"
+			quid       	"703C5D7C5DF2")
+		    sendEvent  	(object sendEvent
+			quid       	"AA626F856FDD"))
+		(object State_Transition
+		    quid       	"F34134E1A1CB"
+		    supplier   	"Use Case View::State/Activity Model::Кассы: рассчитать число кассиров"
+		    supplier_quidu 	"5AC2159173CB"
+		    client     	"Use Case View::State/Activity Model::Кассы: построить начальную очередь"
+		    client_quidu 	"05A4D5FCA55D"
+		    sendEvent  	(object sendEvent
+			quid       	"345AF4BE6676"))
+		(object State_Transition
+		    quid       	"A0DE638F0EC4"
+		    supplier   	"Use Case View::State/Activity Model::Кассы: очередь допустима?"
+		    supplier_quidu 	"905EA0592D16"
+		    client     	"Use Case View::State/Activity Model::Кассы: рассчитать число кассиров"
+		    client_quidu 	"5AC2159173CB"
+		    sendEvent  	(object sendEvent
+			quid       	"3F1E3D9270DF"))
+		(object State_Transition
+		    quid       	"351FE69FB3BD"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Кассы: увеличить число кассиров"
+		    supplier_quidu 	"3D9B6A4E88FE"
+		    client     	"Use Case View::State/Activity Model::Кассы: очередь допустима?"
+		    client_quidu 	"905EA0592D16"
+		    Event      	(object Event "НЕТ"
+			quid       	"BE4A5FAE4D13")
+		    sendEvent  	(object sendEvent
+			quid       	"DC2FCBAD8C55"))
+		(object State_Transition
+		    quid       	"2D037DF633BD"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Кассы: сформировать план касс"
+		    supplier_quidu 	"0DF4AA486615"
+		    client     	"Use Case View::State/Activity Model::Кассы: очередь допустима?"
+		    client_quidu 	"905EA0592D16"
+		    Event      	(object Event "ДА"
+			quid       	"706B4A01687F")
+		    sendEvent  	(object sendEvent
+			quid       	"3D616CD0741E"))
+		(object State_Transition
+		    quid       	"698A316E2C2B"
+		    supplier   	"Use Case View::State/Activity Model::Кассы: показать результат и экспорт"
+		    supplier_quidu 	"152D423CF454"
+		    client     	"Use Case View::State/Activity Model::Кассы: сформировать план касс"
+		    client_quidu 	"0DF4AA486615"
+		    sendEvent  	(object sendEvent
+			quid       	"9783740FB86D"))
+		(object State_Transition
+		    quid       	"B5DC4AD63AA4"
+		    supplier   	"$UNNAMED$105"
+		    supplier_quidu 	"3E0EA8E42A8C"
+		    client     	"Use Case View::State/Activity Model::Кассы: показать результат и экспорт"
+		    client_quidu 	"152D423CF454"
+		    sendEvent  	(object sendEvent
+			quid       	"80796FC79117"))
+		(object State_Transition
+		    quid       	"1D5DCD19338D"
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: открыть модуль"
+		    supplier_quidu 	"A7FCF484C3F4"
+		    client     	"$UNNAMED$106"
+		    client_quidu 	"5D0DD65B48DE"
+		    sendEvent  	(object sendEvent
+			quid       	"6AE8E660C99C"))
+		(object State_Transition
+		    quid       	"A424D92BA473"
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: загрузить проекты и бюджет"
+		    supplier_quidu 	"2B0BA31C7FC4"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: открыть модуль"
+		    client_quidu 	"A7FCF484C3F4"
+		    sendEvent  	(object sendEvent
+			quid       	"FD1B84F83EC3"))
+		(object State_Transition
+		    quid       	"ACB1995A936F"
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: бюджет задан?"
+		    supplier_quidu 	"51170A044456"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: загрузить проекты и бюджет"
+		    client_quidu 	"2B0BA31C7FC4"
+		    sendEvent  	(object sendEvent
+			quid       	"25567FC91026"))
+		(object State_Transition
+		    quid       	"86FE3058EAB4"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: показать сообщение о бюджете"
+		    supplier_quidu 	"E0033E245603"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: бюджет задан?"
+		    client_quidu 	"51170A044456"
+		    Event      	(object Event "нет"
+			quid       	"AAAE5FB5C476")
+		    sendEvent  	(object sendEvent
+			quid       	"81BC56A64E97"))
+		(object State_Transition
+		    quid       	"3C09427FF3A2"
+		    supplier   	"$UNNAMED$107"
+		    supplier_quidu 	"2251FEA180EE"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: показать сообщение о бюджете"
+		    client_quidu 	"E0033E245603"
+		    sendEvent  	(object sendEvent
+			quid       	"720C603BB463"))
+		(object State_Transition
+		    quid       	"ABC6E2855845"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: данные корректны?"
+		    supplier_quidu 	"1E6B360AE176"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: бюджет задан?"
+		    client_quidu 	"51170A044456"
+		    Event      	(object Event "ДА"
+			quid       	"73B0108AB444")
+		    sendEvent  	(object sendEvent
+			quid       	"49712E371B55"))
+		(object State_Transition
+		    quid       	"CE73083CC0DC"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: показать сообщение об ошибке"
+		    supplier_quidu 	"E4E52E6C7638"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: данные корректны?"
+		    client_quidu 	"1E6B360AE176"
+		    Event      	(object Event "ДА"
+			quid       	"D5D3A8820789")
+		    sendEvent  	(object sendEvent
+			quid       	"F375FCED65A0"))
+		(object State_Transition
+		    quid       	"F24DF3C89E33"
+		    supplier   	"$UNNAMED$107"
+		    supplier_quidu 	"2251FEA180EE"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: показать сообщение об ошибке"
+		    client_quidu 	"E4E52E6C7638"
+		    sendEvent  	(object sendEvent
+			quid       	"2814487F6D0B"))
+		(object State_Transition
+		    quid       	"ECA0E30E79EF"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: построить начальный портфель"
+		    supplier_quidu 	"A0DADC89AC05"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: данные корректны?"
+		    client_quidu 	"1E6B360AE176"
+		    Event      	(object Event "НЕТ"
+			quid       	"65D740733CF5")
+		    sendEvent  	(object sendEvent
+			quid       	"313A970C0A42"))
+		(object State_Transition
+		    quid       	"E5182FB2113A"
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: решить задачу о ранце"
+		    supplier_quidu 	"2A17468BB483"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: построить начальный портфель"
+		    client_quidu 	"A0DADC89AC05"
+		    sendEvent  	(object sendEvent
+			quid       	"61F9D97396C9"))
+		(object State_Transition
+		    quid       	"58DD527E211D"
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: портфель допустим?"
+		    supplier_quidu 	"1EE1ED27EA9D"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: решить задачу о ранце"
+		    client_quidu 	"2A17468BB483"
+		    sendEvent  	(object sendEvent
+			quid       	"CC4148D40983"))
+		(object State_Transition
+		    quid       	"8CA94F09EA38"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: пересчитать распределение"
+		    supplier_quidu 	"941163DF98BD"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: портфель допустим?"
+		    client_quidu 	"1EE1ED27EA9D"
+		    Event      	(object Event "НЕТ"
+			quid       	"C30285C981B5")
+		    sendEvent  	(object sendEvent
+			quid       	"E772EAB16648"))
+		(object State_Transition
+		    quid       	"07C2A6128A86"
+		    label      	""
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: сформировать портфель"
+		    supplier_quidu 	"F26B203834C6"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: портфель допустим?"
+		    client_quidu 	"1EE1ED27EA9D"
+		    Event      	(object Event "ДА"
+			quid       	"16F623940C49")
+		    sendEvent  	(object sendEvent
+			quid       	"28C56051E49C"))
+		(object State_Transition
+		    quid       	"3AB58BEAF186"
+		    supplier   	"Use Case View::State/Activity Model::Инвестиции: показать результат и экспорт"
+		    supplier_quidu 	"5D267A170397"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: сформировать портфель"
+		    client_quidu 	"F26B203834C6"
+		    sendEvent  	(object sendEvent
+			quid       	"E6FDE77D342E"))
+		(object State_Transition
+		    quid       	"0CFB467B76FA"
+		    supplier   	"$UNNAMED$107"
+		    supplier_quidu 	"2251FEA180EE"
+		    client     	"Use Case View::State/Activity Model::Инвестиции: показать результат и экспорт"
+		    client_quidu 	"5D267A170397"
+		    sendEvent  	(object sendEvent
+			quid       	"E08F2A1B0284")))
 	    objectflows 	(list objectflow_list)
 	    statediagrams 	(list StateDiagrams
 		(object ActivityDiagram "План перевозок"
@@ -1614,6 +2294,3082 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"6AE44F0A02BA"
+			    client     	@26
+			    supplier   	@27
+			    vertices   	(list Points
+				(2273, 2473)
+				(889, 2308))
+			    line_style 	0
+			    x_offset   	FALSE)))
+		(object ActivityDiagram "План выпуска"
+		    quid       	"294F5E6E753E"
+		    title      	"План перевозок"
+		    zoom       	95
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	480
+		    items      	(list diagram_item_list
+			(object Swimlane "" @2
+			    line_color 	3342489
+			    width      	450)
+			(object StateView "StartState" "$UNNAMED$100" @3
+			    Parent_View 	@2
+			    location   	(509, 113)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"5841DCB97832"
+			    autoResize 	TRUE)
+			(object ActivityStateView "Выпуск: открыть модуль «План выпуска»" @4
+			    Parent_View 	@2
+			    location   	(403, 395)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@4
+				location   	(403, 398)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	322
+				justify    	0
+				label      	"Выпуск: открыть модуль «План выпуска»")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"CFB22A62B290"
+			    width      	428
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @5
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3E135FA5BF35"
+			    client     	@3
+			    supplier   	@4
+			    vertices   	(list Points
+				(497, 143)
+				(422, 342))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Выпуск: загрузить продукты и лимиты ресурсов" @6
+			    Parent_View 	@2
+			    location   	(403, 845)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@6
+				location   	(403, 848)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Выпуск: загрузить продукты и лимиты ресурсов")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"6B772C6903BD"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @7
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"25A00B196AFB"
+			    client     	@4
+			    supplier   	@6
+			    vertices   	(list Points
+				(403, 448)
+				(403, 792))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Выпуск: лимиты ресурсов достаточны?" @8
+			    Parent_View 	@2
+			    location   	(922, 1282)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @9
+				Parent_View 	@8
+				location   	(543, 1252)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	824
+				justify    	1
+				label      	"Выпуск: лимиты ресурсов достаточны?"
+				pctDist    	-0.411852
+				height     	276
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"11DAB39142E0"
+			    width      	681
+			    height     	232
+			    autoResize 	TRUE)
+			(object TransView "" @10
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"D8CD7C5EC1EE"
+			    client     	@6
+			    supplier   	@8
+			    vertices   	(list Points
+				(466, 897)
+				(922, 1166))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Выпуск: показать предупреждение о лимитах" @11
+			    Parent_View 	@2
+			    location   	(284, 1654)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@11
+				location   	(284, 1657)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	332
+				justify    	0
+				label      	"Выпуск: показать предупреждение о лимитах")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"C5C75C99E7F3"
+			    width      	438
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @12
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @13
+				Parent_View 	@12
+				location   	(489, 1469)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"нет"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"4713C3E55E5A"
+			    client     	@8
+			    supplier   	@11
+			    vertices   	(list Points
+				(582, 1282)
+				(326, 1601))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Выпуск: данные корректны?" @14
+			    Parent_View 	@2
+			    location   	(2606, 1153)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @15
+				Parent_View 	@14
+				location   	(2317, 1125)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	662
+				justify    	1
+				label      	"Выпуск: данные корректны?"
+				pctDist    	-0.046209
+				height     	307
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"7FC76D328FF3"
+			    width      	694
+			    height     	293
+			    autoResize 	TRUE)
+			(object TransView "" @16
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @17
+				Parent_View 	@16
+				location   	(1899, 792)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"DE36CC0A9BDE"
+			    client     	@8
+			    supplier   	@14
+			    vertices   	(list Points
+				(1262, 1282)
+				(1654, 841)
+				(2536, 822)
+				(2606, 1007))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Выпуск: показать сообщение об ошибке" @18
+			    Parent_View 	@2
+			    location   	(1913, 1428)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@18
+				location   	(1913, 1431)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	330
+				justify    	0
+				label      	"Выпуск: показать сообщение об ошибке")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"56A153D52BCA"
+			    width      	436
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @19
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @20
+				Parent_View 	@19
+				location   	(2147, 1299)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"93E08AF8ED70"
+			    client     	@14
+			    supplier   	@18
+			    vertices   	(list Points
+				(2259, 1153)
+				(1979, 1375))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Выпуск: решить задачу симплекс-методом" @21
+			    Parent_View 	@2
+			    location   	(3500, 1868)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@21
+				location   	(3500, 1824)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	448
+				justify    	0
+				label      	"Выпуск: решить задачу симплекс-методом")
+			    icon_style 	"Label"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"B3E5B72AEABB"
+			    width      	618
+			    height     	201
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object DecisionView "Выпуск: план допустим?" @22
+			    Parent_View 	@2
+			    location   	(3510, 2178)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @23
+				Parent_View 	@22
+				location   	(3418, 2131)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	2
+				max_width  	300
+				justify    	1
+				label      	"Выпуск: план допустим?"
+				pctDist    	0.468712
+				height     	231
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"FFD9793A3D5F"
+			    width      	662
+			    height     	319
+			    autoResize 	TRUE)
+			(object ActivityStateView "Выпуск: пересчитать остатки ресурсов" @24
+			    Parent_View 	@2
+			    location   	(4254, 2139)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@24
+				location   	(4254, 2142)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	576
+				justify    	0
+				label      	"Выпуск: пересчитать остатки ресурсов")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3E6FCE9F9705"
+			    width      	682
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Выпуск: сформировать план выпуска" @25
+			    Parent_View 	@2
+			    location   	(2438, 2047)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@25
+				location   	(2438, 2050)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Выпуск: сформировать план выпуска")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"FD0E21F630C2"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Выпуск: показать результат и экспорт" @26
+			    Parent_View 	@2
+			    location   	(2440, 2493)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@26
+				location   	(2440, 2496)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Выпуск: показать результат и экспорт")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3CA9B8B03BAA"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object StateView "EndState" "$UNNAMED$101" @27
+			    Parent_View 	@2
+			    location   	(847, 2304)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"681F68480729"
+			    autoResize 	TRUE)
+			(object TransView "" @28
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"747EDA247652"
+			    client     	@11
+			    supplier   	@27
+			    vertices   	(list Points
+				(329, 1706)
+				(810, 2261))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @29
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"936DBEC4A1D0"
+			    client     	@18
+			    supplier   	@27
+			    vertices   	(list Points
+				(1848, 1481)
+				(889, 2269))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Выпуск: построить начальный опорный план" @30
+			    Parent_View 	@2
+			    location   	(3472, 1576)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@30
+				location   	(3472, 1579)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	412
+				justify    	0
+				label      	"Выпуск: построить начальный опорный план")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"F84DAE90C12C"
+			    width      	518
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @31
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @32
+				Parent_View 	@31
+				location   	(3208, 1304)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"C74FC9E01B9E"
+			    client     	@14
+			    supplier   	@30
+			    vertices   	(list Points
+				(2953, 1153)
+				(3406, 1523))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @33
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"57A189D1F0FD"
+			    client     	@30
+			    supplier   	@21
+			    vertices   	(list Points
+				(3477, 1628)
+				(3490, 1768))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @34
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"C4CBA015F0B2"
+			    client     	@21
+			    supplier   	@22
+			    vertices   	(list Points
+				(3502, 1969)
+				(3510, 2019))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @35
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @36
+				Parent_View 	@35
+				location   	(3906, 2127)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"7D8581929B1B"
+			    client     	@22
+			    supplier   	@24
+			    vertices   	(list Points
+				(3841, 2178)
+				(3976, 2165))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @37
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @38
+				Parent_View 	@37
+				location   	(2883, 2171)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"8CA6780DCD58"
+			    client     	@22
+			    supplier   	@25
+			    vertices   	(list Points
+				(3179, 2178)
+				(2599, 2075))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @39
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"091D5F12C1D5"
+			    client     	@25
+			    supplier   	@26
+			    vertices   	(list Points
+				(2438, 2099)
+				(2439, 2440))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @40
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"08709A16B537"
+			    client     	@26
+			    supplier   	@27
+			    vertices   	(list Points
+				(2273, 2473)
+				(889, 2308))
+			    line_style 	0
+			    x_offset   	FALSE)))
+		(object ActivityDiagram "Оборудование"
+		    quid       	"CC48DD7462E0"
+		    title      	"План перевозок"
+		    zoom       	95
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	480
+		    items      	(list diagram_item_list
+			(object Swimlane "" @2
+			    line_color 	3342489
+			    width      	450)
+			(object StateView "StartState" "$UNNAMED$102" @3
+			    Parent_View 	@2
+			    location   	(509, 113)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"4C61B23A6DC2"
+			    autoResize 	TRUE)
+			(object ActivityStateView "Оборудование: открыть модуль" @4
+			    Parent_View 	@2
+			    location   	(403, 395)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@4
+				location   	(403, 398)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	322
+				justify    	0
+				label      	"Оборудование: открыть модуль")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"59E16393BE94"
+			    width      	428
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @5
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"A5F91A9E10B8"
+			    client     	@3
+			    supplier   	@4
+			    vertices   	(list Points
+				(497, 143)
+				(422, 342))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Оборудование: загрузить параметры оборудования" @6
+			    Parent_View 	@2
+			    location   	(403, 845)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@6
+				location   	(403, 848)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Оборудование: загрузить параметры оборудования")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"2C5E3EA2A55E"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @7
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"008904AFE7CC"
+			    client     	@4
+			    supplier   	@6
+			    vertices   	(list Points
+				(403, 448)
+				(403, 792))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Оборудование: срок службы корректен?" @8
+			    Parent_View 	@2
+			    location   	(922, 1282)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @9
+				Parent_View 	@8
+				location   	(543, 1252)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	824
+				justify    	1
+				label      	"Оборудование: срок службы корректен?"
+				pctDist    	-0.411852
+				height     	276
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"1EFE1D315A60"
+			    width      	681
+			    height     	232
+			    autoResize 	TRUE)
+			(object TransView "" @10
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"206D4D74EBA2"
+			    client     	@6
+			    supplier   	@8
+			    vertices   	(list Points
+				(466, 897)
+				(922, 1166))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Оборудование: показать сообщение о параметрах" @11
+			    Parent_View 	@2
+			    location   	(284, 1654)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@11
+				location   	(284, 1657)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	332
+				justify    	0
+				label      	"Оборудование: показать сообщение о параметрах")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"A54A4937CD6A"
+			    width      	438
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @12
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @13
+				Parent_View 	@12
+				location   	(489, 1469)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"нет"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"2F5028F04EB4"
+			    client     	@8
+			    supplier   	@11
+			    vertices   	(list Points
+				(582, 1282)
+				(326, 1601))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Оборудование: данные корректны?" @14
+			    Parent_View 	@2
+			    location   	(2606, 1153)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @15
+				Parent_View 	@14
+				location   	(2317, 1125)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	662
+				justify    	1
+				label      	"Оборудование: данные корректны?"
+				pctDist    	-0.046209
+				height     	307
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"E16FCF53C447"
+			    width      	694
+			    height     	293
+			    autoResize 	TRUE)
+			(object TransView "" @16
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @17
+				Parent_View 	@16
+				location   	(1899, 792)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"A5134E671634"
+			    client     	@8
+			    supplier   	@14
+			    vertices   	(list Points
+				(1262, 1282)
+				(1654, 841)
+				(2536, 822)
+				(2606, 1007))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Оборудование: показать сообщение об ошибке" @18
+			    Parent_View 	@2
+			    location   	(1913, 1428)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@18
+				location   	(1913, 1431)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	330
+				justify    	0
+				label      	"Оборудование: показать сообщение об ошибке")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"10E6C3EDE7CB"
+			    width      	436
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @19
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @20
+				Parent_View 	@19
+				location   	(2147, 1299)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"2B4D001F34DF"
+			    client     	@14
+			    supplier   	@18
+			    vertices   	(list Points
+				(2259, 1153)
+				(1979, 1375))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Оборудование: рассчитать таблицу Беллмана" @21
+			    Parent_View 	@2
+			    location   	(3500, 1868)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@21
+				location   	(3500, 1824)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	448
+				justify    	0
+				label      	"Оборудование: рассчитать таблицу Беллмана")
+			    icon_style 	"Label"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"DF31F82A6262"
+			    width      	618
+			    height     	201
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object DecisionView "Оборудование: замена выгодна?" @22
+			    Parent_View 	@2
+			    location   	(3510, 2178)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @23
+				Parent_View 	@22
+				location   	(3418, 2131)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	2
+				max_width  	300
+				justify    	1
+				label      	"Оборудование: замена выгодна?"
+				pctDist    	0.468712
+				height     	231
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"E628BDF3DA70"
+			    width      	662
+			    height     	319
+			    autoResize 	TRUE)
+			(object ActivityStateView "Оборудование: пересчитать стратегию" @24
+			    Parent_View 	@2
+			    location   	(4254, 2139)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@24
+				location   	(4254, 2142)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	576
+				justify    	0
+				label      	"Оборудование: пересчитать стратегию")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"F0BC628877AB"
+			    width      	682
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Оборудование: сформировать график замен" @25
+			    Parent_View 	@2
+			    location   	(2438, 2047)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@25
+				location   	(2438, 2050)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Оборудование: сформировать график замен")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"75851540DEF5"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Оборудование: показать результат и экспорт" @26
+			    Parent_View 	@2
+			    location   	(2440, 2493)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@26
+				location   	(2440, 2496)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Оборудование: показать результат и экспорт")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"DC61CC8FF726"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object StateView "EndState" "$UNNAMED$103" @27
+			    Parent_View 	@2
+			    location   	(847, 2304)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"1C34997BA59C"
+			    autoResize 	TRUE)
+			(object TransView "" @28
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"B73A90305042"
+			    client     	@11
+			    supplier   	@27
+			    vertices   	(list Points
+				(329, 1706)
+				(810, 2261))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @29
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"B448C0671591"
+			    client     	@18
+			    supplier   	@27
+			    vertices   	(list Points
+				(1848, 1481)
+				(889, 2269))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Оборудование: построить начальное состояние" @30
+			    Parent_View 	@2
+			    location   	(3472, 1576)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@30
+				location   	(3472, 1579)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	412
+				justify    	0
+				label      	"Оборудование: построить начальное состояние")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"B8C114FCAE1F"
+			    width      	518
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @31
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @32
+				Parent_View 	@31
+				location   	(3208, 1304)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"66BACEBEECB0"
+			    client     	@14
+			    supplier   	@30
+			    vertices   	(list Points
+				(2953, 1153)
+				(3406, 1523))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @33
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"B54791109E9D"
+			    client     	@30
+			    supplier   	@21
+			    vertices   	(list Points
+				(3477, 1628)
+				(3490, 1768))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @34
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3F1D67C38551"
+			    client     	@21
+			    supplier   	@22
+			    vertices   	(list Points
+				(3502, 1969)
+				(3510, 2019))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @35
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @36
+				Parent_View 	@35
+				location   	(3906, 2127)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"8496D0B4DA74"
+			    client     	@22
+			    supplier   	@24
+			    vertices   	(list Points
+				(3841, 2178)
+				(3976, 2165))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @37
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @38
+				Parent_View 	@37
+				location   	(2883, 2171)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"F7C8F66E1EBD"
+			    client     	@22
+			    supplier   	@25
+			    vertices   	(list Points
+				(3179, 2178)
+				(2599, 2075))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @39
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"A3D975DC630F"
+			    client     	@25
+			    supplier   	@26
+			    vertices   	(list Points
+				(2438, 2099)
+				(2439, 2440))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @40
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"14C3C8E8472A"
+			    client     	@26
+			    supplier   	@27
+			    vertices   	(list Points
+				(2273, 2473)
+				(889, 2308))
+			    line_style 	0
+			    x_offset   	FALSE)))
+		(object ActivityDiagram "Кассы"
+		    quid       	"301E4AD4FB4C"
+		    title      	"План перевозок"
+		    zoom       	95
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	480
+		    items      	(list diagram_item_list
+			(object Swimlane "" @2
+			    line_color 	3342489
+			    width      	450)
+			(object StateView "StartState" "$UNNAMED$104" @3
+			    Parent_View 	@2
+			    location   	(509, 113)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"A58AD79BBA30"
+			    autoResize 	TRUE)
+			(object ActivityStateView "Кассы: открыть модуль" @4
+			    Parent_View 	@2
+			    location   	(403, 395)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@4
+				location   	(403, 398)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	322
+				justify    	0
+				label      	"Кассы: открыть модуль")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"CF98662C759C"
+			    width      	428
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @5
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"7C2E4BA2B8AF"
+			    client     	@3
+			    supplier   	@4
+			    vertices   	(list Points
+				(497, 143)
+				(422, 342))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Кассы: загрузить потоки магазинов" @6
+			    Parent_View 	@2
+			    location   	(403, 845)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@6
+				location   	(403, 848)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Кассы: загрузить потоки магазинов")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"FC27F5D18D71"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @7
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"A6AA7370E548"
+			    client     	@4
+			    supplier   	@6
+			    vertices   	(list Points
+				(403, 448)
+				(403, 792))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Кассы: потоки заданы?" @8
+			    Parent_View 	@2
+			    location   	(922, 1282)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @9
+				Parent_View 	@8
+				location   	(543, 1252)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	824
+				justify    	1
+				label      	"Кассы: потоки заданы?"
+				pctDist    	-0.411852
+				height     	276
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"6C54731C865A"
+			    width      	681
+			    height     	232
+			    autoResize 	TRUE)
+			(object TransView "" @10
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"8C35E8D17918"
+			    client     	@6
+			    supplier   	@8
+			    vertices   	(list Points
+				(466, 897)
+				(922, 1166))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Кассы: показать сообщение о потоках" @11
+			    Parent_View 	@2
+			    location   	(284, 1654)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@11
+				location   	(284, 1657)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	332
+				justify    	0
+				label      	"Кассы: показать сообщение о потоках")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"6B8F5A7E554C"
+			    width      	438
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @12
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @13
+				Parent_View 	@12
+				location   	(489, 1469)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"нет"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47034874B8CC"
+			    client     	@8
+			    supplier   	@11
+			    vertices   	(list Points
+				(582, 1282)
+				(326, 1601))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Кассы: данные корректны?" @14
+			    Parent_View 	@2
+			    location   	(2606, 1153)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @15
+				Parent_View 	@14
+				location   	(2317, 1125)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	662
+				justify    	1
+				label      	"Кассы: данные корректны?"
+				pctDist    	-0.046209
+				height     	307
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"077495039571"
+			    width      	694
+			    height     	293
+			    autoResize 	TRUE)
+			(object TransView "" @16
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @17
+				Parent_View 	@16
+				location   	(1899, 792)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"011333F1B9F1"
+			    client     	@8
+			    supplier   	@14
+			    vertices   	(list Points
+				(1262, 1282)
+				(1654, 841)
+				(2536, 822)
+				(2606, 1007))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Кассы: показать сообщение об ошибке" @18
+			    Parent_View 	@2
+			    location   	(1913, 1428)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@18
+				location   	(1913, 1431)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	330
+				justify    	0
+				label      	"Кассы: показать сообщение об ошибке")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"31FBC906749A"
+			    width      	436
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @19
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @20
+				Parent_View 	@19
+				location   	(2147, 1299)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"F2C97BB0B50F"
+			    client     	@14
+			    supplier   	@18
+			    vertices   	(list Points
+				(2259, 1153)
+				(1979, 1375))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Кассы: рассчитать число кассиров" @21
+			    Parent_View 	@2
+			    location   	(3500, 1868)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@21
+				location   	(3500, 1824)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	448
+				justify    	0
+				label      	"Кассы: рассчитать число кассиров")
+			    icon_style 	"Label"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5AC2159173CB"
+			    width      	618
+			    height     	201
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object DecisionView "Кассы: очередь допустима?" @22
+			    Parent_View 	@2
+			    location   	(3510, 2178)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @23
+				Parent_View 	@22
+				location   	(3418, 2131)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	2
+				max_width  	300
+				justify    	1
+				label      	"Кассы: очередь допустима?"
+				pctDist    	0.468712
+				height     	231
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"905EA0592D16"
+			    width      	662
+			    height     	319
+			    autoResize 	TRUE)
+			(object ActivityStateView "Кассы: увеличить число кассиров" @24
+			    Parent_View 	@2
+			    location   	(4254, 2139)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@24
+				location   	(4254, 2142)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	576
+				justify    	0
+				label      	"Кассы: увеличить число кассиров")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3D9B6A4E88FE"
+			    width      	682
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Кассы: сформировать план касс" @25
+			    Parent_View 	@2
+			    location   	(2438, 2047)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@25
+				location   	(2438, 2050)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Кассы: сформировать план касс")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"0DF4AA486615"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Кассы: показать результат и экспорт" @26
+			    Parent_View 	@2
+			    location   	(2440, 2493)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@26
+				location   	(2440, 2496)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Кассы: показать результат и экспорт")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"152D423CF454"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object StateView "EndState" "$UNNAMED$105" @27
+			    Parent_View 	@2
+			    location   	(847, 2304)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"3E0EA8E42A8C"
+			    autoResize 	TRUE)
+			(object TransView "" @28
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"51940F97D318"
+			    client     	@11
+			    supplier   	@27
+			    vertices   	(list Points
+				(329, 1706)
+				(810, 2261))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @29
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"90DDD221E5A5"
+			    client     	@18
+			    supplier   	@27
+			    vertices   	(list Points
+				(1848, 1481)
+				(889, 2269))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Кассы: построить начальную очередь" @30
+			    Parent_View 	@2
+			    location   	(3472, 1576)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@30
+				location   	(3472, 1579)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	412
+				justify    	0
+				label      	"Кассы: построить начальную очередь")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"05A4D5FCA55D"
+			    width      	518
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @31
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @32
+				Parent_View 	@31
+				location   	(3208, 1304)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"821A4CE9CEB9"
+			    client     	@14
+			    supplier   	@30
+			    vertices   	(list Points
+				(2953, 1153)
+				(3406, 1523))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @33
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"F34134E1A1CB"
+			    client     	@30
+			    supplier   	@21
+			    vertices   	(list Points
+				(3477, 1628)
+				(3490, 1768))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @34
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"A0DE638F0EC4"
+			    client     	@21
+			    supplier   	@22
+			    vertices   	(list Points
+				(3502, 1969)
+				(3510, 2019))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @35
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @36
+				Parent_View 	@35
+				location   	(3906, 2127)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"351FE69FB3BD"
+			    client     	@22
+			    supplier   	@24
+			    vertices   	(list Points
+				(3841, 2178)
+				(3976, 2165))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @37
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @38
+				Parent_View 	@37
+				location   	(2883, 2171)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"2D037DF633BD"
+			    client     	@22
+			    supplier   	@25
+			    vertices   	(list Points
+				(3179, 2178)
+				(2599, 2075))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @39
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"698A316E2C2B"
+			    client     	@25
+			    supplier   	@26
+			    vertices   	(list Points
+				(2438, 2099)
+				(2439, 2440))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @40
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"B5DC4AD63AA4"
+			    client     	@26
+			    supplier   	@27
+			    vertices   	(list Points
+				(2273, 2473)
+				(889, 2308))
+			    line_style 	0
+			    x_offset   	FALSE)))
+		(object ActivityDiagram "Инвестиции"
+		    quid       	"129D063C81FE"
+		    title      	"План перевозок"
+		    zoom       	95
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	480
+		    items      	(list diagram_item_list
+			(object Swimlane "" @2
+			    line_color 	3342489
+			    width      	450)
+			(object StateView "StartState" "$UNNAMED$106" @3
+			    Parent_View 	@2
+			    location   	(509, 113)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"5D0DD65B48DE"
+			    autoResize 	TRUE)
+			(object ActivityStateView "Инвестиции: открыть модуль" @4
+			    Parent_View 	@2
+			    location   	(403, 395)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@4
+				location   	(403, 398)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	322
+				justify    	0
+				label      	"Инвестиции: открыть модуль")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"A7FCF484C3F4"
+			    width      	428
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @5
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"1D5DCD19338D"
+			    client     	@3
+			    supplier   	@4
+			    vertices   	(list Points
+				(497, 143)
+				(422, 342))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Инвестиции: загрузить проекты и бюджет" @6
+			    Parent_View 	@2
+			    location   	(403, 845)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@6
+				location   	(403, 848)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Инвестиции: загрузить проекты и бюджет")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"2B0BA31C7FC4"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @7
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"A424D92BA473"
+			    client     	@4
+			    supplier   	@6
+			    vertices   	(list Points
+				(403, 448)
+				(403, 792))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Инвестиции: бюджет задан?" @8
+			    Parent_View 	@2
+			    location   	(922, 1282)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @9
+				Parent_View 	@8
+				location   	(543, 1252)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	824
+				justify    	1
+				label      	"Инвестиции: бюджет задан?"
+				pctDist    	-0.411852
+				height     	276
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"51170A044456"
+			    width      	681
+			    height     	232
+			    autoResize 	TRUE)
+			(object TransView "" @10
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"ACB1995A936F"
+			    client     	@6
+			    supplier   	@8
+			    vertices   	(list Points
+				(466, 897)
+				(922, 1166))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Инвестиции: показать сообщение о бюджете" @11
+			    Parent_View 	@2
+			    location   	(284, 1654)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@11
+				location   	(284, 1657)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	332
+				justify    	0
+				label      	"Инвестиции: показать сообщение о бюджете")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"E0033E245603"
+			    width      	438
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @12
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @13
+				Parent_View 	@12
+				location   	(489, 1469)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"нет"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"86FE3058EAB4"
+			    client     	@8
+			    supplier   	@11
+			    vertices   	(list Points
+				(582, 1282)
+				(326, 1601))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object DecisionView "Инвестиции: данные корректны?" @14
+			    Parent_View 	@2
+			    location   	(2606, 1153)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @15
+				Parent_View 	@14
+				location   	(2317, 1125)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	1
+				max_width  	662
+				justify    	1
+				label      	"Инвестиции: данные корректны?"
+				pctDist    	-0.046209
+				height     	307
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"1E6B360AE176"
+			    width      	694
+			    height     	293
+			    autoResize 	TRUE)
+			(object TransView "" @16
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @17
+				Parent_View 	@16
+				location   	(1899, 792)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"ABC6E2855845"
+			    client     	@8
+			    supplier   	@14
+			    vertices   	(list Points
+				(1262, 1282)
+				(1654, 841)
+				(2536, 822)
+				(2606, 1007))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Инвестиции: показать сообщение об ошибке" @18
+			    Parent_View 	@2
+			    location   	(1913, 1428)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@18
+				location   	(1913, 1431)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	330
+				justify    	0
+				label      	"Инвестиции: показать сообщение об ошибке")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"E4E52E6C7638"
+			    width      	436
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @19
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @20
+				Parent_View 	@19
+				location   	(2147, 1299)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	1)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"CE73083CC0DC"
+			    client     	@14
+			    supplier   	@18
+			    vertices   	(list Points
+				(2259, 1153)
+				(1979, 1375))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Инвестиции: решить задачу о ранце" @21
+			    Parent_View 	@2
+			    location   	(3500, 1868)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@21
+				location   	(3500, 1824)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	448
+				justify    	0
+				label      	"Инвестиции: решить задачу о ранце")
+			    icon_style 	"Label"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"2A17468BB483"
+			    width      	618
+			    height     	201
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object DecisionView "Инвестиции: портфель допустим?" @22
+			    Parent_View 	@2
+			    location   	(3510, 2178)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @23
+				Parent_View 	@22
+				location   	(3418, 2131)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				nlines     	2
+				max_width  	300
+				justify    	1
+				label      	"Инвестиции: портфель допустим?"
+				pctDist    	0.468712
+				height     	231
+				orientation 	1)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"1EE1ED27EA9D"
+			    width      	662
+			    height     	319
+			    autoResize 	TRUE)
+			(object ActivityStateView "Инвестиции: пересчитать распределение" @24
+			    Parent_View 	@2
+			    location   	(4254, 2139)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@24
+				location   	(4254, 2142)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	576
+				justify    	0
+				label      	"Инвестиции: пересчитать распределение")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"941163DF98BD"
+			    width      	682
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Инвестиции: сформировать портфель" @25
+			    Parent_View 	@2
+			    location   	(2438, 2047)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@25
+				location   	(2438, 2050)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Инвестиции: сформировать портфель")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"F26B203834C6"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object ActivityStateView "Инвестиции: показать результат и экспорт" @26
+			    Parent_View 	@2
+			    location   	(2440, 2493)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@26
+				location   	(2440, 2496)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	269
+				justify    	0
+				label      	"Инвестиции: показать результат и экспорт")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"5D267A170397"
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object StateView "EndState" "$UNNAMED$107" @27
+			    Parent_View 	@2
+			    location   	(847, 2304)
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    quidu      	"2251FEA180EE"
+			    autoResize 	TRUE)
+			(object TransView "" @28
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3C09427FF3A2"
+			    client     	@11
+			    supplier   	@27
+			    vertices   	(list Points
+				(329, 1706)
+				(810, 2261))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @29
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"F24DF3C89E33"
+			    client     	@18
+			    supplier   	@27
+			    vertices   	(list Points
+				(1848, 1481)
+				(889, 2269))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object ActivityStateView "Инвестиции: построить начальный портфель" @30
+			    Parent_View 	@2
+			    location   	(3472, 1576)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@30
+				location   	(3472, 1579)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	412
+				justify    	0
+				label      	"Инвестиции: построить начальный портфель")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"A0DADC89AC05"
+			    width      	518
+			    height     	106
+			    annotation 	1
+			    autoResize 	TRUE)
+			(object TransView "" @31
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @32
+				Parent_View 	@31
+				location   	(3208, 1304)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"ECA0E30E79EF"
+			    client     	@14
+			    supplier   	@30
+			    vertices   	(list Points
+				(2953, 1153)
+				(3406, 1523))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @33
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"E5182FB2113A"
+			    client     	@30
+			    supplier   	@21
+			    vertices   	(list Points
+				(3477, 1628)
+				(3490, 1768))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @34
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"58DD527E211D"
+			    client     	@21
+			    supplier   	@22
+			    vertices   	(list Points
+				(3502, 1969)
+				(3510, 2019))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @35
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @36
+				Parent_View 	@35
+				location   	(3906, 2127)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"НЕТ"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"8CA94F09EA38"
+			    client     	@22
+			    supplier   	@24
+			    vertices   	(list Points
+				(3841, 2178)
+				(3976, 2165))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @37
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @38
+				Parent_View 	@37
+				location   	(2883, 2171)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    charSet    	204
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor_loc 	1
+				nlines     	1
+				max_width  	450
+				justify    	0
+				label      	"ДА"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"07C2A6128A86"
+			    client     	@22
+			    supplier   	@25
+			    vertices   	(list Points
+				(3179, 2178)
+				(2599, 2075))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @39
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3AB58BEAF186"
+			    client     	@25
+			    supplier   	@26
+			    vertices   	(list Points
+				(2438, 2099)
+				(2439, 2440))
+			    line_style 	0
+			    x_offset   	FALSE)
+			(object TransView "" @40
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"0CFB467B76FA"
 			    client     	@26
 			    supplier   	@27
 			    vertices   	(list Points

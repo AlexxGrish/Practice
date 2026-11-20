@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ALX\\Desktop\\Practice-master\\Pracrice\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|c:\\users\\alx\\desktop\\practice-master\\pracrice\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|c:\\users\\alx\\desktop\\practice-master\\pracrice\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|c:\\users\\alx\\desktop\\practice-master\\pracrice\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|solutionrelative:mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AF4EFD19-0A43-4F22-9122-4DD234F7E296}|Pracrice.csproj|c:\\users\\alx\\desktop\\practice-master\\pracrice\\services\\calculationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 507,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,16 +38,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ALX\\Desktop\\Practice-master\\Pracrice\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\ALX\\Desktop\\Practice-master\\Pracrice\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAgwDkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoCAAAAAAAAAAAAACoCAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T19:34:32.304Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T19:34:32.304Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "MainWindow.Calculations.cs",
               "ViewState": "AgIAAMABAAAAAAAAAAAwwM8BAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T19:30:06.657Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T19:30:06.657Z"
             },
             {
               "$type": "Document",
@@ -72,12 +70,11 @@
               "RelativeToolTip": "Services\\CalculationService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T18:51:09.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T18:51:09.53Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\ALX\\Desktop\\Practice-master\\Pracrice\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",

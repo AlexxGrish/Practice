@@ -8,6 +8,7 @@
 
         <SolidColorBrush x:Key="SidebarBg" Color="#2B5748" />
         <SolidColorBrush x:Key="SidebarDeep" Color="#213F35" />
+        <SolidColorBrush x:Key="DarkGreen" Color="#1C3B30" />
         <SolidColorBrush x:Key="SidebarHover" Color="#9CB080" />
         <SolidColorBrush x:Key="MainBg" Color="#273338" />
         <SolidColorBrush x:Key="CardBg" Color="#2B5748" />

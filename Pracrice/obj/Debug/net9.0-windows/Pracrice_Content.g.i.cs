@@ -9,6 +9,8 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("config.ini")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("help/pracricehelp.chm")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("help/pracricehelp.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/beer-classic.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/beer-dark.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/beer-ipa.png")]

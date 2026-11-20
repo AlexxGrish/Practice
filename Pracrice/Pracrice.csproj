@@ -9,6 +9,7 @@
     <ApplicationIcon>Assets\rospiv.ico</ApplicationIcon>
     <RootNamespace>Pracrice</RootNamespace>
     <AssemblyName>Pracrice</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +31,12 @@
     <Content Include="config.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Help\PracriceHelp.chm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\PracriceHelp.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\*.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -38,6 +45,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <Target Name="CompileHelp" BeforeTargets="BeforeBuild"
+          Condition="Exists('C:\Program Files (x86)\HTML Help Workshop\hhc.exe') and Exists('$(MSBuildProjectDirectory)\Help\PracriceHelp.hhp')">
+    <Exec Command="&quot;C:\Program Files (x86)\HTML Help Workshop\hhc.exe&quot; &quot;$(MSBuildProjectDirectory)\Help\PracriceHelp.hhp&quot;"
+          ContinueOnError="true"
+          IgnoreExitCode="true"
+          StandardOutputImportance="low" />
+  </Target>
 
   <Target Name="CopyReportLogo" AfterTargets="Build">
     <MakeDir Directories="$(OutDir)Assets" />

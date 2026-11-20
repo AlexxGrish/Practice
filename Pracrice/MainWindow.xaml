@@ -13,6 +13,7 @@
     Background="{StaticResource MainBg}"
     WindowStartupLocation="CenterScreen"
     ResizeMode="CanResize"
+    PreviewKeyDown="Window_PreviewKeyDown"
     mc:Ignorable="d">
 
     <Window.Resources>
@@ -117,6 +118,36 @@
             </Setter>
         </Style>
 
+        <Style x:Key="TopBarButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="Foreground" Value="#E8F0E9" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="TopButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TopButtonBorder" Property="Background" Value="#2B5748" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="TopButtonBorder" Property="Background" Value="#3D6B58" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="NavSectionHeader" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#7FA08B" />
             <Setter Property="FontSize" Value="10" />
@@ -132,8 +163,14 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Background="#1C2427" BorderBrush="#33443D" BorderThickness="0,0,0,1">
-            <Menu VerticalAlignment="Center" Background="Transparent">
+        <Border Grid.Row="0" Background="{StaticResource DarkGreen}" BorderBrush="#33443D" BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Menu Grid.Column="0" VerticalAlignment="Center" Background="Transparent">
                 <MenuItem Header="Пользователи">
                     <MenuItem Header="Сменить пользователя" Click="LogoutMenuItem_Click" />
                     <Separator />
@@ -186,7 +223,16 @@
                 <MenuItem Header="О программе">
                     <MenuItem Header="О программе" Click="AboutMenuItem_Click" />
                 </MenuItem>
-            </Menu>
+                </Menu>
+
+                <Button Grid.Column="1"
+                        Style="{StaticResource TopBarButtonStyle}"
+                        Content="?  Справка"
+                        ToolTip="Открыть справку (F1)"
+                        AutomationProperties.Name="Справка"
+                        Click="HelpButton_Click"
+                        Margin="0,0,10,0" />
+            </Grid>
         </Border>
 
         <Grid Grid.Row="1">
@@ -537,10 +583,12 @@
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <!-- БЫЛО: Height="Auto" -> СТАЛО: Height="*" -->
                                         <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
+
                                     <TextBlock Grid.Row="0" Text="Тарифы и запасы (₽ / ед.)" Style="{StaticResource CardTitle}"
                                                Margin="0,0,0,6" />
                                     <DataGrid Grid.Row="1" Name="TariffsDataGrid" IsReadOnly="False" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -564,16 +612,30 @@
                                     </DataGrid>
                                     <TextBlock Grid.Row="2" Text="Магазины для расчёта" Style="{StaticResource FieldLabel}"
                                                Margin="0,6,0,4" />
-                                    <DataGrid Grid.Row="3" x:Name="TransportStoresGrid" Height="75"
-                                              RowHeight="25" HeadersVisibility="None" IsReadOnly="False" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-          ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                    <DataGrid Grid.Row="3" 
+          x:Name="TransportStoresGrid"  
+          IsReadOnly="False" 
+          GridLinesVisibility="Horizontal"  
+          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+          ScrollViewer.VerticalScrollBarVisibility="Auto"
+          ScrollViewer.CanContentScroll="True">
+
+                                        <!-- Скрываем визуальные полосы прокрутки, оставляя рабочий скролл колесиком -->
+                                        <DataGrid.Resources>
+                                            <Style TargetType="ScrollBar">
+                                                <Setter Property="Opacity" Value="0"/>
+                                                <Setter Property="Width" Value="0"/>
+                                                <Setter Property="Height" Value="0"/>
+                                            </Style>
+                                        </DataGrid.Resources>
+
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn Header="Вкл." Width="40">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                  HorizontalAlignment="Center"
-                                                                  ToolTip="Включить магазин в расчёт" />
+                              HorizontalAlignment="Center"
+                              ToolTip="Включить магазин в расчёт" />
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
@@ -581,6 +643,7 @@
                                             <DataGridTextColumn Header="Потребность, ед." Width="110" Binding="{Binding Demand}" IsReadOnly="True" />
                                         </DataGrid.Columns>
                                     </DataGrid>
+
                                 </Grid>
                             </Border>
 
@@ -588,11 +651,7 @@
                                     Margin="10,0,0,10" CornerRadius="8" Padding="18">
                                 <StackPanel>
                                     <TextBlock Text="Условия перевозки" Style="{StaticResource CardTitle}" />
-                                    <TextBlock Text="Период планирования" Style="{StaticResource FieldLabel}" />
-                                    <ComboBox Height="38" SelectedIndex="0" Margin="0,0,0,15"
-                                              ToolTip="Период, на который рассчитывается план перевозок">
-                                        <ComboBoxItem Content="Ноябрь 2026" />
-                                    </ComboBox>
+                                  
                                     <TextBlock Text="Тип задачи" Style="{StaticResource FieldLabel}" />
                                     <ComboBox x:Name="TransportTaskTypeCombo" Height="38" SelectedIndex="0"
                                               ToolTip="Тип транспортной задачи: закрытая или открытая">
@@ -605,7 +664,7 @@
                                 </StackPanel>
                             </Border>
 
-                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
                                     Background="{StaticResource CardBg}" Margin="0,10,0,0"
                                     CornerRadius="8" Padding="18">
                                 <Grid>
@@ -616,8 +675,8 @@
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="Минимальные затраты" Style="{StaticResource MutedText}" />
                                         <TextBlock x:Name="RouteCostText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
-                                        <TextBlock x:Name="RouteStatusText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap" />
-                                        <TextBlock x:Name="RouteSummaryText" Text="" Foreground="{StaticResource TextSoft}" FontSize="11" Margin="0,8,0,0" TextWrapping="Wrap" />
+                                        <TextBlock x:Name="RouteStatusText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="WrapWithOverflow" />
+                                        <TextBlock x:Name="RouteSummaryText" Text="" Foreground="{StaticResource TextSoft}" FontSize="11" Margin="0,8,0,0" TextWrapping="NoWrap" />
                                     </StackPanel>
                                     <Grid Grid.Column="1" Margin="20,0,0,0">
                                         <Grid.RowDefinitions>
@@ -651,7 +710,7 @@
                         <Grid Grid.Row="0" Margin="0,0,0,18">
                             <StackPanel>
                                 <TextBlock Text="Обновление оборудования" Style="{StaticResource PageTitle}" />
-                                <TextBlock Text="Расчёт оптимального графика замены методом Беллмана"
+                                <TextBlock Text="Расчёт оптимального графика замены оборудования"
                                            Style="{StaticResource PageSubtitle}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -676,7 +735,7 @@
                                     Margin="0,0,10,10" CornerRadius="8" Padding="14">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel>
-                                        <TextBlock Text="Метод Беллмана: параметры" Style="{StaticResource CardTitle}" />
+                                        <TextBlock Text="Параметры оборудования" Style="{StaticResource CardTitle}" />
                                         <TextBlock Text="Наименование" Style="{StaticResource FieldLabel}" />
                                         <TextBox x:Name="EquipmentNameText" Height="32" Text="Линия розлива ЛР-01"
                                                  Margin="0,0,0,8"
@@ -737,7 +796,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Text="Таблица Беллмана F(k, s) (млн ₽)"
+                                    <TextBlock Grid.Row="0" Text="Таблица расчёта F(k, s) (млн ₽)"
                                                Style="{StaticResource CardTitle}" />
                                     <TextBlock Grid.Row="1" Margin="0,4,0,8"
                                                Text="F(k, s) = max { доход − C(s) + F(k+1, s+1); доход − C(0) − P + S(s) + F(k+1, 1) }"
@@ -879,7 +938,7 @@
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="Открыть в час пик" Style="{StaticResource MutedText}" />
                                         <TextBlock x:Name="CashTotalText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
-                                        <TextBlock x:Name="CashSummaryText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap" />
+                                        <TextBlock x:Name="CashSummaryText" Text="Расчёт не выполнен" Foreground="#6C7A7F" FontSize="12" Margin="0,4,0,0" TextWrapping="WrapWithOverflow" />
                                     </StackPanel>
                                     <DataGrid Grid.Column="1" Margin="20,0,0,0" Name="CashResultGrid" GridLinesVisibility="Horizontal"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
           ScrollViewer.VerticalScrollBarVisibility="Hidden">
@@ -938,21 +997,15 @@
                                 <StackPanel>
                                     <TextBlock Text="Инвестиционный бюджет" Style="{StaticResource CardTitle}" />
                                     <TextBlock Text="Доступный бюджет  (млн ₽) " Style="{StaticResource FieldLabel}" />
-                                    <TextBox x:Name="InvestBudgetText" Height="38" Text="10000000" Margin="0,0,0,15"
+                                    <TextBox x:Name="InvestBudgetText" Height="38" Text="10" Margin="0,0,0,15"
                                              ToolTip="Сумма, доступная для распределения между проектами, рублей" />
-                                    <UniformGrid Columns="2">
+                                    <UniformGrid>
                                         <StackPanel Margin="0,0,5,0">
                                             <TextBlock Text="Горизонт, лет" Style="{StaticResource FieldLabel}" />
                                             <TextBox x:Name="InvestHorizonText" Height="38" Text="1"
                                                      ToolTip="Период инвестиционного планирования в годах" />
                                         </StackPanel>
-                                        <StackPanel Margin="5,0,0,0">
-                                            <TextBlock Text="Финансирование" Style="{StaticResource FieldLabel}" />
-                                            <ComboBox Height="38" SelectedIndex="0"
-                                                      ToolTip="Порядок финансирования проектов">
-                                                <ComboBoxItem Content="Целиком" />
-                                            </ComboBox>
-                                        </StackPanel>
+                                       
                                     </UniformGrid>
                                 </StackPanel>
                             </Border>
@@ -1000,7 +1053,7 @@
                                         <TextBlock x:Name="InvestIncomeLabel" Text="Ожидаемый доход / год" Style="{StaticResource MutedText}" />
                                         <TextBlock x:Name="InvestIncomeText" Text="—" Foreground="White" FontSize="30" FontWeight="Bold" />
                                         <TextBlock x:Name="InvestAllocatedText" Text="Распределение не выполнено" Foreground="{StaticResource AccentGreen}"
-                                                   FontSize="13" FontWeight="SemiBold" Margin="0,4,0,0" TextWrapping="Wrap" />
+                                                   FontSize="13" FontWeight="SemiBold" Margin="0,4,0,0" TextWrapping="WrapWithOverflow" />
                                     </StackPanel>
                                     <Grid Grid.Column="1" Margin="20,0,0,0">
                                         <Grid.RowDefinitions>

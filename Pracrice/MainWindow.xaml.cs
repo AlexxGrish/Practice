@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -403,6 +404,70 @@ public partial class MainWindow : Window
         {
             App.LogException(exception);
             DialogService.ShowError("Не удалось открыть окно «О программе».\n\n" + exception.Message);
+        }
+    }
+
+    private void HelpButton_Click(object sender, RoutedEventArgs e) => OpenHelp();
+
+    private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.F1)
+        {
+            return;
+        }
+
+        OpenHelp();
+        e.Handled = true;
+    }
+
+    private void OpenHelp()
+    {
+        string helpDirectory = Path.Combine(AppContext.BaseDirectory, "Help");
+        string chmPath = Path.Combine(helpDirectory, "PracriceHelp.chm");
+        string htmlPath = Path.Combine(helpDirectory, "PracriceHelp.html");
+
+        try
+        {
+            if (File.Exists(chmPath))
+            {
+                // HTML Help does not render pages reliably from long paths.
+                // Copy the CHM to a short temporary path before opening it.
+                string tempPath = Path.Combine(
+                    Path.GetTempPath(),
+                    $"rphelp_{Guid.NewGuid():N}.chm");
+                File.Copy(chmPath, tempPath, overwrite: true);
+
+                string viewer = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Windows),
+                    "hh.exe");
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = File.Exists(viewer) ? viewer : "hh.exe",
+                    Arguments = $"\"{tempPath}\"",
+                    UseShellExecute = true
+                });
+                return;
+            }
+
+            if (File.Exists(htmlPath))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = htmlPath,
+                    UseShellExecute = true
+                });
+                return;
+            }
+
+            DialogService.ShowError(
+                "Файл справки не найден.\n\n" +
+                "Ожидаемый путь:\n" + chmPath);
+        }
+        catch (Exception exception)
+        {
+            App.LogException(exception);
+            DialogService.ShowError("Не удалось открыть справку.\n\n" + exception.Message);
         }
     }
 

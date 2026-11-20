@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD>
+<meta name="GENERATOR" content="Microsoft® HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Главная"><param name="Local" value="index.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Интерфейс"><param name="Local" value="interface.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Вход в систему"><param name="Local" value="authorization.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="План выпуска"><param name="Local" value="plan.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="План перевозок"><param name="Local" value="transport.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Оборудование"><param name="Local" value="equipment.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Кассы"><param name="Local" value="cash.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Инвестиции"><param name="Local" value="investments.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Справочники"><param name="Local" value="references.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Отчёты"><param name="Local" value="reports.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Администрирование"><param name="Local" value="admin.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Вопросы и ошибки"><param name="Local" value="faq.html"></OBJECT>
+</UL>
+</BODY></HTML>

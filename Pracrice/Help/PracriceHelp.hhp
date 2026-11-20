@@ -1,0 +1,30 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=PracriceHelp.chm
+Contents file=PracriceHelp.hhc
+Index file=PracriceHelp.hhk
+Default topic=index.html
+Title=Справка ООО РОСПИВ
+Language=0x419
+Display compile progress=No
+Full-text search=Yes
+Default Window=Main
+
+[WINDOWS]
+Main="Справка ООО РОСПИВ","PracriceHelp.hhc","PracriceHelp.hhk","index.html","index.html",,,,,0x63520,,0x384e,,,,,,,,0
+
+[FILES]
+index.html
+interface.html
+authorization.html
+plan.html
+transport.html
+equipment.html
+cash.html
+investments.html
+references.html
+reports.html
+admin.html
+faq.html
+help.css
+logo.png

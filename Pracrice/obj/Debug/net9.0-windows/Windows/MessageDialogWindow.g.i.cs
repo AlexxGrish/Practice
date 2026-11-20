@@ -100,7 +100,7 @@ namespace Pracrice.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Pracrice;component/windows/messagedialogwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Pracrice;V1.0.0.0;component/windows/messagedialogwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\MessageDialogWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
